@@ -33,11 +33,11 @@ HTML / CSS / PHP のみで構成し、ビルドツールを使用しない。
 
 ```
 css/
-  admin.css       # エントリポイント（base + core + layout）
-  login.css       # ログインページ用（base + core + login layout）
-  base.css        # リセット + デザイントークン
-  core.css        # .adminkit { コンポーネント } + ユーティリティ
-  layout.css      # .adminkit-layout + .sidebar + .topbar
+  adminkit.css      # エントリポイント（base + core + layout + login）
+  base.css          # リセット + デザイントークン
+  core.css          # .adminkit { コンポーネント } + ユーティリティ
+  layout.css        # .adminkit-layout + .sidebar + .topbar
+  login.css         # .login レイアウト
 
 js/
   admin.js        # メイン JS（テーマ / ナビ / ポップアップ / モーダル / タブ）
@@ -53,16 +53,17 @@ parts/
 base.css ─── リセット + デザイントークン（レイアウト非依存）
 core.css ─── .adminkit スコープのコンポーネント + ユーティリティ
 layout.css ── .adminkit-layout / .sidebar / .topbar
+login.css ── .login レイアウト
 
-admin.css = base + core + layout（管理画面フルセット）
-login.css = base + core + .login レイアウト（ログインページ）
+adminkit.css = base + core + layout + login（全ページ共通）
+npm run build → adminkit.min.css
 ```
 
-- **admin.css**: 管理画面エントリポイント。`@import` のみ（`base.css` + `core.css` + `layout.css`）
-- **login.css**: ログインページエントリポイント。`base.css` + `core.css` + `.login` レイアウト
-- **base.css**: リセット + デザイントークン。レイアウト非依存。全エントリポイントで共有
+- **adminkit.css**: 唯一のエントリポイント。`@import` で全ソースファイルを結合
+- **base.css**: リセット + デザイントークン。レイアウト非依存
 - **core.css**: `.adminkit` スコープ内にコンポーネントをネスト + グローバルユーティリティ
-- **layout.css**: 管理画面レイアウト固有（`.adminkit-layout` グリッド、`.sidebar`、`.topbar`）。差し替えで別レイアウトに対応可能
+- **layout.css**: 管理画面レイアウト固有（`.adminkit-layout` グリッド、`.sidebar`、`.topbar`）
+- **login.css**: ログインページレイアウト（`.login`）
 
 ## ページテンプレート
 
@@ -74,7 +75,7 @@ login.css = base + core + .login レイアウト（ログインページ）
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Title - adminkit</title>
-  <link href="css/admin.css" rel="stylesheet">
+  <link href="css/adminkit.css" rel="stylesheet">
   <script type="module" src="js/admin.js"></script>
 </head>
 <body>

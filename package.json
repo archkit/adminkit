@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "esbuild css/admin.css --bundle --minify --outfile=css/admin.min.css && esbuild css/login.css --bundle --minify --outfile=css/login.min.css"
+    "build": "esbuild css/adminkit.css --bundle --minify --outfile=css/adminkit.min.css"
   },
   "devDependencies": {
     "esbuild": "^0.25.0"

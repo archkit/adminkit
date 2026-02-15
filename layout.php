@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Layout - adminkit</title>
-  <link href="css/admin.css" rel="stylesheet">
+  <link href="css/adminkit.css" rel="stylesheet">
   <script type="module" src="js/admin.js"></script>
 </head>
 
