@@ -1,0 +1,92 @@
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.5;
+  font-size: 0.875rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+  background: var(--surface-bg);
+}
+
+code,
+pre {
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 0.75rem;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+fieldset {
+  border: none;
+}
+
+/* --- Tokens --- */
+:root {
+  --color-primary: #2563eb;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #0891b2;
+
+  --surface-bg: #f9fafb;
+  --surface-card: #fff;
+  --surface-border: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-on-primary: #fff;
+}
+
+[data-theme="dark"] {
+  --surface-bg: #030712;
+  --surface-card: #111827;
+  --surface-border: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+}

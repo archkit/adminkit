@@ -1,0 +1,32 @@
+@import "base.css";
+@import "core.css";
+
+/* --- Login layout --- */
+.login {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 1rem;
+
+  > section {
+    width: 100%;
+    max-width: 24rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    > header {
+      text-align: center;
+
+      > h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      > p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
