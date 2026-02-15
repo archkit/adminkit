@@ -1,7 +1,7 @@
 # adminkit
 
 archkit Organization の管理画面 UI モジュール。
-HTML / CSS / PHP のみで構成し、ビルドツールを使用しない。
+HTML / CSS / PHP のみで構成する管理画面 UI キット。
 
 ## コンセプト
 
@@ -12,7 +12,7 @@ HTML / CSS / PHP のみで構成し、ビルドツールを使用しない。
 ## 技術スタック
 
 - **HTML**: セマンティック HTML、クラス最小限
-- **CSS**: CSS Nesting、BEM 不使用、`@import` によるファイル分割
+- **CSS**: CSS Nesting、BEM 不使用、`@import` によるファイル分割（esbuild でバンドル）
 - **PHP**: テンプレートパーツの `include` のみ（`part()` ヘルパー）
 - **JS**: ES Modules（esm.sh 経由）、イベントデリゲーション
 - **Icons**: Lucide（esm.sh 経由で `createIcons()` で描画）
@@ -34,6 +34,7 @@ HTML / CSS / PHP のみで構成し、ビルドツールを使用しない。
 ```
 css/
   adminkit.css      # エントリポイント（base + core + layout + login）
+  adminkit.min.css  # ビルド済み（バンドル + minify）
   base.css          # リセット + デザイントークン
   core.css          # .adminkit { コンポーネント } + ユーティリティ
   layout.css        # .adminkit-layout + .sidebar + .topbar
@@ -453,6 +454,16 @@ import { createIcons, icons } from "https://esm.sh/lucide";
 | `.visually-hidden` | アクセシビリティ用の非表示 |
 | `.hidden` | `display: none` |
 | `.truncate` | テキスト省略 |
+
+## ビルド
+
+```bash
+npm run build    # → css/adminkit.min.css
+```
+
+開発時は `adminkit.css`（`@import` 分割）をそのまま使用。
+本番では `adminkit.min.css`（バンドル済み）を配信する。
+`adminkit.min.css` はリポジトリにコミットされるため、利用側に Node.js は不要。
 
 ## コンポーネントロードマップ
 
