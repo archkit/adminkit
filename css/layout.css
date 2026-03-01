@@ -356,10 +356,10 @@
   background: var(--surface-card);
   border-bottom: 1px solid var(--surface-border);
 
-  > h1 {
+  h1 {
     padding: 0.75rem 1.5rem;
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   /* --- Right navigation --- */
