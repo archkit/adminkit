@@ -653,6 +653,124 @@
         </section>
 
         <section>
+          <h2>List</h2>
+          <div class="body">
+            <p>ul / ol / dl のリストコンポーネント。セパレーター付きのクリーンなスタイル。</p>
+            <section>
+              <h3>Default (ul)</h3>
+              <div class="body">
+                <ul class="c-list">
+                  <li>ダッシュボード</li>
+                  <li>ユーザー管理</li>
+                  <li>設定</li>
+                  <li>ログ</li>
+                </ul>
+              </div>
+            </section>
+            <section>
+              <h3>Disc / Decimal</h3>
+              <div class="body grid cols-2">
+                <ul class="c-list disc">
+                  <li>セキュリティ設定</li>
+                  <li>通知設定</li>
+                  <li>表示設定</li>
+                </ul>
+                <ol class="c-list decimal">
+                  <li>アカウントを作成</li>
+                  <li>プロフィールを設定</li>
+                  <li>チームを招待</li>
+                </ol>
+              </div>
+            </section>
+            <section>
+              <h3>Bordered</h3>
+              <div class="body">
+                <ul class="c-list bordered">
+                  <li>alice@example.com</li>
+                  <li>bob@example.com</li>
+                  <li>carol@example.com</li>
+                </ul>
+              </div>
+            </section>
+            <section>
+              <h3>Striped</h3>
+              <div class="body">
+                <ul class="c-list bordered striped">
+                  <li>2024-01-15 ログイン成功</li>
+                  <li>2024-01-14 パスワード変更</li>
+                  <li>2024-01-13 プロフィール更新</li>
+                  <li>2024-01-12 ログイン成功</li>
+                  <li>2024-01-11 ログイン失敗</li>
+                </ul>
+              </div>
+            </section>
+            <section>
+              <h3>Interactive</h3>
+              <div class="body">
+                <ul class="c-list bordered interactive">
+                  <li>ユーザー一覧を表示</li>
+                  <li>新規ユーザーを追加</li>
+                  <li>権限を管理</li>
+                  <li>アクティビティログを確認</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section>
+          <h2>Definition List</h2>
+          <div class="body">
+            <p>dl を使ったキー/バリュー形式の表示。詳細画面やメタデータ表示に最適。</p>
+            <section>
+              <h3>Default (縦並び)</h3>
+              <div class="body">
+                <dl class="c-dl">
+                  <div><dt>名前</dt><dd>Alice Johnson</dd></div>
+                  <div><dt>メール</dt><dd>alice@example.com</dd></div>
+                  <div><dt>ロール</dt><dd>管理者</dd></div>
+                  <div><dt>ステータス</dt><dd><span class="c-badge success">Active</span></dd></div>
+                </dl>
+              </div>
+            </section>
+            <section>
+              <h3>Horizontal</h3>
+              <div class="body">
+                <dl class="c-dl horizontal">
+                  <div><dt>名前</dt><dd>Alice Johnson</dd></div>
+                  <div><dt>メール</dt><dd>alice@example.com</dd></div>
+                  <div><dt>ロール</dt><dd>管理者</dd></div>
+                  <div><dt>登録日</dt><dd>2024-01-15</dd></div>
+                  <div><dt>最終ログイン</dt><dd>2024-03-04 09:30</dd></div>
+                </dl>
+              </div>
+            </section>
+            <section>
+              <h3>Bordered</h3>
+              <div class="body">
+                <dl class="c-dl horizontal bordered">
+                  <div><dt>プロジェクト</dt><dd>adminkit</dd></div>
+                  <div><dt>バージョン</dt><dd>1.0.0</dd></div>
+                  <div><dt>ライセンス</dt><dd>MIT</dd></div>
+                </dl>
+              </div>
+            </section>
+            <section>
+              <h3>Bordered + Striped</h3>
+              <div class="body">
+                <dl class="c-dl horizontal bordered striped">
+                  <div><dt>CPU</dt><dd>Intel Core i9-14900K</dd></div>
+                  <div><dt>メモリ</dt><dd>64 GB DDR5</dd></div>
+                  <div><dt>ストレージ</dt><dd>2 TB NVMe SSD</dd></div>
+                  <div><dt>OS</dt><dd>Ubuntu 24.04 LTS</dd></div>
+                  <div><dt>稼働時間</dt><dd>42 days</dd></div>
+                </dl>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section>
           <h2>Tooltip</h2>
           <div class="body">
             <p>Contextual text popups on hover or focus. <code>data-tooltip</code> 属性で指定。CSS のみ。</p>
