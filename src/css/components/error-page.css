@@ -1,0 +1,53 @@
+@layer adminkit.components {
+  .c-error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    text-align: center;
+  }
+
+  .c-error-page > h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: var(--leading-tight);
+    color: var(--text-strong);
+    border: none;
+    padding: 0;
+  }
+
+  .c-error-page > h1 > .error-code {
+    display: block;
+    font-size: 7.5rem;
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.25rem;
+
+    /* テーマのアクセントカラーを装飾的に使用 */
+    color: var(--accent);
+    opacity: 0.3;
+
+    &.danger {
+      color: var(--status-fail);
+      opacity: 0.4;
+    }
+  }
+
+  .c-error-page > p {
+    font-size: 0.9375rem;
+    line-height: var(--leading-normal);
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    max-width: 26rem;
+  }
+
+  .c-error-page > .l-cluster {
+    margin-top: 2.5rem;
+  }
+
+  .c-error-page > .l-cluster + .l-cluster {
+    margin-top: 1.5rem;
+  }
+}

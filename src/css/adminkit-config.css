@@ -1,0 +1,38 @@
+/*
+ * adminkit v2 - Configuration Template
+ *
+ * このファイルをコピーして、adminkit.min.css の後に読み込んでください。
+ * コメントアウトを外して値を変更するだけで設定が反映されます。
+ *
+ * <link rel="stylesheet" href="css/adminkit.min.css">
+ * <link rel="stylesheet" href="css/my-config.css">
+ */
+
+:root {
+  /* === シェル === */
+  /* --shell-sidebar-w: 240px; */
+  /* --shell-sidebar-w-mini: 64px; */
+
+  /* === カラー === */
+  /* --accent: oklch(0.50 0.19 260); */
+  /* --status-ok: oklch(0.55 0.14 155); */
+  /* --status-warn: oklch(0.65 0.18 75); */
+  /* --status-fail: oklch(0.55 0.20 25); */
+  /* --status-note: oklch(0.55 0.12 230); */
+
+  /* === 角丸 === */
+  /* --radius: 6px; */
+
+  /* === アイコンサイズ === */
+  /* --icon-sm: 14px; */
+  /* --icon-md: 16px; */
+  /* --icon-lg: 20px; */
+
+  /* === フォント === */
+  /* --font-sans: system-ui, -apple-system, sans-serif; */
+
+  /* === アニメーション === */
+  /* --duration-fast: 120ms; */
+  /* --duration-normal: 200ms; */
+  /* --duration-slow: 300ms; */
+}

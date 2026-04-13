@@ -1,0 +1,20 @@
+@layer adminkit.components {
+  .c-alert {
+    --_accent: var(--status-note);
+
+    padding: 1rem;
+    border-left: 3px solid var(--_accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: color-mix(in oklch, var(--_accent) 8%, transparent);
+    font-size: 0.875rem;
+
+    > strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
+  }
+}

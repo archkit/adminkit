@@ -1,0 +1,95 @@
+@layer adminkit.utilities {
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .hidden-sm {
+    @media (max-width: 48rem) {
+      display: none !important;
+    }
+  }
+
+  .hidden-lg {
+    @media (min-width: 75rem) {
+      display: none !important;
+    }
+  }
+
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .contents {
+    display: contents;
+  }
+
+  /* sr-only + フォーカス時に表示 */
+  .visually-hidden-focusable {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+
+    &:focus,
+    &:focus-within {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: revert;
+      margin: revert;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+    }
+  }
+
+  /* gap ユーティリティ */
+  .gap-0   { gap: 0 !important; }
+  .gap-1   { gap: var(--space-1) !important; }
+  .gap-2   { gap: var(--space-2) !important; }
+  .gap-3   { gap: var(--space-3) !important; }
+  .gap-4   { gap: var(--space-4) !important; }
+  .gap-6   { gap: var(--space-6) !important; }
+  .gap-8   { gap: var(--space-8) !important; }
+}

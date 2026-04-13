@@ -1,0 +1,54 @@
+@layer adminkit.components {
+  .c-dropdown {
+    position: relative;
+    display: inline-flex;
+
+    > [popover] {
+      /* popoverのデフォルトを解除 */
+      inset: unset;
+      margin: 0;
+
+      /* 暗黙のアンカー（popovertargetで紐付けた要素）を使用 */
+      position-area: bottom span-left;
+      margin-top: 0.25rem;
+
+      /* スタイル */
+      min-width: 10rem;
+      padding: 0.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--input-bg);
+      box-shadow: var(--shadow-popup);
+      font-size: 0.875rem;
+
+      > li > button, > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius);
+        text-align: left;
+        color: var(--text-muted);
+        transition: background var(--duration-fast) var(--easing),
+                    color var(--duration-fast) var(--easing);
+
+        &:hover {
+          background: var(--surface-100);
+          color: var(--text-strong);
+        }
+
+        &.danger { color: var(--status-fail); }
+        &.danger:hover { background: color-mix(in srgb, var(--status-fail) 8%, transparent); }
+
+        > svg, > i { width: var(--icon-sm); height: var(--icon-sm); flex-shrink: 0; color: var(--text-muted); }
+      }
+
+      > li > hr {
+        border: none;
+        border-top: 1px solid var(--border-muted);
+        margin: 0.25rem 0;
+      }
+    }
+  }
+}

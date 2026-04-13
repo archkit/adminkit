@@ -1,490 +1,130 @@
 # adminkit
 
-archkit Organization の管理画面 UI モジュール。
-HTML / CSS / PHP のみで構成する管理画面 UI キット。
+管理画面・単一フォーム系UIのためのCSSフレームワーク。
 
-## コンセプト
+## 特徴
 
-- サイドバー + トップバー + メインコンテンツの管理画面レイアウト
-- CRUD 操作、データ一覧、フォーム入力を中心とした UI
-- ダッシュボード（グラフ・KPI カード）にも対応
+- **@layer ベース** — カスケード制御で詳細度の問題を排除
+- **2層構造** — レイアウトプリミティブ + シェルパターンの組み合わせ
+- **テーマシステム** — スタイル（Ink/Stone/Dusk）× モード（Light/Dark）の2軸
+- **セマンティクス重視** — ARIA属性で状態管理、正しいアウトライン
+- **JS 最小** — CSS Only で動くものはCSS化。バニラJSのみ同梱
 
-## 技術スタック
-
-- **HTML**: セマンティック HTML、クラス最小限
-- **CSS**: CSS Nesting、BEM 不使用、`@import` によるファイル分割（esbuild でバンドル）
-- **PHP**: テンプレートパーツの `include` のみ（`part()` ヘルパー）
-- **JS**: ES Modules（esm.sh 経由）、イベントデリゲーション
-- **Icons**: Lucide（esm.sh 経由で `createIcons()` で描画）
-
-## 命名規則
-
-| 対象 | ルール | 例 |
-|---|---|---|
-| CSS クラス全般 | kebab-case | `.topbar`, `.sidebar` |
-| コンポーネント | `c-` プレフィックス（`.adminkit` スコープ内） | `.c-button`, `.c-modal` |
-| バリアント | 素のクラス名を追加 | `.c-button.primary`, `.c-badge.danger` |
-| JS 対象要素 | `data-js-*` 属性 | `data-js-open="confirm"` |
-
-- **ID は JS 対象に使用しない** — `[data-js-*]` で代替する
-- **バリアントは BEM 修飾子ではなく**、単純なクラス追加で表現する
-
-## ファイル構成
-
-```
-css/
-  adminkit.css      # エントリポイント（base + core + layout + login）
-  adminkit.min.css  # ビルド済み（バンドル + minify）
-  base.css          # リセット + デザイントークン
-  core.css          # .adminkit { コンポーネント } + ユーティリティ
-  layout.css        # .adminkit-layout + .sidebar + .topbar
-  login.css         # .login レイアウト
-
-js/
-  admin.js        # メイン JS（テーマ / ナビ / ポップアップ / モーダル / タブ）
-
-parts/
-  sidebar.php     # サイドバーパーツ
-  topbar-actions.php  # トップバー右側パーツ
-```
-
-### CSS アーキテクチャ
-
-```
-base.css ─── リセット + デザイントークン（レイアウト非依存）
-core.css ─── .adminkit スコープのコンポーネント + ユーティリティ
-layout.css ── .adminkit-layout / .sidebar / .topbar
-login.css ── .login レイアウト
-
-adminkit.css = base + core + layout + login（全ページ共通）
-npm run build → adminkit.min.css
-```
-
-- **adminkit.css**: 唯一のエントリポイント。`@import` で全ソースファイルを結合
-- **base.css**: リセット + デザイントークン。レイアウト非依存
-- **core.css**: `.adminkit` スコープ内にコンポーネントをネスト + グローバルユーティリティ
-- **layout.css**: 管理画面レイアウト固有（`.adminkit-layout` グリッド、`.sidebar`、`.topbar`）
-- **login.css**: ログインページレイアウト（`.login`）
-
-## ページテンプレート
-
-```html
-<?php require_once __DIR__ . '/functions.php'; ?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Title - adminkit</title>
-  <link href="css/adminkit.css" rel="stylesheet">
-  <script type="module" src="js/admin.js"></script>
-</head>
-<body>
-  <div class="adminkit-layout">
-    <?php part('sidebar'); ?>
-    <div class="contents">
-      <header class="topbar fixed">
-        <h1>Page Title</h1>
-        <?php part('topbar-actions'); ?>
-        <nav aria-label="breadcrumb">
-          <ol>
-            <li><a href="index.php">Dashboard</a></li>
-            <li>Page Title</li>
-          </ol>
-        </nav>
-      </header>
-      <main class="adminkit">
-        <!-- page content -->
-      </main>
-    </div>
-  </div>
-</body>
-</html>
-```
-
-## レイアウト構造
-
-```
-body
-  .adminkit-layout    # display: grid | height: 100dvh
-    .sidebar          # サイドバー（flex column）
-      .logo           # ロゴ + モバイルメニューボタン
-      nav             # ナビゲーション全体（flex column）
-        header        # ユーザードロップダウン（上部）
-        .scroll       # スクロール可能なナビリンク
-        footer        # ユーザードロップダウン（下部）
-    .contents         # display: grid | grid-template-rows: auto 1fr
-      .topbar         # ヘッダー + パンくず
-      .adminkit       # コンテンツ領域（overflow-y: auto = スクロールコンテナ）
-```
-
-| クラス | 役割 |
-|---|---|
-| `.adminkit-layout` | アプリケーション全体のラッパー。CSS Grid で sidebar + contents を構成 |
-| `.sidebar` | サイドバー。ロゴ・ナビゲーション・ユーザーメニューを内包 |
-| `.contents` | サイドバー右側のエリア。topbar + main を縦に構成 |
-| `.topbar` | トップバー。タイトル・アクション・パンくず |
-| `.adminkit` | メインコンテンツ領域。スクロールコンテナ。コンポーネントのスコープ |
-
-- `.adminkit-layout` は `height: 100dvh`（`min-height` ではない）で固定し、`.adminkit` をスクロールコンテナとして機能させる
-- `.adminkit-layout.collapsed` でサイドバー幅を 64px に縮小
-
-### .adminkit のセクション構造
-
-```html
-<main class="adminkit">
-  <section>
-    <h2>セクションタイトル</h2>
-    <div class="body">
-      <!-- コンテンツ -->
-      <section>
-        <h3>サブセクション</h3>
-        <div class="body">...</div>
-      </section>
-    </div>
-  </section>
-</main>
-```
-
-`.adminkit` 内ではタグセレクタでスタイルを適用する（`h2`, `h3`, `p`, `section`）。
-
-### サイドバー構造
-
-```html
-<aside class="sidebar">
-  <div class="logo">
-    adminkit
-    <button class="sidebar-toggle" data-js-sidebar aria-label="Menu">
-      <i data-lucide="menu"></i>
-    </button>
-  </div>
-
-  <nav aria-label="sidebar">
-    <!-- 上部ユーザードロップダウン（任意） -->
-    <header>
-      <details class="user">
-        <summary>
-          <img src="avatar.jpg" alt="User">
-          <span><span>Name</span><span>Role</span></span>
-          <i data-lucide="chevrons-up-down"></i>
-        </summary>
-        <ul>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Log out</a></li>
-        </ul>
-      </details>
-    </header>
-
-    <!-- スクロール可能なナビゲーション -->
-    <div class="scroll">
-      <ul>
-        <li><a href="#"><i data-lucide="icon"></i>Link</a></li>
-      </ul>
-
-      <p class="label">セクションラベル</p>
-      <ul>
-        <li>
-          <details>
-            <summary><i data-lucide="icon"></i>Nested</summary>
-            <ul>
-              <li><a href="#">Sub item</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a href="#"><i data-lucide="icon"></i>Link<span class="badge danger">3</span></a></li>
-      </ul>
-    </div>
-
-    <!-- 下部ユーザードロップダウン（任意） -->
-    <footer>
-      <details class="user">...</details>
-    </footer>
-  </nav>
-</aside>
-```
-
-- `<header>` 内のユーザードロップダウンは**下方向**に展開
-- `<footer>` 内のユーザードロップダウンは**上方向**に展開
-- `.scroll` 内の `<p class="label">` はセクションラベル（sticky 表示）
-- ネストナビは `<details>` でアコーディオン動作（CSS アニメーション付き）
-- `.badge` はナビリンク内の通知バッジ（コンポーネント `.c-badge` とは別）
-
-### トップバー
-
-```html
-<header class="topbar fixed">
-  <h1>Page Title</h1>
-  <!-- topbar-actions.php -->
-  <nav aria-label="actions">
-    <ul>
-      <li><a href="#">Help</a></li>
-      <li><button data-js-theme aria-label="Toggle theme"><i data-lucide="moon"></i></button></li>
-      <li>
-        <details class="popup">
-          <summary><i data-lucide="bell"></i><span class="badge danger">3</span></summary>
-          <ul><li><a href="#">Notification</a></li></ul>
-        </details>
-      </li>
-    </ul>
-  </nav>
-  <!-- パンくず（任意） -->
-  <nav aria-label="breadcrumb">
-    <ol><li><a href="#">Home</a></li><li>Current</li></ol>
-  </nav>
-</header>
-```
-
-- `.topbar.fixed` — `position: sticky; top: 0` でスクロール時に固定
-- `.popup` — `<details>` ベースのドロップダウン。通知バッジは `.badge` で表示
-- パンくずは `nav[aria-label="breadcrumb"]` で `grid-column: 1 / -1` に配置
-
-### レスポンシブ（モバイル）
-
-`@media (max-width: 47.999rem)` で以下の動作に切り替わる:
-
-- `.adminkit-layout` が 1 カラムに変更（サイドバーは上部に `.logo` のみ表示）
-- `.sidebar > nav` が左端から `position: fixed` のドロワーとして表示
-- `.adminkit-layout.open` でドロワーが開く + 背景オーバーレイ表示
-- `.sidebar-toggle` ボタン（`data-js-sidebar`）でトグル
-- ドロワー外クリックで自動的に閉じる
-
-## デザイントークン
-
-```css
-:root {
-  --color-primary     --color-success     --color-warning
-  --color-danger      --color-info
-
-  --surface-bg        --surface-card      --surface-border
-  --text-primary      --text-secondary    --text-on-primary
-}
-```
-
-`[data-theme="dark"]` でダークテーマに切り替え可能。トークンは `base.css` で定義。
-
-## コンポーネント
-
-コンポーネント（`c-*`）は `.adminkit` スコープ内でのみ有効。
-
-### Button `.c-button`
-
-```html
-<button class="c-button primary">Save</button>
-<button class="c-button danger"><i data-lucide="trash-2"></i> Delete</button>
-<button class="c-button small ghost">Cancel</button>
-```
-
-バリアント: `primary` / `success` / `danger` / `ghost`
-サイズ: `small`
-
-### Fields `.c-fields`
-
-```html
-<!-- Vertical（デフォルト） -->
-<div class="c-fields">
-  <label><span>Name</span><input type="text"></label>
-</div>
-
-<!-- Horizontal -->
-<div class="c-fields horizontal">
-  <label><span>Name</span><input type="text"></label>
-  <label><span>Bio</span><textarea></textarea></label>
-</div>
-```
-
-チェックボックス / ラジオは `.check`、トグルは `.toggle` で `<label>` をラップ。
-`required` 属性付きフィールドには自動で `*` マークが表示される。
-
-### Table `.c-table`
-
-```html
-<div class="c-table-scroll">
-  <table class="c-table">
-    <thead><tr><th>Name</th><th class="action">Actions</th></tr></thead>
-    <tbody><tr><td>Alice</td><td class="action">...</td></tr></tbody>
-  </table>
-</div>
-```
-
-デフォルトで striped + hover。`.c-table-scroll` でオーバーフロー対応。
-`.c-table.auto` で `width: auto`（テーブル幅をコンテンツに合わせる）。
-
-### Card `.c-card`
-
-```html
-<div class="c-card">Content</div>
-```
-
-### Badge `.c-badge`
-
-```html
-<span class="c-badge primary">New</span>
-```
-
-バリアント: `primary` / `success` / `warning` / `danger`
-
-### Alert `.c-alert`
-
-```html
-<p class="c-alert success">
-  <strong>Success</strong>
-  Operation completed.
-</p>
-```
-
-バリアント: (default=info) / `success` / `warning` / `danger`
-内部で `color-mix()` を使用してアクセントカラーから背景を生成。
-
-### Modal `.c-modal`
-
-Native `<dialog>` 要素を使用。
-
-```html
-<button class="c-button" data-js-open="confirm">Open</button>
-<dialog data-js-dialog="confirm" class="c-modal">
-  <section>
-    <header>
-      <h3>Title</h3>
-      <button class="c-button ghost" data-js-close aria-label="Close">
-        <i data-lucide="x"></i>
-      </button>
-    </header>
-    <div class="body"><p>Content</p></div>
-    <footer>
-      <button class="c-button ghost" data-js-close>Cancel</button>
-      <button class="c-button primary" data-js-close>Confirm</button>
-    </footer>
-  </section>
-</dialog>
-```
-
-- `data-js-open="name"` — トリガーボタン（`showModal()` を呼ぶ）
-- `data-js-dialog="name"` — ダイアログ要素の識別
-- `data-js-close` — 閉じるボタン
-- `<section>` で内容をラップし、`<h3>` のアウトライン構造をスコープする（`<dialog>` はセクショニングコンテンツではないため）
-- backdrop クリックでも閉じる
-- `showModal()` は top layer に描画するため、DOM 位置は表示に影響しない
-- フェードイン / フェードアウトアニメーション付き（`@starting-style` + `allow-discrete`）
-
-### Tabs `.c-tabs`
-
-```html
-<div class="c-tabs">
-  <div role="tablist">
-    <button role="tab" aria-selected="true" data-js-tab="overview">Overview</button>
-    <button role="tab" data-js-tab="details">Details</button>
-  </div>
-  <div role="tabpanel" data-js-panel="overview">Overview content</div>
-  <div role="tabpanel" data-js-panel="details" hidden>Details content</div>
-</div>
-```
-
-- `role="tablist"` / `role="tab"` / `role="tabpanel"` で ARIA セマンティクスを構成
-- `data-js-tab` / `data-js-panel` でタブとパネルを紐付け
-- JS でイベントデリゲーションにより切り替え
-
-### Pagination `.c-pagination`
-
-```html
-<nav class="c-pagination" aria-label="Pagination">
-  <a href="?page=1" aria-label="Previous"><i data-lucide="chevron-left"></i></a>
-  <a href="?page=1">1</a>
-  <a href="?page=2" aria-current="page">2</a>
-  <a href="?page=3">3</a>
-  <span>…</span>
-  <a href="?page=10">10</a>
-  <a href="?page=3" aria-label="Next"><i data-lucide="chevron-right"></i></a>
-</nav>
-```
-
-- CSS のみ（静的テンプレート）。ページ切り替えは PHP 側の責務
-- `aria-current="page"` でアクティブページを示す
-- `aria-disabled="true"` で無効化
-
-### Avatar `.c-avatar`
-
-```html
-<!-- Image -->
-<img class="c-avatar" src="photo.jpg" alt="User">
-
-<!-- Initials -->
-<span class="c-avatar">TF</span>
-```
-
-サイズ: `small` / (default) / `large`
-
-### Tooltip `[data-tooltip]`
-
-```html
-<button class="c-button" data-tooltip="Tooltip text">Hover me</button>
-```
-
-- CSS のみ（`::after` 疑似要素）
-- `hover` / `focus-visible` で表示
-
-## JS 設計
-
-```js
-import { createIcons, icons } from "https://esm.sh/lucide";
-```
-
-すべての操作を `document.addEventListener("click", ...)` + `e.target.closest()` のイベントデリゲーションで処理する。
-
-| 機能 | トリガー | 動作 |
-|---|---|---|
-| テーマ切替 | `[data-js-theme]` | `data-theme` 属性の切替 + `localStorage` に保存 |
-| テーマ復元 | ページロード時 | `localStorage` から `data-theme` を復元（FOUC 防止） |
-| アクティブナビ | ページロード時 | `location.pathname` から現在のページを判定し `.active` を付与 |
-| ポップアップ閉じ | 外側クリック | `details.user[open]` / `details.popup[open]` を閉じる |
-| モーダル開閉 | `[data-js-open]` / `[data-js-close]` | `showModal()` / `close()` + backdrop クリック対応 |
-| サイドバートグル | `[data-js-sidebar]` | `.adminkit-layout` に `.open` を切替（モバイル用） |
-| タブ切替 | `[data-js-tab]` | `aria-selected` + `hidden` の切替 |
-
-## ユーティリティ
-
-| クラス | 用途 |
-|---|---|
-| `.flex` | `display: flex; align-items: center; gap: 0.5rem` |
-| `.flex.end` / `.flex.center` | justify-content 制御 |
-| `.grid` | auto-fill グリッド（`minmax(250px, 1fr)`） |
-| `.grid.cols-2` ~ `.cols-4` | 固定カラム数（モバイルで 1 カラムにフォールバック） |
-| `.container.narrow` / `.wide` | 最大幅制約（40rem / 60rem） |
-| `.container.center` | `margin-inline: auto` |
-| `.text-center` / `.text-right` | テキスト配置 |
-| `.visually-hidden` | アクセシビリティ用の非表示 |
-| `.hidden` | `display: none` |
-| `.truncate` | テキスト省略 |
-
-## ビルド
+## セットアップ
 
 ```bash
-npm run build    # → css/adminkit.min.css
+npm install
+npm run dev    # 開発ビルド
+npm run build  # 本番ビルド（minify）
 ```
 
-開発時は `adminkit.css`（`@import` 分割）をそのまま使用。
-本番では `adminkit.min.css`（バンドル済み）を配信する。
-`adminkit.min.css` はリポジトリにコミットされるため、利用側に Node.js は不要。
+PHP のビルトインサーバで確認:
 
-## コンポーネントロードマップ
+```bash
+php -S localhost:8080
+```
 
-### Phase 1 — 実装済み
+## 使い方
 
-| カテゴリ | コンポーネント |
+```html
+<link rel="stylesheet" href="/dist/adminkit.min.css">
+<script src="/dist/theme-init.js"></script>
+<script type="module" src="/dist/adminkit.min.js"></script>
+```
+
+## ディレクトリ構成
+
+```
+/
+├── index.php                        # ダッシュボード
+├── src/
+│   ├── css/                         # CSS ソース
+│   │   ├── adminkit.css             # エントリポイント（@layer + @import）
+│   │   ├── tokens/                  # 色・余白・z-index・タイポグラフィ・モーション
+│   │   ├── base/                    # reset・global・focus・motion・print
+│   │   ├── layout/                  # プリミティブ・シェル・パターン
+│   │   ├── components/              # 29 UI コンポーネント
+│   │   └── utilities/               # ヘルパークラス
+│   └── js/
+│       ├── adminkit.js              # JS エントリポイント（Lucide・テーマ・Toast 等）
+│       └── theme-init.js            # テーマ初期化（同期実行、FOUC 防止）
+├── dist/                            # ビルド出力
+│   ├── adminkit.min.css             # CSS（Lightning CSS）
+│   ├── adminkit.min.js              # JS（esbuild、Lucide バンドル済み）
+│   └── theme-init.js                # テーマ初期化（コピー）
+├── assets/                          # デモページ専用
+│   ├── css/demo.css
+│   └── js/demo.js
+├── pages/
+│   ├── components/                  # コンポーネントギャラリー
+│   ├── demo/                        # デモページ（記事・ユーザー CRUD、設定、プロフィール）
+│   └── layout/                      # レイアウトパターンのデモ
+├── parts/                           # PHP テンプレートパーシャル
+├── docs/                            # 設計ドキュメント
+├── functions.php                    # PHP ヘルパー
+└── package.json                     # ビルドスクリプト
+```
+
+## コンポーネント一覧
+
+### フォーム
+fields, button, search, upload, segment, toggle-group
+
+### 表示
+card, table, list, badge, tag, avatar, stats, progress, stepper, skeleton, dot, divider
+
+### フィードバック
+alert, banner, toast, modal, dropdown, tooltip, tabs, pagination, action-bar, empty-state
+
+## レイアウトプリミティブ
+
+| プリミティブ | 用途 |
 |---|---|
-| Layout | adminkit-layout, sidebar, topbar, contents |
-| Navigation | sidebar nav, breadcrumb, tabs, pagination |
-| Data Display | table, card, badge, avatar |
-| Forms | input, select, checkbox, radio, toggle, textarea |
-| Actions | button |
-| Feedback | alert, tooltip |
-| Overlay | modal |
+| l-stack | 垂直方向の均等間隔 |
+| l-cluster | 水平方向の折り返し配置 |
+| l-sidebar | メイン + サイド 2カラム |
+| l-grid | 自動フィルグリッド |
+| l-center | 幅制約 + 中央配置 |
+| l-switcher | 幅に応じて縦横切替 |
+| l-frame | アスペクト比固定 |
 
-### Phase 2 — 未実装
+## シェルパターン
 
-| カテゴリ | コンポーネント |
+| パターン | data-layout | 用途 |
+|---|---|---|
+| サイドバー | `sidebar` | 標準的な管理画面 |
+| ミニサイドバー | `mini` | アイコンのみ、ホバー展開 |
+| トップナビ | `topnav` | サイドバーなし |
+| ダブルサイドバー | `double` | メイン + サブサイドバー |
+| スタンドアロン | — | ログイン・エラーページ |
+| フッター付き | — | shell-footer を shell-main 内に配置 |
+
+## デモページ
+
+| ページ | パス |
 |---|---|
-| Data Display | stat-card |
-| Actions | dropdown, menu |
-| Overlay | drawer |
-| Forms | file-upload, date-picker |
-| Feedback | toast, empty-state, progress, skeleton |
+| ダッシュボード | `/index.php` |
+| 記事一覧 | `/pages/demo/articles/` |
+| 記事編集（2カラム） | `/pages/demo/articles/edit.php?id=1` |
+| カテゴリ | `/pages/demo/articles/categories.php` |
+| コメント | `/pages/demo/articles/comments.php` |
+| ユーザー一覧 | `/pages/demo/users/` |
+| 一般設定 | `/pages/demo/settings.php` |
+| プロフィール（タブ） | `/pages/demo/profile.php` |
+| コンポーネント | `/pages/components/{layouts,modules,widgets}.php` |
+| レイアウトデモ | `/pages/layout/{sidebar,mini,topnav,double,footer,standalone,error,login}.php` |
+
+## ドキュメント
+
+| ファイル | 内容 |
+|---|---|
+| [docs/guide.md](docs/guide.md) | 設計思想・セクショニング・余白・アクセシビリティ |
+| [docs/tokens.md](docs/tokens.md) | デザイントークン |
+| [docs/layout.md](docs/layout.md) | プリミティブ + シェルパターン |
+| [docs/components-form.md](docs/components-form.md) | フォームコンポーネント |
+| [docs/components-display.md](docs/components-display.md) | 表示コンポーネント |
+| [docs/components-feedback.md](docs/components-feedback.md) | フィードバックコンポーネント |
+
+## ブラウザサポート
+
+最新2バージョンの Chrome, Edge, Safari, Firefox

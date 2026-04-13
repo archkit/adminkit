@@ -1,0 +1,15 @@
+@layer adminkit.components {
+  .c-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      border-top: 1px solid var(--border);
+    }
+  }
+}

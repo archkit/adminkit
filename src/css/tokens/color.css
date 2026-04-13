@@ -1,0 +1,161 @@
+@layer adminkit.tokens {
+  /* デフォルト（Ink light） */
+  :root {
+    --surface-0:      oklch(0.993 0.002 250);
+    --surface-50:     oklch(0.965 0.003 250);
+    --surface-100:    oklch(0.935 0.005 250);
+    --text-strong:    oklch(0.15 0.01 250);
+    --text-muted:     oklch(0.50 0.01 250);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.84 0.006 250);
+    --border-muted:   oklch(0.91 0.005 250);
+    --accent:         oklch(0.50 0.19 260);
+    --accent-soft:    color-mix(in srgb, var(--accent) 12%, transparent);
+    --accent-hover:   color-mix(in oklch, var(--accent), black 15%);
+    --input-bg:       oklch(1 0 0);
+    --radius:         6px;
+
+    /* ステータス（light） */
+    --status-ok:    oklch(0.55 0.14 155);
+    --status-warn:  oklch(0.65 0.18 75);
+    --status-fail:  oklch(0.55 0.20 25);
+    --status-note:  oklch(0.55 0.12 230);
+  }
+
+  /* Ink は :root のデフォルト。data-theme-style="ink" でも同じ値 */
+  [data-theme-style="ink"] {
+    /* :root と同一値のため省略可。明示したい場合のみ */
+  }
+
+  /* Stone light */
+  [data-theme-style="stone"] {
+    --surface-0:      oklch(0.975 0.003 110);
+    --surface-50:     oklch(0.95 0.005 110);
+    --surface-100:    oklch(0.93 0.008 110);
+    --text-strong:    oklch(0.18 0.005 110);
+    --text-muted:     oklch(0.50 0.005 110);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.82 0.005 110);
+    --border-muted:   oklch(0.88 0.005 110);
+    --accent:         oklch(0.55 0.15 165);
+    --accent-soft:    color-mix(in srgb, var(--accent) 8%, transparent);
+    --accent-hover:   color-mix(in oklch, var(--accent), black 15%);
+    --radius:         0px;
+  }
+
+  /* Dusk light */
+  [data-theme-style="dusk"] {
+    --surface-0:      oklch(0.98 0.004 290);
+    --surface-50:     oklch(0.96 0.006 290);
+    --surface-100:    oklch(0.93 0.008 290);
+    --text-strong:    oklch(0.15 0.015 290);
+    --text-muted:     oklch(0.50 0.012 290);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.84 0.008 290);
+    --border-muted:   oklch(0.90 0.008 290);
+    --accent:         oklch(0.55 0.18 330);
+    --accent-soft:    color-mix(in srgb, var(--accent) 8%, transparent);
+    --accent-hover:   color-mix(in oklch, var(--accent), black 15%);
+    --radius:         8px;
+  }
+
+  /* Volt light */
+  [data-theme-style="volt"] {
+    --surface-0:      oklch(0.985 0.006 170);
+    --surface-50:     oklch(0.96 0.010 170);
+    --surface-100:    oklch(0.93 0.014 170);
+    --text-strong:    oklch(0.12 0.02 170);
+    --text-muted:     oklch(0.45 0.015 170);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.82 0.012 170);
+    --border-muted:   oklch(0.88 0.010 170);
+    --accent:         oklch(0.62 0.24 145);
+    --accent-soft:    color-mix(in srgb, var(--accent) 10%, transparent);
+    --accent-hover:   color-mix(in oklch, var(--accent), black 15%);
+    --radius:         2px;
+  }
+
+  /* === ダークモード === */
+  [data-theme-mode="dark"] {
+    --input-bg:     oklch(0.20 0.01 250);
+
+    /* ステータス（dark: 明度UP） */
+    --status-ok:    oklch(0.65 0.14 155);
+    --status-warn:  oklch(0.75 0.18 75);
+    --status-fail:  oklch(0.65 0.20 25);
+    --status-note:  oklch(0.65 0.12 230);
+  }
+
+  /* Ink dark */
+  [data-theme-style="ink"][data-theme-mode="dark"],
+  :root[data-theme-mode="dark"]:not([data-theme-style]) {
+    --surface-0:      oklch(0.13 0.01 250);
+    --surface-50:     oklch(0.18 0.01 250);
+    --surface-100:    oklch(0.23 0.01 250);
+    --text-strong:    oklch(0.92 0.005 250);
+    --text-muted:     oklch(0.65 0.008 250);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.35 0.008 250);
+    --border-muted:   oklch(0.28 0.008 250);
+    --accent-hover:   color-mix(in oklch, var(--accent), white 15%);
+  }
+
+  /* Stone dark */
+  [data-theme-style="stone"][data-theme-mode="dark"] {
+    --surface-0:      oklch(0.13 0.005 110);
+    --surface-50:     oklch(0.18 0.005 110);
+    --surface-100:    oklch(0.23 0.005 110);
+    --text-strong:    oklch(0.92 0.003 110);
+    --text-muted:     oklch(0.65 0.005 110);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.35 0.005 110);
+    --border-muted:   oklch(0.28 0.005 110);
+    --accent-hover:   color-mix(in oklch, var(--accent), white 15%);
+  }
+
+  /* Dusk dark */
+  [data-theme-style="dusk"][data-theme-mode="dark"] {
+    --surface-0:      oklch(0.13 0.008 290);
+    --surface-50:     oklch(0.18 0.008 290);
+    --surface-100:    oklch(0.23 0.008 290);
+    --text-strong:    oklch(0.92 0.005 290);
+    --text-muted:     oklch(0.65 0.008 290);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.35 0.008 290);
+    --border-muted:   oklch(0.28 0.008 290);
+    --accent-hover:   color-mix(in oklch, var(--accent), white 15%);
+  }
+
+  /* Volt dark */
+  [data-theme-style="volt"][data-theme-mode="dark"] {
+    --surface-0:      oklch(0.10 0.018 170);
+    --surface-50:     oklch(0.15 0.018 170);
+    --surface-100:    oklch(0.20 0.018 170);
+    --text-strong:    oklch(0.93 0.008 170);
+    --text-muted:     oklch(0.65 0.012 170);
+    --text-on-accent: oklch(1 0 0);
+    --border:         oklch(0.32 0.012 170);
+    --border-muted:   oklch(0.25 0.012 170);
+    --accent-hover:   color-mix(in oklch, var(--accent), white 15%);
+  }
+
+  /* ダークナビ（サイドバー・トップナビ共通。テーマモード非依存） */
+  :root {
+    --nav-surface-0:   oklch(0.16 0.01 260);
+    --nav-surface-50:  oklch(0.20 0.01 260);
+    --nav-surface-100: oklch(0.25 0.01 260);
+    --nav-text-strong: oklch(0.95 0.005 260);
+    --nav-text-muted:  oklch(0.70 0.01 260);
+    --nav-border:      oklch(0.33 0.01 260);
+    --nav-border-muted: oklch(0.28 0.01 260);
+    --nav-accent-soft: color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+
+  /* シャドウ（モード依存） */
+  :root {
+    --shadow-popup: 0 2px 8px oklch(0 0 0 / 0.06), 0 0 0 1px oklch(0 0 0 / 0.04);
+  }
+  [data-theme-mode="dark"] {
+    --shadow-popup: 0 4px 12px oklch(0 0 0 / 0.4);
+  }
+}

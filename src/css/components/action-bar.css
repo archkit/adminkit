@@ -1,0 +1,19 @@
+@layer adminkit.components {
+  .c-action-bar {
+    display: flex;
+
+    &[hidden] { display: none; }
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 2.5rem;
+    background: var(--surface-50);
+    border-top: 1px solid var(--border);
+
+    &.sticky {
+      position: sticky;
+      bottom: 0;
+      z-index: var(--z-sticky);
+    }
+  }
+}

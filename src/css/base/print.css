@@ -1,0 +1,33 @@
+@layer adminkit.base {
+  @media print {
+    .shell-sidebar,
+    .shell-topbar,
+    .skip-link {
+      display: none !important;
+    }
+
+    .shell,
+    .shell-main {
+      display: block !important;
+    }
+
+    body {
+      background: white !important;
+      color: black !important;
+    }
+
+    h1, h2, h3 {
+      break-after: avoid;
+    }
+
+    table, figure {
+      break-inside: avoid;
+    }
+
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.75em;
+      color: #666;
+    }
+  }
+}

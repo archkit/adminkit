@@ -1,0 +1,77 @@
+@layer adminkit.components {
+  .c-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+
+    /* カード内の見出しは装飾リセット */
+    h2, h3, h4 {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* KPI 値 */
+    .c-stats-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text-strong);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* サブテキスト（前月比等） */
+    .c-stats-sub {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* アクセントバー付きバリアント */
+    &.accent {
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* アイコン付きレイアウト */
+    &.with-icon {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1rem;
+
+      > .c-stats-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: var(--radius);
+        background: var(--accent-soft);
+        color: var(--accent);
+        flex-shrink: 0;
+
+        > svg {
+          width: var(--icon-lg);
+          height: var(--icon-lg);
+        }
+      }
+
+      > .c-stats-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 0;
+      }
+    }
+  }
+}

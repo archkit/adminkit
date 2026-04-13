@@ -1,0 +1,85 @@
+@layer adminkit.components {
+  /* モーダル（dialog要素） */
+  .c-modal {
+    border: none;
+    border-radius: var(--radius);
+    padding: 0;
+    margin: auto;
+    max-width: 32rem;
+    width: calc(100% - 2rem);
+    max-height: calc(100dvh - 4rem);
+    background: var(--input-bg);
+    color: var(--text-strong);
+    box-shadow: 0 25px 50px -12px color-mix(in srgb, #000 25%, transparent);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--easing),
+      overlay var(--duration-fast) var(--easing) allow-discrete,
+      display var(--duration-fast) var(--easing) allow-discrete;
+
+    &[open] {
+      opacity: 1;
+    }
+
+    &::backdrop {
+      background: color-mix(in srgb, #000 50%, transparent);
+      opacity: 0;
+      transition: opacity var(--duration-fast) var(--easing),
+        overlay var(--duration-fast) var(--easing) allow-discrete,
+        display var(--duration-fast) var(--easing) allow-discrete;
+    }
+
+    &[open]::backdrop {
+      opacity: 1;
+    }
+
+    @starting-style {
+      &[open] {
+        opacity: 0;
+      }
+
+      &[open]::backdrop {
+        opacity: 0;
+      }
+    }
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      max-height: inherit;
+    }
+
+    /* モーダル内の見出し余白リセット */
+    h2, h3, h4 { margin: 0; }
+
+    > section > header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border-muted);
+      flex-shrink: 0;
+
+      > :first-child {
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+    }
+
+    > section > .body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+    }
+
+    > section > footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-muted);
+      flex-shrink: 0;
+    }
+  }
+}

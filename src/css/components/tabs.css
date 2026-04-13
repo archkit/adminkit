@@ -1,0 +1,36 @@
+@layer adminkit.components {
+  /* タブ（ARIAセレクタベース） */
+  .c-tabs {
+    [role="tablist"] {
+      display: flex;
+      border-bottom: 1px solid var(--border-muted);
+    }
+
+    [role="tab"] {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color var(--duration-fast) var(--easing),
+        border-color var(--duration-fast) var(--easing);
+
+      &:hover {
+        color: var(--text-strong);
+      }
+
+      &[aria-selected="true"] {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+    }
+
+    [role="tabpanel"] {
+      padding: 1.5rem 0;
+
+      /* main-content と同じセクション間隔 */
+      > .l-stack { --l-stack-gap: 3rem; }
+    }
+  }
+}

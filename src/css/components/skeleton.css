@@ -1,0 +1,40 @@
+@layer adminkit.components {
+  .c-skeleton {
+    display: block;
+    width: var(--w, 100%);
+    height: var(--h, 1rem);
+    border-radius: var(--radius);
+    background: var(--border-muted);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--surface-50) 40%, transparent), transparent);
+      animation: skeleton-shimmer 1.5s infinite;
+    }
+
+    &.circle {
+      width: var(--w, 2rem);
+      height: var(--h, 2rem);
+      border-radius: 9999px;
+    }
+
+    &.text {
+      height: var(--h, 0.75rem);
+      border-radius: 0.25rem;
+    }
+  }
+
+  @keyframes skeleton-shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+
+  /* 機能的アニメーション: reduced-motion でも維持 */
+  @media (prefers-reduced-motion: reduce) {
+    .c-skeleton { animation-duration: 1.5s; }
+  }
+}

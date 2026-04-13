@@ -1,0 +1,64 @@
+@layer adminkit.components {
+  .c-toggle-group {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+
+    > button,
+    > a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      padding: 0.5rem 0.875rem;
+      border: none;
+      border-right: 1px solid var(--border);
+      background: var(--surface-0);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      transition: background var(--duration-fast) var(--easing),
+                  color var(--duration-fast) var(--easing);
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:hover {
+        background: var(--surface-50);
+        color: var(--text-strong);
+      }
+
+      &[aria-pressed="true"],
+      &.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      > svg {
+        width: var(--icon-md);
+        height: var(--icon-md);
+        flex-shrink: 0;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    &.small > button,
+    &.small > a {
+      padding: 0.25rem 0.625rem;
+      font-size: 0.75rem;
+
+      > svg {
+        width: var(--icon-sm);
+        height: var(--icon-sm);
+      }
+    }
+  }
+}

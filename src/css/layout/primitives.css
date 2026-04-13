@@ -1,0 +1,90 @@
+@layer adminkit.layout {
+  /* --- Stack: 垂直方向の均等間隔 --- */
+  .l-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--l-stack-gap, 1rem);
+  }
+
+  /* --- Cluster: 水平方向の折り返し配置 --- */
+  .l-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--l-cluster-gap, 0.5rem);
+    align-items: center;
+
+    &.center { justify-content: center; }
+    &.right { justify-content: flex-end; }
+  }
+
+  /* --- Sidebar: メイン+サイド2カラム --- */
+  .l-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--l-sidebar-gap, 2rem);
+
+    > :first-child {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: 55%;
+    }
+
+    > :last-child {
+      flex-basis: var(--l-sidebar-w, 16rem);
+      flex-grow: 1;
+    }
+
+    /* 左サイドバー（視覚的にサイドを左に配置） */
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  /* --- Grid: 自動フィルグリッド --- */
+  .l-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--l-grid-min, 15.625rem), 1fr));
+    gap: var(--l-grid-gap, 1.5rem);
+
+    &.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    @media (max-width: 48rem) {
+      &.cols-2, &.cols-3, &.cols-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  /* --- Center: 幅制約+中央配置 --- */
+  .l-center {
+    max-inline-size: var(--l-center-max, 60rem);
+    margin-inline: auto;
+    padding-inline: var(--l-center-pad, 1rem);
+  }
+
+  /* --- Switcher: 幅に応じて縦横切替 --- */
+  .l-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--l-switcher-gap, 1rem);
+
+    > * {
+      flex-grow: 1;
+      flex-basis: calc((var(--l-switcher-threshold, 30rem) - 100%) * 999);
+    }
+  }
+
+  /* --- Frame: アスペクト比固定コンテナ --- */
+  .l-frame {
+    aspect-ratio: var(--l-frame-ratio, 16 / 9);
+    overflow: hidden;
+
+    > * {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+/* デモページ専用スタイル（adminkit 本体には含まない） */
+
+/* --- layouts.php: プリミティブのデモブロック --- */
+.demo-container {
+  background: var(--surface-50);
+  padding: 1rem;
+}
+
+.demo-block {
+  background: var(--accent-soft);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+}
+
+.demo-block-lg {
+  background: var(--accent-soft);
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.demo-block-muted {
+  background: var(--surface-100);
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+/* --- profile.php: プロフィールカード --- */
+.profile-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.profile-card > .c-avatar {
+  margin: 0 auto;
+}
+
+.profile-card > h2 {
+  font-size: 1.25rem;
+}
+
+.profile-card > p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* --- theme-switcher.php --- */
+.theme-menu {
+  padding: 0.75rem;
+  min-width: 10rem;
+}
+
+.theme-menu-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.theme-menu-label + .theme-menu-label {
+  margin-top: 0.75rem;
+}
+
+.theme-menu .c-segment {
+  width: 100%;
+  display: flex;
+}
+
+.theme-menu .c-segment > label {
+  flex: 1;
+  text-align: center;
+}

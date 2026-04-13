@@ -1,0 +1,11 @@
+@layer adminkit.base {
+  :focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  /* outline が見えにくい場合のフォールバック */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}

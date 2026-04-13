@@ -1,0 +1,86 @@
+@layer adminkit.components {
+  .c-tag {
+    --_accent: var(--accent);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    background: var(--surface-50);
+    color: var(--text-strong);
+
+    > svg {
+      width: var(--icon-sm);
+      height: var(--icon-sm);
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    /* 削除ボタン */
+    > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: -0.125rem -0.25rem -0.125rem 0;
+      border: none;
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--text-strong);
+      }
+
+      > svg {
+        width: var(--icon-sm);
+        height: var(--icon-sm);
+      }
+    }
+
+    &.primary {
+      background: var(--accent-soft);
+      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
+      color: var(--_accent);
+
+      > button:hover {
+        color: var(--_accent);
+      }
+    }
+
+    &.success {
+      --_accent: var(--status-ok);
+      background: color-mix(in srgb, var(--_accent) 12%, transparent);
+      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
+      color: var(--_accent);
+    }
+
+    &.warning {
+      --_accent: var(--status-warn);
+      background: color-mix(in srgb, var(--_accent) 12%, transparent);
+      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
+      color: var(--_accent);
+    }
+
+    &.danger {
+      --_accent: var(--status-fail);
+      background: color-mix(in srgb, var(--_accent) 12%, transparent);
+      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
+      color: var(--_accent);
+    }
+  }
+
+  /* タグリスト（複数タグの並び） */
+  .c-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+}

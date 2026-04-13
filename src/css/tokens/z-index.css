@@ -1,0 +1,11 @@
+@layer adminkit.tokens {
+  :root {
+    --z-sticky:   100;
+    --z-dropdown: 200;
+    --z-overlay:  300;
+    --z-drawer:   400;
+    --z-modal:    500;
+    --z-toast:    600;
+    --z-tooltip:  700;
+  }
+}

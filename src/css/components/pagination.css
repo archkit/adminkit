@@ -1,0 +1,44 @@
+@layer adminkit.components {
+  .c-pagination {
+    > ul {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    li > a,
+    li > span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0 0.5rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: background var(--duration-fast) var(--easing),
+        color var(--duration-fast) var(--easing);
+    }
+
+    li > a:hover {
+      background: var(--surface-100);
+      color: var(--text-strong);
+    }
+
+    li > a[aria-current="page"] {
+      background: var(--accent);
+      color: var(--text-on-accent);
+    }
+
+    li > span[aria-disabled="true"] {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    svg {
+      width: var(--icon-md);
+      height: var(--icon-md);
+    }
+  }
+}

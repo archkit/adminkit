@@ -1,0 +1,13 @@
+@layer adminkit.tokens {
+  :root {
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+    --leading-tight:  1.25;
+    --leading-normal: 1.45;
+    --leading-none:   1;
+
+    --icon-sm: 14px;
+    --icon-md: 16px;
+    --icon-lg: 20px;
+  }
+}

@@ -1,0 +1,48 @@
+@layer adminkit.components {
+  .c-badge {
+    --_accent: var(--border-muted);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.375rem;
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    background: var(--surface-50);
+    border: none;
+    color: var(--text-muted);
+
+    &.primary {
+      --_accent: var(--accent);
+      background: var(--_accent);
+      border-color: var(--_accent);
+      color: var(--text-on-accent);
+    }
+
+    &.success {
+      --_accent: var(--status-ok);
+      background: var(--_accent);
+      border-color: var(--_accent);
+      color: var(--text-on-accent);
+    }
+
+    &.warning {
+      --_accent: var(--status-warn);
+      background: var(--_accent);
+      border-color: var(--_accent);
+      color: var(--text-on-accent);
+    }
+
+    &.danger {
+      --_accent: var(--status-fail);
+      background: var(--_accent);
+      border-color: var(--_accent);
+      color: var(--text-on-accent);
+    }
+  }
+}

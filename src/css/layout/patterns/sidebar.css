@@ -1,0 +1,224 @@
+@layer adminkit.layout {
+  /* --- Sidebar Pattern --- */
+  .shell-sidebar {
+    padding: var(--space-3) 0;
+
+    /* Header area (logo, search, etc.) */
+    > header {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-2) var(--space-4);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-strong);
+
+      /* ハンバーガーはモバイルのみ */
+      > [data-js-sidebar] { display: none; }
+
+      @media (max-width: 48rem) {
+        > [data-js-sidebar] { display: block; }
+      }
+    }
+
+    /* Footer area (user, settings, etc.) */
+    > footer {
+      flex-shrink: 0;
+      padding: var(--space-3) var(--space-2);
+      border-top: 1px solid var(--border-muted);
+
+      > a, > button {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius);
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background var(--duration-fast) var(--easing),
+                    color var(--duration-fast) var(--easing);
+
+        &:hover {
+          background: var(--surface-100);
+          color: var(--text-strong);
+        }
+
+        > svg, > i { width: var(--icon-md); height: var(--icon-md); flex-shrink: 0; }
+      }
+    }
+
+    /* Nav area */
+    > nav {
+      padding: 0;
+
+      > ul,
+      > [role="group"] {
+        padding-left: var(--space-2);
+        padding-right: var(--space-2);
+      }
+
+      /* Group label */
+      .label {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--surface-0);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        padding: var(--space-3) var(--space-3) var(--space-1);
+        border-bottom: 1.5px solid var(--border);
+        margin-bottom: var(--space-1);
+      }
+
+      /* Nav links */
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+      }
+
+      li > a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius);
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background var(--duration-fast) var(--easing),
+                    color var(--duration-fast) var(--easing);
+
+        > .c-badge { margin-left: auto; }
+
+        &:hover {
+          background: var(--surface-100);
+          color: var(--text-strong);
+        }
+
+        &[aria-current="page"] {
+          background: var(--accent-soft);
+          color: var(--text-strong);
+          font-weight: 600;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            bottom: 0.25rem;
+            width: 3px;
+            border-radius: 0 2px 2px 0;
+            background: var(--accent);
+          }
+        }
+      }
+
+      /* Nav icons */
+      li > a > svg {
+        width: var(--icon-md);
+        height: var(--icon-md);
+        flex-shrink: 0;
+      }
+
+      /* Nested nav (details/summary) */
+      li > details {
+        interpolate-size: allow-keywords;
+
+        > summary {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+          padding: var(--space-2) var(--space-3);
+          border-radius: var(--radius);
+          color: var(--text-muted);
+          font-size: 0.875rem;
+          font-weight: 500;
+          cursor: pointer;
+          list-style: none;
+
+          > svg, > i { width: var(--icon-md); height: var(--icon-md); flex-shrink: 0; }
+          transition: background var(--duration-fast) var(--easing),
+                      color var(--duration-fast) var(--easing);
+
+          &:hover {
+            background: var(--surface-100);
+            color: var(--text-strong);
+          }
+
+          /* Chevron */
+          &::after {
+            content: "";
+            margin-left: auto;
+            width: var(--icon-md);
+            height: var(--icon-md);
+            clip-path: polygon(25% 20%, 75% 50%, 25% 80%);
+            background: currentColor;
+            transition: transform var(--duration-fast) var(--easing);
+          }
+        }
+
+        &[open] > summary::after {
+          transform: rotate(90deg);
+        }
+
+        &:has([aria-current="page"]) > summary {
+          color: var(--text-strong);
+        }
+
+        > ul {
+          padding-top: 0.125rem;
+
+          > li > a {
+            > svg {
+              width: var(--icon-md);
+              height: var(--icon-md);
+              padding: 2px;
+            }
+          }
+        }
+      }
+
+      /* Group container */
+      [role="group"] {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+
+        & + [role="group"] {
+          margin-top: var(--space-6);
+        }
+      }
+
+      > ul + [role="group"] {
+        margin-top: var(--space-6);
+      }
+    }
+  }
+
+  /* details アコーディオンのアニメーション + ツリーライン */
+  .shell-sidebar > nav li > details::details-content {
+    interpolate-size: allow-keywords;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition: height var(--duration-normal) var(--easing),
+                opacity var(--duration-normal) var(--easing),
+                content-visibility var(--duration-normal) allow-discrete;
+  }
+
+  .shell-sidebar > nav li > details[open]::details-content {
+    height: auto;
+    opacity: 1;
+    margin-left: calc(-1 * var(--space-2));
+    border-left: 2px solid var(--border-muted);
+    padding-left: calc(var(--space-2) - 2px);
+  }
+
+}

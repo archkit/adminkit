@@ -1,0 +1,121 @@
+@layer adminkit.components {
+  .c-toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    max-width: 24rem;
+    width: calc(100% - 3rem);
+    pointer-events: none;
+  }
+
+  .c-toast {
+    --_accent: var(--status-note);
+    pointer-events: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    gap: 0 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border-left: 3px solid var(--_accent);
+    background: var(--input-bg);
+    box-shadow: var(--shadow-popup);
+    font-size: 0.875rem;
+    animation: toast-in var(--duration-slow) ease-out;
+
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
+    &.out { animation: toast-out var(--duration-normal) ease-in forwards; }
+  }
+
+  .c-toast-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+
+    > strong {
+      font-weight: 600;
+      line-height: var(--leading-tight);
+    }
+
+    > p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+  }
+
+  .c-toast-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    transition: background var(--duration-fast) var(--easing);
+
+    &:hover {
+      background: var(--surface-100);
+      color: var(--text-strong);
+    }
+  }
+
+  .c-toast-progress {
+    grid-column: 1 / -1;
+    height: 2px;
+    margin-top: 0.5rem;
+    background: color-mix(in srgb, var(--_accent) 20%, transparent);
+    overflow: hidden;
+    border-radius: 0 0 var(--radius) var(--radius);
+
+    &::after {
+      content: '';
+      display: block;
+      height: 100%;
+      background: var(--_accent);
+      animation: toast-countdown var(--_duration, 5000ms) linear forwards;
+    }
+
+    .c-toast-container:hover &::after {
+      animation-play-state: paused;
+    }
+  }
+
+  .c-toast.danger > .c-toast-progress { display: none; }
+
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateX(1rem); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes toast-out {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(1rem); }
+  }
+
+  @keyframes toast-countdown {
+    from { width: 100%; }
+    to { width: 0%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-toast { animation: none; }
+    .c-toast.out { transition: opacity var(--duration-fast); opacity: 0; animation: none; }
+  }
+
+  @media (max-width: 48rem) {
+    .c-toast-container {
+      bottom: 1rem;
+      right: 1rem;
+      left: 1rem;
+      max-width: none;
+      width: auto;
+    }
+  }
+}

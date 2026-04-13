@@ -1,0 +1,199 @@
+@layer adminkit.layout {
+  /* ミニサイドバーパターン: data-layout="mini" で常時アイコンのみ表示 */
+
+  .shell[data-layout="mini"] .shell-sidebar {
+    z-index: var(--z-dropdown);
+  }
+
+  /* ヘッダー: 1文字丸アイコン */
+  .shell[data-layout="mini"] .shell-sidebar > header {
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > header > span {
+    display: block;
+    width: 2.25rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    text-align: center;
+    border-radius: 9999px;
+    background: var(--surface-100);
+    font-size: 0;
+    font-weight: 700;
+    overflow: hidden;
+    text-transform: uppercase;
+
+    &::first-letter {
+      font-size: 0.875rem;
+    }
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > header > [data-js-sidebar] {
+    display: none;
+  }
+
+  /* ナビ */
+  .shell[data-layout="mini"] .shell-sidebar > nav {
+    padding: 0;
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav .label {
+    display: none;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav > ul,
+  .shell[data-layout="mini"] .shell-sidebar > nav [role="group"] {
+    padding: 0;
+    gap: 0;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav > ul + [role="group"],
+  .shell[data-layout="mini"] .shell-sidebar > nav [role="group"] + [role="group"] {
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-muted);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav .c-badge {
+    display: none;
+  }
+
+  /* リンク: アイコン固定位置 */
+  .shell[data-layout="mini"] .shell-sidebar > nav li > a,
+  .shell[data-layout="mini"] .shell-sidebar > nav li > details > summary {
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    gap: var(--space-3);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li > a > span,
+  .shell[data-layout="mini"] .shell-sidebar > nav li > details > summary > span {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li > details > summary::after {
+    display: none;
+  }
+
+  /* aria-current */
+  .shell[data-layout="mini"] .shell-sidebar > nav li > a[aria-current="page"] {
+    background: oklch(0.22 0.03 260);
+    color: var(--text-strong);
+    font-weight: 600;
+    position: relative;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li > a[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background: var(--accent);
+  }
+
+  /* ホバー: li 自体を広げて不透明背景でテキスト表示 */
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover {
+    width: calc(var(--shell-sidebar-w-full, 240px) + 2rem);
+    background: oklch(0.16 0.01 260);
+    border-radius: var(--radius);
+    z-index: var(--z-tooltip);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a,
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary {
+    background: oklch(0.25 0.01 260);
+    gap: 2.25rem;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a > span,
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary > span {
+    width: auto;
+    overflow: visible;
+  }
+
+  /* ホバー中の aria-current */
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a[aria-current="page"] {
+    background: oklch(0.22 0.03 260);
+  }
+
+  /* details ホバー: chevron + 子メニュー表示 */
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary::after {
+    display: block;
+    transform: rotate(90deg);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul {
+    background: oklch(0.20 0.01 260);
+    border-radius: var(--radius);
+    padding: 0.125rem 0;
+  }
+
+  /* サブメニュー li:hover のリセット（親 li:hover ルールの影響を防ぐ） */
+  .shell[data-layout="mini"] .shell-sidebar > nav details > ul > li:hover {
+    width: auto;
+    background: none;
+    border-radius: 0;
+    z-index: auto;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a {
+    width: 100%;
+    padding-left: 4.75rem; /* 1.5 + icon-md(1rem) + 2.25 */
+    gap: var(--space-3);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a > span {
+    width: auto;
+    overflow: visible;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a:hover {
+    background: oklch(0.25 0.01 260);
+  }
+
+  /* フッター */
+  .shell[data-layout="mini"] .shell-sidebar > footer {
+    padding: 0.5rem 0;
+    flex-direction: column;
+    align-items: stretch;
+    border-top: 1px solid var(--border-muted);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > footer > a,
+  .shell[data-layout="mini"] .shell-sidebar > footer > button {
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > footer > a > span {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > footer > a:hover,
+  .shell[data-layout="mini"] .shell-sidebar > footer > button:hover {
+    background: oklch(0.25 0.01 260);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > footer > a:hover {
+    width: calc(var(--shell-sidebar-w-full, 240px) + 2rem);
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-3);
+    justify-content: flex-start;
+    z-index: var(--z-tooltip);
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > footer > a:hover > span {
+    width: auto;
+    overflow: visible;
+  }
+}

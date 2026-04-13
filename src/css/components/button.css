@@ -1,0 +1,86 @@
+@layer adminkit.components {
+  .c-button {
+    --_accent: var(--accent);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    background: var(--surface-50);
+    color: var(--text-strong);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--duration-fast) var(--easing),
+                border-color var(--duration-fast) var(--easing),
+                color var(--duration-fast) var(--easing),
+                box-shadow var(--duration-fast) var(--easing),
+                translate var(--duration-fast) var(--easing);
+
+    &:hover {
+      background: var(--surface-100);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    > svg {
+      width: var(--icon-md);
+      height: var(--icon-md);
+      flex-shrink: 0;
+    }
+
+    &.small {
+      padding: 0.25rem 0.625rem;
+      font-size: 0.75rem;
+
+      > svg {
+        width: var(--icon-sm);
+        height: var(--icon-sm);
+      }
+    }
+
+    &.primary,
+    &.success,
+    &.warning,
+    &.danger {
+      background: var(--_accent);
+      border-color: var(--_accent);
+      color: var(--text-on-accent);
+
+      &:hover {
+        background: color-mix(in oklch, var(--_accent), black 15%);
+        border-color: color-mix(in oklch, var(--_accent), black 15%);
+      }
+    }
+
+    &.primary { --_accent: var(--accent); }
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
+
+    &.full {
+      display: flex;
+      width: 100%;
+    }
+
+    &.ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text-muted);
+
+      &:hover {
+        background: var(--surface-100);
+        color: var(--text-strong);
+      }
+    }
+  }
+}

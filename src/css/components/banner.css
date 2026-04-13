@@ -1,0 +1,17 @@
+@layer adminkit.components {
+  .c-banner {
+    --_accent: var(--status-note);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1.5rem;
+    background: color-mix(in srgb, var(--_accent) 12%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--_accent) 25%, transparent);
+    font-size: 0.875rem;
+
+    > p { flex: 1; }
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
+  }
+}

@@ -1,0 +1,100 @@
+@layer adminkit.base {
+  body {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: var(--leading-normal);
+    color: var(--text-strong);
+    background: var(--surface-0);
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: var(--leading-tight);
+    font-weight: 600;
+  }
+
+  /*
+   * セクション・ブロック余白
+   *
+   * 見出しに margin を付けず、ブロック間の間隔で制御。
+   * * + * でデフォルト間隔、* + section で広い間隔。
+   * 見出しはブロックの先頭にくっつく。
+   */
+
+  main section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ブロック間のデフォルト間隔 */
+  main section > * + * { margin-top: 1rem; }
+
+  /* section 間は広く */
+  main section > * + section { margin-top: 2.5rem; }
+
+  /* 見出しの直後の要素との間隔を統一 */
+  main section > h2 + * { margin-top: 1.5rem; }
+  main section > h3 + *,
+  main section > h4 + * { margin-top: 0.75rem; }
+
+  /* 見出しの装飾 */
+  main h2 {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, var(--accent) 3rem, var(--border-muted) 3rem) 1;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  code, kbd {
+    font-family: var(--font-mono);
+    font-size: 0.8125em;
+    padding: 0.125em 0.375em;
+    border-radius: var(--radius);
+    background: var(--surface-50);
+    border: 1px solid var(--border-muted);
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--surface-50);
+    border: 1px solid var(--border-muted);
+    overflow-x: auto;
+    line-height: var(--leading-normal);
+
+    > code {
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: inherit;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-muted);
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--text-strong);
+  }
+
+  /* リンク色: accent を使用 */
+  p a, li a, td a {
+    color: var(--accent);
+    &:hover { color: var(--accent-hover); }
+  }
+
+  /* small: 補足テキスト */
+  small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+}

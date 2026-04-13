@@ -1,0 +1,11 @@
+@layer adminkit.tokens {
+  :root {
+    --duration-fast:   120ms;
+    --duration-normal: 200ms;
+    --duration-slow:   300ms;
+    --easing: ease;
+
+    --focus-ring:    2px solid var(--accent);
+    --focus-offset:  2px;
+  }
+}
