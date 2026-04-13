@@ -228,10 +228,10 @@ toast.dismiss();
 ```html
 <button class="c-button primary" data-js-open="demo-modal">モーダルを開く</button>
 
-<dialog class="c-modal" data-js-dialog="demo-modal" aria-labelledby="modal-title">
+<dialog class="c-modal" data-js-dialog="demo-modal" aria-label="確認">
   <section>
     <header>
-      <h3 id="modal-title">確認</h3>
+      <h3>確認</h3>
       <button class="c-button ghost small" data-js-close aria-label="閉じる">
         <i data-lucide="x"></i>
       </button>
@@ -285,7 +285,7 @@ toast.dismiss();
 
 - **`<dialog>` 以外の要素を使う**: `<div>` でモーダルを自作すると、フォーカストラップ、ESC キーでの閉じ、backdrop、アクセシビリティがすべて手動実装になる。必ず `<dialog>` を使う
 - **`show()` を使う**: `show()` は非モーダルで開くため、backdrop が表示されず、背面の操作もブロックされない。`showModal()` を使う（`data-js-open` は内部で `showModal()` を呼んでいる）
-- **`aria-labelledby` の省略**: モーダルの見出しを `aria-labelledby` で紐付けないと、スクリーンリーダーがモーダルの目的を認識できない
+- **`aria-label` の省略**: `<dialog>` に `aria-label` を指定しないと、スクリーンリーダーがモーダルの目的を認識できない
 
 ---
 
@@ -696,3 +696,81 @@ JS の動作:
 - **`h2` を使う**: `main section > h2` にはグローバルな装飾（`border-image` の下線）が付くため、empty-state 内の見出しが意図しないデザインになる。CSS で `border: none; padding: 0` をリセットしているが、`h3` を使う方が安全。セマンティクス上も、empty-state は通常セクションの中に置かれるため `h3` が適切
 - **CTA ボタンの省略**: データがない状態を表示するだけでなく、次のアクション（新規作成など）へ誘導するボタンを必ず配置する
 - **アイコンの省略**: 視覚的にデータの不在を伝えるため、内容に合ったアイコンを必ず配置する
+
+---
+
+## c-error-page
+
+→ CSS: `src/css/components/error-page.css`
+→ デモ: `/pages/layout/error.php`
+
+### 基本構造
+
+```html
+<main class="shell-standalone">
+  <section class="c-error-page">
+    <h1><span class="error-code">404</span>ページが見つかりません</h1>
+    <p>お探しのページは存在しないか、移動した可能性があります。</p>
+    <div class="l-cluster center">
+      <button data-js-back class="c-button"><i data-lucide="arrow-left"></i>前のページへ</button>
+      <a href="/index.php" class="c-button primary"><i data-lucide="home"></i>ダッシュボードへ</a>
+    </div>
+  </section>
+</main>
+```
+
+**構造の要点:**
+
+- `shell-standalone` レイアウト内に配置（サイドバーなしの単独ページ）
+- `display: flex; flex-direction: column; align-items: center; text-align: center`
+- `h1` 内に `.error-code` をブロック表示し、ステータスコードを大きく見せる
+
+### パーツ
+
+| 要素 | スタイル |
+|---|---|
+| `.error-code` | `font-size: 7.5rem; font-weight: 800; color: var(--accent); opacity: 0.3` |
+| `.error-code.danger` | `color: var(--status-fail); opacity: 0.4` |
+| `h1`（テキスト部分） | `font-size: 1.25rem; font-weight: 600; color: var(--text-strong)` |
+| `p` | `font-size: 0.9375rem; color: var(--text-muted); max-width: 26rem` |
+| `.l-cluster`（ボタン群） | `margin-top: 2.5rem`（2つ目以降は `1.5rem`） |
+
+### バリアント
+
+| エラーコード | `.error-code` のクラス | 色 |
+|---|---|---|
+| 404 | （なし） | `var(--accent)` — テーマのアクセントカラー |
+| 500 | `.danger` | `var(--status-fail)` — エラー色 |
+
+### data 属性 API
+
+| 属性 | 動作 |
+|---|---|
+| `data-js-back` | `history.back()` で前のページに戻る |
+| `data-js-reload` | `location.reload()` でページを再読み込み |
+
+### 500 エラーの例
+
+```html
+<main class="shell-standalone">
+  <section class="c-error-page">
+    <h1><span class="error-code danger">500</span>サーバーエラー</h1>
+    <p>予期しないエラーが発生しました。しばらくしてからもう一度お試しください。</p>
+    <div class="l-cluster center">
+      <button data-js-reload class="c-button"><i data-lucide="refresh-cw"></i>再読み込み</button>
+      <a href="/index.php" class="c-button primary"><i data-lucide="home"></i>ダッシュボードへ</a>
+    </div>
+  </section>
+</main>
+```
+
+### ユースケース
+
+- 404 Not Found: 存在しないページへのアクセス
+- 500 Internal Server Error: サーバー障害時の表示
+- 403 Forbidden: アクセス権限なし（`.error-code` クラスなしで `var(--accent)` 表示）
+
+### アンチパターン
+
+- **サイドバー付きレイアウト内に配置する**: エラーページは `shell-standalone` で単独表示する。サイドバー内に置くとナビゲーションの整合性が崩れる
+- **ボタンの省略**: エラー表示だけでなく、「前のページへ」「ダッシュボードへ」など復帰導線を必ず配置する

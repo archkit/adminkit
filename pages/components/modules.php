@@ -32,7 +32,7 @@
           </div>
         </nav>
 
-        <div class="l-stack main-content full">
+        <div class="l-stack main-content">
           <header class="page-header">
             <h1>モジュール</h1>
           </header>
@@ -324,10 +324,10 @@
             <div class="l-cluster">
               <button class="c-button primary" data-js-open="demo-modal">モーダルを開く</button>
             </div>
-            <dialog class="c-modal" data-js-dialog="demo-modal" aria-labelledby="modal-title">
+            <dialog class="c-modal" data-js-dialog="demo-modal" aria-label="確認">
               <section>
                 <header>
-                  <h3 id="modal-title">確認</h3>
+                  <h3>確認</h3>
                   <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
                 </header>
                 <div class="body">

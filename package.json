@@ -1,5 +1,15 @@
 {
-  "private": true,
+  "name": "@green-spot/adminkit",
+  "version": "0.1.0",
+  "description": "管理画面向け CSS フレームワーク",
+  "exports": {
+    "./css": "./dist/adminkit.min.css",
+    "./js": "./dist/adminkit.min.js",
+    "./theme-init": "./dist/theme-init.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build:css": "lightningcss --bundle --minify --targets '>= 0.25%' src/css/adminkit.css -o dist/adminkit.min.css",
     "build:js": "esbuild src/js/adminkit.js --bundle --minify --format=esm --outfile=dist/adminkit.min.js",

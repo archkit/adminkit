@@ -192,10 +192,10 @@
   </div>
 
   <!-- 削除確認ダイアログ -->
-  <dialog class="c-modal" data-js-dialog="delete-dialog" aria-labelledby="delete-title">
+  <dialog class="c-modal" data-js-dialog="delete-dialog" aria-label="ユーザーの削除">
     <section>
       <header>
-        <h3 id="delete-title">ユーザーの削除</h3>
+        <h3>ユーザーの削除</h3>
         <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
       </header>
       <div class="body">

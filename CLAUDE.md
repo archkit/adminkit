@@ -45,4 +45,4 @@
 | [layout.md](docs/layout.md) | プリミティブ(7) + シェルパターン(6) + ユーティリティ |
 | [components-form.md](docs/components-form.md) | fields, button, search, upload, segment, toggle-group |
 | [components-display.md](docs/components-display.md) | card, table, list, badge, tag, avatar, stats, progress, stepper, skeleton, dot, divider |
-| [components-feedback.md](docs/components-feedback.md) | alert, banner, toast, modal, dropdown, tooltip, tabs, pagination, action-bar, empty-state |
+| [components-feedback.md](docs/components-feedback.md) | alert, banner, toast, modal, dropdown, tooltip, tabs, pagination, action-bar, empty-state, error-page |

@@ -32,7 +32,7 @@
           </div>
         </nav>
 
-        <div class="l-stack main-content full">
+        <div class="l-stack main-content">
           <header class="page-header">
             <h1>レイアウト</h1>
           </header>

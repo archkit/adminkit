@@ -33,7 +33,7 @@
           </div>
         </nav>
 
-        <div class="l-stack main-content full">
+        <div class="l-stack main-content">
           <header class="page-header">
             <h1>ウィジェット</h1>
           </header>
@@ -243,15 +243,6 @@
                   <i data-lucide="search"></i>
                   <input type="search" placeholder="検索...">
                 </div>
-              </div>
-            </section>
-
-            <section>
-              <h3>クリアボタン付き</h3>
-              <div class="c-search">
-                <i data-lucide="search"></i>
-                <input type="search" placeholder="キーワードを入力..." value="管理者">
-                <button type="button" aria-label="クリア"><i data-lucide="x"></i></button>
               </div>
             </section>
 
