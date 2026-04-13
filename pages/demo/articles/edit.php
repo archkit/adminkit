@@ -103,7 +103,8 @@
               </div>
 
               <!-- サイドバー -->
-              <div class="l-stack">
+              <section>
+                <h2 class="visually-hidden">サイドバー</h2>
                 <section class="c-card">
                   <h3>公開</h3>
                   <div class="c-fields">
@@ -165,7 +166,7 @@
                     <input type="file" accept="image/*">
                   </label>
                 </section>
-              </div>
+              </section>
 
             </div>
           </form>

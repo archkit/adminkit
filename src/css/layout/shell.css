@@ -135,6 +135,12 @@
     /* ネストしたスタックはデフォルトgapに戻す */
     .l-stack { --l-stack-gap: 1rem; }
 
+    /* l-sidebar 直下のスタックはセクション間隔を維持 */
+    .l-sidebar > .l-stack { --l-stack-gap: 3rem; }
+
+    /* l-sidebar のサイドバー側はカード間隔を狭く */
+    .l-sidebar > :last-child > * + section { margin-top: 1rem; }
+
     /* コンテンツ最大幅（デフォルト 60rem、wide 80rem、full 制限なし） */
     --_content-max: 60rem;
     padding-right: max(var(--content-padding-x), calc(100% - var(--_content-max) - var(--content-padding-x)));

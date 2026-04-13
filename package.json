@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "管理画面向け CSS フレームワーク",
   "exports": {
-    "./css": "./dist/adminkit.min.css",
+    "./css": {
+      "style": "./dist/adminkit.min.css",
+      "default": "./dist/adminkit.min.css"
+    },
     "./js": "./dist/adminkit.min.js",
     "./theme-init": "./dist/theme-init.js"
   },
