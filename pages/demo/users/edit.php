@@ -76,9 +76,9 @@
                   </select>
                 </label>
                 <label class="toggle">
-                  <input type="checkbox" checked>
+                  <input type="checkbox" checked aria-describedby="account-active-help">
                   <span>アカウント有効</span>
-                  <small>無効にするとログインできなくなります</small>
+                  <small id="account-active-help">無効にするとログインできなくなります</small>
                 </label>
               </div>
             </section>

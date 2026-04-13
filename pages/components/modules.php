@@ -288,12 +288,29 @@
             </section>
 
             <section>
-              <h3>エラー状態</h3>
+              <h3>エラー状態（.error クラス）</h3>
               <div class="c-fields">
                 <label>
                   <span>メールアドレス</span>
                   <input type="email" class="error" value="invalid-email" required aria-describedby="email-error">
                   <small id="email-error" class="error">正しいメールアドレスを入力してください</small>
+                </label>
+              </div>
+            </section>
+
+            <section>
+              <h3>バリデーション（:user-invalid）</h3>
+              <p>フィールドを操作してからフォーカスを外すと、バリデーションエラーが表示されます。</p>
+              <div class="c-fields">
+                <label>
+                  <span>メールアドレス</span>
+                  <input type="email" required aria-describedby="validate-email-error" placeholder="email@example.com">
+                  <small id="validate-email-error" class="error-message">正しいメールアドレスを入力してください</small>
+                </label>
+                <label>
+                  <span>名前</span>
+                  <input type="text" required aria-describedby="validate-name-error" placeholder="名前を入力...">
+                  <small id="validate-name-error" class="error-message">名前は必須です</small>
                 </label>
               </div>
             </section>

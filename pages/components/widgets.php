@@ -58,7 +58,7 @@
               <div class="l-cluster">
                 <button class="c-button small">Small</button>
                 <button class="c-button primary small">Primary Small</button>
-                <button class="c-button" disabled>Disabled</button>
+                <button class="c-button small" disabled>Disabled</button>
               </div>
             </section>
             <section>

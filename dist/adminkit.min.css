@@ -1276,6 +1276,11 @@
     margin-left: auto;
   }
 
+  .shell-sidebar > nav li > details[open] > summary {
+    background: var(--surface-100);
+    color: var(--text-strong);
+  }
+
   .shell-sidebar > nav li > details[open] > summary:after {
     transform: rotate(90deg);
   }
@@ -1324,6 +1329,8 @@
     margin-left: calc(-1 * var(--space-2));
     border-left: 2px solid var(--border-muted);
     padding-left: calc(var(--space-2) - 2px);
+    background: var(--surface-50);
+    border-radius: 0 0 var(--radius) 0;
   }
 
   .shell[data-layout="mini"] .shell-sidebar {
@@ -1377,10 +1384,6 @@
     border-top: 1px solid var(--border-muted);
   }
 
-  .shell[data-layout="mini"] .shell-sidebar > nav .c-badge {
-    display: none;
-  }
-
   .shell[data-layout="mini"] .shell-sidebar > nav li > a, .shell[data-layout="mini"] .shell-sidebar > nav li > details > summary {
     justify-content: flex-start;
     gap: var(--space-3);
@@ -1430,6 +1433,10 @@
     gap: 2.25rem;
   }
 
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details[open] > summary {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a > span, .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary > span {
     width: auto;
     overflow: visible;
@@ -1440,13 +1447,32 @@
     background: lab(9.3565% -.346199 -10.7561);
   }
 
+  .shell[data-layout="mini"] .shell-sidebar > nav li:has( > details) {
+    position: relative;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li > details::details-content {
+    opacity: 1;
+    height: auto;
+    top: 100%;
+    left: var(--shell-sidebar-w-mini, 64px);
+    width: calc(100% - var(--shell-sidebar-w-mini, 64px));
+    background: none;
+    border-left: none;
+    border-radius: 0;
+    margin-left: 0;
+    padding-left: 0;
+    transition: none;
+    position: absolute;
+  }
+
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary:after {
     display: block;
     transform: rotate(90deg);
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul {
-    border-radius: var(--radius);
+    border-radius: 0 0 var(--radius) 0;
     background: #13161b;
     background: lab(7.19015% -.368543 -3.62587);
     padding: .125rem 0;
@@ -1460,9 +1486,10 @@
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a {
-    gap: var(--space-3);
     width: 100%;
-    padding-left: 4.75rem;
+    padding: var(--space-2) var(--space-3);
+    padding-left: var(--space-3);
+    gap: var(--space-3);
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a > span {
@@ -1630,7 +1657,7 @@
   }
 
   .c-button.small {
-    padding: .25rem .625rem;
+    padding: .25rem .5rem;
     font-size: .75rem;
   }
 
@@ -1761,11 +1788,19 @@
     color: var(--text-on-accent);
   }
 
+  .shell[data-layout="mini"] .shell-sidebar > nav .c-badge {
+    display: none;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover .c-badge {
+    display: inline-flex;
+  }
+
   .c-alert {
     --_accent: var(--status-note);
     border-left: 3px solid var(--_accent);
     border-radius: 0 var(--radius) var(--radius) 0;
-    background: color-mix(in oklch, var(--_accent) 8%, transparent);
+    background: color-mix(in srgb, var(--_accent) 8%, transparent);
     padding: 1rem;
     font-size: .875rem;
   }
@@ -2908,6 +2943,21 @@
     font-size: .8125rem;
   }
 
+  .c-toast-action {
+    color: var(--_accent);
+    transition: color var(--duration-fast) var(--easing);
+    align-items: center;
+    margin-top: .25rem;
+    padding: 0;
+    font-size: .8125rem;
+    font-weight: 600;
+    display: inline-flex;
+  }
+
+  .c-toast-action:hover {
+    color: var(--text-strong);
+  }
+
   .c-toast-close {
     border-radius: var(--radius);
     width: 1.5rem;
@@ -3356,6 +3406,14 @@
   .shell-sidebar .c-dot {
     margin-left: auto;
     position: static;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav .c-dot {
+    display: none;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover .c-dot {
+    display: block;
   }
 
   .c-toggle-group {

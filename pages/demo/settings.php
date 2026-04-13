@@ -63,14 +63,14 @@
               <h2>通知設定</h2>
               <div class="c-fields">
                 <label class="toggle">
-                  <input type="checkbox" role="switch" checked>
+                  <input type="checkbox" role="switch" checked aria-describedby="notify-email-help">
                   <span>メール通知</span>
-                  <small>重要な更新をメールで受け取ります</small>
+                  <small id="notify-email-help">重要な更新をメールで受け取ります</small>
                 </label>
                 <label class="toggle">
-                  <input type="checkbox" role="switch">
+                  <input type="checkbox" role="switch" aria-describedby="notify-slack-help">
                   <span>Slack通知</span>
-                  <small>Slackチャンネルに通知を送信します</small>
+                  <small id="notify-slack-help">Slackチャンネルに通知を送信します</small>
                 </label>
               </div>
             </section>

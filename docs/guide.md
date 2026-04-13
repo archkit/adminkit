@@ -409,7 +409,7 @@ base 層で一括無効化。機能的アニメーション（c-progress, c-skel
 - `--text-strong` vs `--surface-0`: AAA (7:1) 以上
 - `--text-muted` vs `--surface-0`: AA (4.5:1) 以上
 - `--accent` 上の白テキスト: AA (4.5:1) 以上
-- **warning バッジは例外**: 黄色背景に白テキストではコントラスト不足のため `--text-strong`（黒系）を使用
+- **warning バッジ**: 黄色背景に白テキスト。WCAG コントラスト比は厳密には不足するが、視認性を優先して `--text-on-accent` で統一
 
 ### セマンティクス早見表
 
@@ -488,7 +488,7 @@ base 層で一括無効化。機能的アニメーション（c-progress, c-skel
 |---|---|---|
 | `data-js-sidebar` | ボタン | モバイルドロワーの開閉 |
 | `data-js-theme` | ボタン | ダーク/ライト切替 |
-| `data-js-theme-style` | radio | テーマスタイル切替（Ink/Stone/Dusk） |
+| `data-js-theme-style` | radio | テーマスタイル切替（Ink/Stone/Dusk/Volt） |
 | `data-js-theme-mode` | radio | テーマモード切替（Light/Dark） |
 | `data-js-open="id"` | ボタン | `data-js-dialog="id"` のモーダルを開く |
 | `data-js-dialog="id"` | dialog | モーダル本体 |
@@ -502,7 +502,7 @@ base 層で一括無効化。機能的アニメーション（c-progress, c-skel
 | `data-js-table-check-activate="key"` | 任意 | 選択時に子要素の `disabled` を解除 |
 | `data-js-back` | ボタン | `history.back()` で前のページに戻る |
 | `data-js-reload` | ボタン | `location.reload()` でページを再読み込み |
-| `data-js-prevent-submit` | form | `event.preventDefault()` で送信を無効化（デモ用） |
+| `data-js-prevent-submit` | form | `event.preventDefault()` で送信を無効化（**デモ専用**: `demo.js` で実装。adminkit 本体には含まれない） |
 
 ---
 

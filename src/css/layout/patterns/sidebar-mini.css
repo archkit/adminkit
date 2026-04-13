@@ -57,9 +57,7 @@
     border-top: 1px solid var(--border-muted);
   }
 
-  .shell[data-layout="mini"] .shell-sidebar > nav .c-badge {
-    display: none;
-  }
+  /* c-badge / c-dot の非表示は components レイヤーで処理 */
 
   /* リンク: アイコン固定位置 */
   .shell[data-layout="mini"] .shell-sidebar > nav li > a,
@@ -113,15 +111,41 @@
     gap: 2.25rem;
   }
 
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details[open] > summary {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a > span,
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary > span {
     width: auto;
     overflow: visible;
   }
 
+  /* c-badge / c-dot のホバー再表示は components レイヤーで処理 */
+
   /* ホバー中の aria-current */
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a[aria-current="page"] {
     background: oklch(0.22 0.03 260);
+  }
+
+  /* details: サブメニューを絶対配置（アイコン列の右に配置して下のアイコンを隠さない） */
+  .shell[data-layout="mini"] .shell-sidebar > nav li:has(> details) {
+    position: relative;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li > details::details-content {
+    height: auto;
+    opacity: 1;
+    position: absolute;
+    top: 100%;
+    left: var(--shell-sidebar-w-mini, 64px);
+    width: calc(100% - var(--shell-sidebar-w-mini, 64px));
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
+    background: none;
+    border-radius: 0;
+    transition: none;
   }
 
   /* details ホバー: chevron + 子メニュー表示 */
@@ -132,7 +156,7 @@
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul {
     background: oklch(0.20 0.01 260);
-    border-radius: var(--radius);
+    border-radius: 0 0 var(--radius) 0;
     padding: 0.125rem 0;
   }
 
@@ -146,7 +170,8 @@
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a {
     width: 100%;
-    padding-left: 4.75rem; /* 1.5 + icon-md(1rem) + 2.25 */
+    padding: var(--space-2) var(--space-3);
+    padding-left: var(--space-3);
     gap: var(--space-3);
   }
 

@@ -50,6 +50,21 @@
     }
   }
 
+  .c-toast-action {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.25rem;
+    padding: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--_accent);
+    transition: color var(--duration-fast) var(--easing);
+
+    &:hover {
+      color: var(--text-strong);
+    }
+  }
+
   .c-toast-close {
     display: flex;
     align-items: center;

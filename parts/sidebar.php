@@ -41,7 +41,7 @@
             </ul>
           </details>
         </li>
-        <li><a href="/pages/demo/settings.php"><i data-lucide="settings"></i><span>一般設定</span></a></li>
+        <li><a href="/pages/demo/settings.php"><i data-lucide="settings"></i><span>一般設定</span><span class="c-badge warning">3</span></a></li>
         <li><a href="/pages/demo/profile.php"><i data-lucide="user-circle"></i><span>プロフィール</span></a></li>
       </ul>
     </div>

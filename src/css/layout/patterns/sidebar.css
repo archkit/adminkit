@@ -164,6 +164,11 @@
           }
         }
 
+        &[open] > summary {
+          background: var(--surface-100);
+          color: var(--text-strong);
+        }
+
         &[open] > summary::after {
           transform: rotate(90deg);
         }
@@ -219,6 +224,8 @@
     margin-left: calc(-1 * var(--space-2));
     border-left: 2px solid var(--border-muted);
     padding-left: calc(var(--space-2) - 2px);
+    background: var(--surface-50);
+    border-radius: 0 0 var(--radius) 0;
   }
 
 }

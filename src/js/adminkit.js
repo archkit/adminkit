@@ -96,9 +96,13 @@ document.addEventListener("click", (e) => {
   const tab = e.target.closest("[data-js-tab]");
   if (tab) {
     const tabs = tab.closest(".c-tabs");
-    tabs.querySelectorAll("[role='tab']").forEach((t) => t.setAttribute("aria-selected", "false"));
+    tabs.querySelectorAll("[role='tab']").forEach((t) => {
+      t.setAttribute("aria-selected", "false");
+      t.setAttribute("tabindex", "-1");
+    });
     tabs.querySelectorAll("[role='tabpanel']").forEach((p) => (p.hidden = true));
     tab.setAttribute("aria-selected", "true");
+    tab.setAttribute("tabindex", "0");
     const panel = tabs.querySelector(`[data-js-panel="${tab.dataset.jsTab}"]`);
     if (panel) panel.hidden = false;
     return;
@@ -117,6 +121,10 @@ document.addEventListener("click", (e) => {
     bannerClose.closest(".c-banner")?.remove();
     return;
   }
+
+  // Navigation helpers
+  if (e.target.closest("[data-js-back]")) { history.back(); return; }
+  if (e.target.closest("[data-js-reload]")) { location.reload(); return; }
 });
 
 // === ミニサイドバー: details hover open ===
@@ -215,17 +223,6 @@ document.querySelectorAll("[role='tablist']").forEach((tablist) => {
   });
 });
 
-// tabindex 更新: タブ切替時
-document.addEventListener("click", (e) => {
-  const tab = e.target.closest("[role='tab']");
-  if (!tab) return;
-  const tablist = tab.closest("[role='tablist']");
-  if (!tablist) return;
-  tablist.querySelectorAll("[role='tab']").forEach((t) => {
-    t.setAttribute("tabindex", t === tab ? "0" : "-1");
-  });
-});
-
 // === Dropdown: キーボードナビゲーション (WAI-ARIA Menu) ===
 document.addEventListener("keydown", (e) => {
   const menu = e.target.closest("[role='menu']");
@@ -251,9 +248,16 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// popover 表示時に最初のメニューアイテムにフォーカス
+// popover 表示時: 最初のメニューアイテムにフォーカス + aria-expanded 更新
 document.addEventListener("toggle", (e) => {
-  if (e.target.matches("[role='menu']") && e.newState === "open") {
+  if (!e.target.matches("[role='menu']")) return;
+  const isOpen = e.newState === "open";
+
+  // aria-expanded 更新（トリガーボタンを特定）
+  const trigger = document.querySelector(`[popovertarget="${e.target.id}"]`);
+  if (trigger) trigger.setAttribute("aria-expanded", String(isOpen));
+
+  if (isOpen) {
     const first = e.target.querySelector("[role='menuitem']");
     if (first) requestAnimationFrame(() => first.focus());
   }
@@ -369,7 +373,7 @@ window.Toast = {
 
     const toasts = container.querySelectorAll(".c-toast:not(.out)");
     if (toasts.length > TOAST_DEFAULTS.maxVisible) {
-      dismissToast(toasts[toasts.length - 1]);
+      dismissToast(toasts[0]);
     }
 
     return { dismiss: () => dismissToast(el, timer) };
@@ -381,8 +385,3 @@ window.Toast = {
   },
 };
 
-// === Navigation helpers ===
-document.addEventListener("click", (e) => {
-  if (e.target.closest("[data-js-back]")) history.back();
-  if (e.target.closest("[data-js-reload]")) location.reload();
-});

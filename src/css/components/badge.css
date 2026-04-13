@@ -44,5 +44,14 @@
       border-color: var(--_accent);
       color: var(--text-on-accent);
     }
+
+    /* ミニサイドバー: 非表示 → ホバーで再表示 */
+    .shell[data-layout="mini"] .shell-sidebar > nav & {
+      display: none;
+    }
+
+    .shell[data-layout="mini"] .shell-sidebar > nav li:hover & {
+      display: inline-flex;
+    }
   }
 }

@@ -51,4 +51,13 @@
     position: static;
     margin-left: auto;
   }
+
+  /* ミニサイドバー: 非表示 → ホバーで再表示 */
+  .shell[data-layout="mini"] .shell-sidebar > nav .c-dot {
+    display: none;
+  }
+
+  .shell[data-layout="mini"] .shell-sidebar > nav li:hover .c-dot {
+    display: block;
+  }
 }
