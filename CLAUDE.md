@@ -23,6 +23,13 @@
 - transparent ベースの `color-mix` はダーク背景で白が透ける → 不透明な oklch 値を使う
 - gap と margin の混在は避ける（加算が予測困難）
 
+### Svelte 版（adminkit-svelte）との同期
+
+- adminkit には Svelte 5 移植版 **adminkit-svelte** が対になっている。CSS は npm 依存で共有するが、**`src/js/adminkit.js` の対話挙動は Svelte 側で再実装**されており、二重実装ゆえにドリフトする
+- **`adminkit.js` の対話挙動を変更・追加したら、必ず `adminkit-svelte/PARITY.md` のチェックリストを更新する**（タブ/ドロップダウン/トースト/テーブル等のキーボード操作・aria・フォールバック）
+- CSS だけの変更はクラス契約が不変なら Svelte 側の対応不要（バージョン bump で取り込む）
+- 詳細な方針・チェックリストは `adminkit-svelte/PARITY.md` が単一の拠り所
+
 ### パス規約
 
 - 全ページのリンク・アセットパスは**ルート相対**（`/` 始まり）で統一

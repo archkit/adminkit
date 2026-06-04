@@ -1,3 +1,5 @@
+// このファイルの対話挙動は Svelte 版（adminkit-svelte）で再実装されている。
+// 挙動を変更・追加したら adminkit-svelte/PARITY.md のチェックリストを更新すること。
 import { createIcons, icons } from "lucide";
 
 // === Icons ===
