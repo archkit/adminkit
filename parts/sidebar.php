@@ -42,7 +42,7 @@
           </details>
         </li>
         <li><a href="/pages/demo/settings.php"><i data-lucide="settings"></i><span>一般設定</span><span class="c-badge warning">3</span></a></li>
-        <li><a href="/pages/demo/profile.php"><i data-lucide="user-circle"></i><span>プロフィール</span></a></li>
+        <li><a href="/pages/demo/profile.php"><i data-lucide="circle-user"></i><span>プロフィール</span></a></li>
       </ul>
     </div>
 
@@ -55,7 +55,7 @@
         <li><a href="/pages/layout/standalone.php"><i data-lucide="rectangle-horizontal"></i><span>スタンドアロン</span></a></li>
         <li><a href="/pages/layout/double.php"><i data-lucide="columns-2"></i><span>ダブルサイドバー</span></a></li>
         <li><a href="/pages/layout/footer.php"><i data-lucide="panel-bottom"></i><span>フッター付き</span></a></li>
-        <li><a href="/pages/layout/error.php"><i data-lucide="alert-triangle"></i><span>エラーページ</span></a></li>
+        <li><a href="/pages/layout/error.php"><i data-lucide="triangle-alert"></i><span>エラーページ</span></a></li>
         <li><a href="/pages/layout/login.php"><i data-lucide="log-in"></i><span>ログイン</span></a></li>
       </ul>
     </div>

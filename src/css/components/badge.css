@@ -17,33 +17,20 @@
     border: none;
     color: var(--text-muted);
 
-    &.primary {
-      --_accent: var(--accent);
-      background: var(--_accent);
-      border-color: var(--_accent);
-      color: var(--text-on-accent);
-    }
-
-    &.success {
-      --_accent: var(--status-ok);
-      background: var(--_accent);
-      border-color: var(--_accent);
-      color: var(--text-on-accent);
-    }
-
-    &.warning {
-      --_accent: var(--status-warn);
-      background: var(--_accent);
-      border-color: var(--_accent);
-      color: var(--text-on-accent);
-    }
-
+    /* 色バリアント: 消費ルールは共通、--_accent のみ差し替え */
+    &.primary,
+    &.success,
+    &.warning,
     &.danger {
-      --_accent: var(--status-fail);
       background: var(--_accent);
       border-color: var(--_accent);
       color: var(--text-on-accent);
     }
+
+    &.primary { --_accent: var(--accent); }
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
 
     /* ミニサイドバー: 非表示 → ホバーで再表示 */
     .shell[data-layout="mini"] .shell-sidebar > nav & {

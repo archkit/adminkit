@@ -10,7 +10,7 @@
     max-height: calc(100dvh - 4rem);
     background: var(--input-bg);
     color: var(--text-strong);
-    box-shadow: 0 25px 50px -12px color-mix(in srgb, #000 25%, transparent);
+    box-shadow: var(--shadow-modal);
     opacity: 0;
     transition: opacity var(--duration-fast) var(--easing),
       overlay var(--duration-fast) var(--easing) allow-discrete,
@@ -21,7 +21,7 @@
     }
 
     &::backdrop {
-      background: color-mix(in srgb, #000 50%, transparent);
+      background: var(--overlay);
       opacity: 0;
       transition: opacity var(--duration-fast) var(--easing),
         overlay var(--duration-fast) var(--easing) allow-discrete,

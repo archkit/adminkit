@@ -29,7 +29,7 @@
           <div class="l-cluster">
             <?php part('theme-switcher'); ?>
             <a href="#" class="c-button ghost small"><i data-lucide="bell"></i><span class="c-dot count">3</span></a>
-            <a href="#" class="c-button ghost small"><i data-lucide="circle-help"></i></a>
+            <a href="#" class="c-button ghost small"><i data-lucide="circle-question-mark"></i></a>
           </div>
         </nav>
 
@@ -520,7 +520,7 @@
             <section>
               <h3>基本</h3>
               <label class="c-upload">
-                <i data-lucide="upload-cloud"></i>
+                <i data-lucide="cloud-upload"></i>
                 <p>クリックまたはドラッグ＆ドロップ</p>
                 <small>PNG, JPG, GIF（最大 10MB）</small>
                 <input type="file" accept="image/*">

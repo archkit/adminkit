@@ -58,7 +58,7 @@
                   <td><code>news</code></td>
                   <td class="num">12</td>
                   <td class="action">
-                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="edit"></i></button>
+                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="square-pen"></i></button>
                     <button class="c-button ghost small danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i></button>
                   </td>
                 </tr>
@@ -67,7 +67,7 @@
                   <td><code>blog</code></td>
                   <td class="num">24</td>
                   <td class="action">
-                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="edit"></i></button>
+                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="square-pen"></i></button>
                     <button class="c-button ghost small danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i></button>
                   </td>
                 </tr>
@@ -76,7 +76,7 @@
                   <td><code>help</code></td>
                   <td class="num">8</td>
                   <td class="action">
-                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="edit"></i></button>
+                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="square-pen"></i></button>
                     <button class="c-button ghost small danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i></button>
                   </td>
                 </tr>
@@ -85,7 +85,7 @@
                   <td><code>release</code></td>
                   <td class="num">6</td>
                   <td class="action">
-                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="edit"></i></button>
+                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="square-pen"></i></button>
                     <button class="c-button ghost small danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i></button>
                   </td>
                 </tr>
@@ -94,7 +94,7 @@
                   <td><code>tutorial</code></td>
                   <td class="num">15</td>
                   <td class="action">
-                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="edit"></i></button>
+                    <button class="c-button ghost small" data-js-open="category-dialog"><i data-lucide="square-pen"></i></button>
                     <button class="c-button ghost small danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i></button>
                   </td>
                 </tr>
@@ -111,7 +111,7 @@
   <dialog class="c-modal" data-js-dialog="category-dialog" aria-label="カテゴリの編集">
     <section>
       <header>
-        <h3>カテゴリの編集</h3>
+        <h2>カテゴリの編集</h2>
         <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
       </header>
       <div class="body">
@@ -137,7 +137,7 @@
   <dialog class="c-modal" data-js-dialog="delete-dialog" aria-label="カテゴリの削除">
     <section>
       <header>
-        <h3>カテゴリの削除</h3>
+        <h2>カテゴリの削除</h2>
         <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
       </header>
       <div class="body">

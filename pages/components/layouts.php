@@ -28,7 +28,7 @@
           <div class="l-cluster">
             <?php part('theme-switcher'); ?>
             <a href="#" class="c-button ghost small"><i data-lucide="bell"></i><span class="c-dot count">3</span></a>
-            <a href="#" class="c-button ghost small"><i data-lucide="circle-help"></i></a>
+            <a href="#" class="c-button ghost small"><i data-lucide="circle-question-mark"></i></a>
           </div>
         </nav>
 

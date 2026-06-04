@@ -43,7 +43,7 @@
               </div>
             </div>
             <div class="l-cluster">
-              <a href="/pages/demo/users/edit.php?id=1" class="c-button small"><i data-lucide="edit"></i>編集</a>
+              <a href="/pages/demo/users/edit.php?id=1" class="c-button small"><i data-lucide="square-pen"></i>編集</a>
               <button class="c-button small danger"><i data-lucide="trash-2"></i>削除</button>
             </div>
           </header>

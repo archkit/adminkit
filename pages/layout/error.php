@@ -15,7 +15,7 @@
       <p>お探しのページは存在しないか、移動した可能性があります。</p>
       <div class="l-cluster center">
         <button data-js-back class="c-button"><i data-lucide="arrow-left"></i>前のページへ</button>
-        <a href="/index.php" class="c-button primary"><i data-lucide="home"></i>ダッシュボードへ</a>
+        <a href="/index.php" class="c-button primary"><i data-lucide="house"></i>ダッシュボードへ</a>
       </div>
       <div class="l-cluster center">
         <button class="c-button ghost small" data-js-error-switch="500">500 エラーを表示</button>
@@ -30,7 +30,7 @@
       <p>予期しないエラーが発生しました。しばらくしてからもう一度お試しください。</p>
       <div class="l-cluster center">
         <button data-js-reload class="c-button"><i data-lucide="refresh-cw"></i>再読み込み</button>
-        <a href="/index.php" class="c-button primary"><i data-lucide="home"></i>ダッシュボードへ</a>
+        <a href="/index.php" class="c-button primary"><i data-lucide="house"></i>ダッシュボードへ</a>
       </div>
       <div class="l-cluster center">
         <button class="c-button ghost small" data-js-error-switch="404">404 エラーを表示</button>

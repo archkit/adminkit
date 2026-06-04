@@ -460,8 +460,8 @@ base 層で一括無効化。機能的アニメーション（c-progress, c-skel
 
 ### ビルド
 
-- CSS: Lightning CSS でバンドル + minify
-- JS: esbuild でバンドル（Lucide 含む）
+- CSS: Lightning CSS でバンドル + minify（ターゲットは `--browserslist`）
+- JS: esbuild でバンドル（Lucide 含む / `--target=es2022`）
 - `npm run dev`: 開発ビルド（CSS + JS + theme-init コピー）
 - `npm run build`: 本番ビルド（minify 追加）
 - CSS/JS 変更後は必ず `npm run dev` でリビルド
@@ -471,6 +471,38 @@ base 層で一括無効化。機能的アニメーション（c-progress, c-skel
 | `src/css/adminkit.css` | `dist/adminkit.min.css` |
 | `src/js/adminkit.js` | `dist/adminkit.min.js`（Lucide バンドル済み） |
 | `src/js/theme-init.js` | `dist/theme-init.js`（コピー） |
+
+---
+
+## ブラウザ対応とフォールバック
+
+### 対応ブラウザ
+
+最新 2 バージョンの Chrome / Edge / Safari / Firefox を対象とする。これが「フォールバックが必要か」「いつ撤去できるか」を判断する唯一の基準。
+
+基準は `package.json` の `browserslist` フィールドに一本化されており、CSS（Lightning CSS `--browserslist`）と JS（esbuild `--target=es2022`）の両ビルドがこれを参照する。対象ブラウザを変えるときは `browserslist` だけを編集する。
+
+### フォールバックの運用ルール
+
+新しい CSS/JS 機能を使う際、対象ブラウザの一部が未対応なら機能検出でフォールバックを用意する。**監視ツールやCIは入れず、grep できるコメント1行で管理する**（フォールバックが数個のうちは、仕組みより検索のほうが軽くて確実）。
+
+1. **機能検出で囲う** — `CSS.supports(...)` / `@supports` を使い、1ブロックで消せる単位にする
+2. **マーカーを付ける** — 現場に `FALLBACK(機能名): …撤去条件…` のコメントを置く
+3. **撤去条件を明記** — 「対象ブラウザがすべて対応したら削除」を書く
+
+```js
+// FALLBACK(css-anchor-positioning): position-area 非対応ブラウザ向けの JS 配置。
+// 撤去条件: browserslist 対象すべてが対応したら削除し position-area に一本化。
+if (!CSS.supports("position-area: bottom span-left")) { /* … */ }
+```
+
+棚卸しは `git grep -n "FALLBACK("` で全件を一覧し、撤去条件を満たしたものを削除する。フォールバックが 4〜5 個を超えて増え続けるようなら、そこで初めて台帳や lint（stylelint の不要 disable 検出など）への昇格を検討する。
+
+### 現在のフォールバック一覧
+
+| 機能 | 場所 | 検出 | 撤去条件 |
+|---|---|---|---|
+| CSS anchor positioning (`position-area`) | `src/js/adminkit.js`（dropdown 配置） | `CSS.supports("position-area: …")` | Firefox 既定対応 → 対象ブラウザが全対応 |
 
 ---
 

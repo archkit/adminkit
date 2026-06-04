@@ -248,6 +248,23 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// FALLBACK(css-anchor-positioning): dropdown は CSS の position-area でボタン下に配置するが、
+// 未対応ブラウザ（主に Firefox・旧 Safari/iOS）では position-area が無視され、トップレイヤーの
+// popover がボタンから外れて表示される。その場合のみ JS で座標を計算して配置する。
+// 撤去条件: browserslist 対象すべてが CSS anchor positioning に対応したら、この定数・
+// positionDropdown()・toggle ハンドラ内の呼び出しを削除し、CSS の position-area に一本化する。
+// 参照: docs/guide.md「ブラウザ対応とフォールバック」
+const SUPPORTS_ANCHOR_POS = CSS.supports("position-area: bottom span-left");
+
+function positionDropdown(menu, trigger) {
+  const r = trigger.getBoundingClientRect();
+  menu.style.position = "fixed";
+  menu.style.margin = "0";
+  menu.style.top = `${r.bottom + 4}px`;
+  // position-area: bottom span-left 相当（アンカー右端に右揃え・画面左端で clamp）
+  menu.style.left = `${Math.max(4, r.right - menu.offsetWidth)}px`;
+}
+
 // popover 表示時: 最初のメニューアイテムにフォーカス + aria-expanded 更新
 document.addEventListener("toggle", (e) => {
   if (!e.target.matches("[role='menu']")) return;
@@ -258,6 +275,10 @@ document.addEventListener("toggle", (e) => {
   if (trigger) trigger.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
+    // FALLBACK(css-anchor-positioning): 非対応時のみ .c-dropdown の popover を JS 配置
+    if (!SUPPORTS_ANCHOR_POS && trigger && e.target.closest(".c-dropdown")) {
+      positionDropdown(e.target, trigger);
+    }
     const first = e.target.querySelector("[role='menuitem']");
     if (first) requestAnimationFrame(() => first.focus());
   }

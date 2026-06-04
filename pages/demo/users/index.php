@@ -31,7 +31,7 @@
           <div class="l-cluster">
             <?php part('theme-switcher'); ?>
             <a href="#" class="c-button ghost small"><i data-lucide="bell"></i><span class="c-dot count">3</span></a>
-            <a href="#" class="c-button ghost small"><i data-lucide="circle-help"></i></a>
+            <a href="#" class="c-button ghost small"><i data-lucide="circle-question-mark"></i></a>
             <div class="c-dropdown">
               <button class="c-button ghost small" popovertarget="nav-menu" aria-haspopup="menu" aria-expanded="false">
                 <i data-lucide="ellipsis"></i>
@@ -109,10 +109,10 @@
                   <td class="num">42</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="menu-1" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="menu-1" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="menu-1" role="menu">
                         <li role="presentation"><a href="/pages/demo/users/detail.php?id=1" role="menuitem"><i data-lucide="eye"></i>詳細</a></li>
-                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=1" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=1" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><button role="menuitem">権限変更</button></li>
                         <li role="separator"><hr></li>
                         <li role="presentation"><button role="menuitem" class="danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i>削除</button></li>
@@ -130,10 +130,10 @@
                   <td class="num">18</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="menu-2" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="menu-2" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="menu-2" role="menu">
                         <li role="presentation"><a href="/pages/demo/users/detail.php?id=2" role="menuitem"><i data-lucide="eye"></i>詳細</a></li>
-                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=2" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=2" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><button role="menuitem">権限変更</button></li>
                         <li role="separator"><hr></li>
                         <li role="presentation"><button role="menuitem" class="danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i>削除</button></li>
@@ -151,10 +151,10 @@
                   <td class="num">0</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="menu-3" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="menu-3" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="menu-3" role="menu">
                         <li role="presentation"><a href="/pages/demo/users/detail.php?id=3" role="menuitem"><i data-lucide="eye"></i>詳細</a></li>
-                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=3" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/users/edit.php?id=3" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><button role="menuitem">有効化</button></li>
                         <li role="separator"><hr></li>
                         <li role="presentation"><button role="menuitem" class="danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i>削除</button></li>
@@ -195,7 +195,7 @@
   <dialog class="c-modal" data-js-dialog="delete-dialog" aria-label="ユーザーの削除">
     <section>
       <header>
-        <h3>ユーザーの削除</h3>
+        <h2>ユーザーの削除</h2>
         <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
       </header>
       <div class="body">

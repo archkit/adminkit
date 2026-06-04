@@ -28,7 +28,7 @@
           <div class="l-cluster">
             <?php part('theme-switcher'); ?>
             <a href="#" class="c-button ghost small"><i data-lucide="bell"></i><span class="c-dot count">3</span></a>
-            <a href="#" class="c-button ghost small"><i data-lucide="circle-help"></i></a>
+            <a href="#" class="c-button ghost small"><i data-lucide="circle-question-mark"></i></a>
           </div>
         </nav>
 
@@ -393,7 +393,7 @@
                 アクション<i data-lucide="chevron-down"></i>
               </button>
               <ul popover id="demo-dropdown" role="menu">
-                <li role="presentation"><button role="menuitem"><i data-lucide="edit"></i>編集</button></li>
+                <li role="presentation"><button role="menuitem"><i data-lucide="square-pen"></i>編集</button></li>
                 <li role="presentation"><button role="menuitem"><i data-lucide="copy"></i>複製</button></li>
                 <li role="presentation"><button role="menuitem"><i data-lucide="archive"></i>アーカイブ</button></li>
                 <li role="separator"><hr></li>

@@ -144,6 +144,7 @@
     --nav-surface-0:   oklch(0.16 0.01 260);
     --nav-surface-50:  oklch(0.20 0.01 260);
     --nav-surface-100: oklch(0.25 0.01 260);
+    --nav-surface-active: oklch(0.22 0.03 260); /* aria-current 等のアクティブ背景 */
     --nav-text-strong: oklch(0.95 0.005 260);
     --nav-text-muted:  oklch(0.70 0.01 260);
     --nav-border:      oklch(0.33 0.01 260);
@@ -151,9 +152,15 @@
     --nav-accent-soft: color-mix(in srgb, var(--accent) 15%, transparent);
   }
 
+  /* オーバーレイ（モーダル幕・ドロワー幕共通のスクリム） */
+  :root {
+    --overlay: oklch(0 0 0 / 0.5);
+  }
+
   /* シャドウ（モード依存） */
   :root {
     --shadow-popup: 0 2px 8px oklch(0 0 0 / 0.06), 0 0 0 1px oklch(0 0 0 / 0.04);
+    --shadow-modal: 0 25px 50px -12px oklch(0 0 0 / 0.25);
   }
   [data-theme-mode="dark"] {
     --shadow-popup: 0 4px 12px oklch(0 0 0 / 0.4);

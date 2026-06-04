@@ -80,7 +80,7 @@
 
   /* aria-current */
   .shell[data-layout="mini"] .shell-sidebar > nav li > a[aria-current="page"] {
-    background: oklch(0.22 0.03 260);
+    background: var(--nav-surface-active);
     color: var(--text-strong);
     font-weight: 600;
     position: relative;
@@ -100,14 +100,14 @@
   /* ホバー: li 自体を広げて不透明背景でテキスト表示 */
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover {
     width: calc(var(--shell-sidebar-w-full, 240px) + 2rem);
-    background: oklch(0.16 0.01 260);
+    background: var(--nav-surface-0);
     border-radius: var(--radius);
     z-index: var(--z-tooltip);
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a,
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > summary {
-    background: oklch(0.25 0.01 260);
+    background: var(--nav-surface-100);
     gap: 2.25rem;
   }
 
@@ -125,7 +125,7 @@
 
   /* ホバー中の aria-current */
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > a[aria-current="page"] {
-    background: oklch(0.22 0.03 260);
+    background: var(--nav-surface-active);
   }
 
   /* details: サブメニューを絶対配置（アイコン列の右に配置して下のアイコンを隠さない） */
@@ -155,7 +155,7 @@
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul {
-    background: oklch(0.20 0.01 260);
+    background: var(--nav-surface-50);
     border-radius: 0 0 var(--radius) 0;
     padding: 0.125rem 0;
   }
@@ -181,7 +181,7 @@
   }
 
   .shell[data-layout="mini"] .shell-sidebar > nav li:hover > details > ul > li > a:hover {
-    background: oklch(0.25 0.01 260);
+    background: var(--nav-surface-100);
   }
 
   /* フッター */
@@ -206,7 +206,7 @@
 
   .shell[data-layout="mini"] .shell-sidebar > footer > a:hover,
   .shell[data-layout="mini"] .shell-sidebar > footer > button:hover {
-    background: oklch(0.25 0.01 260);
+    background: var(--nav-surface-100);
   }
 
   .shell[data-layout="mini"] .shell-sidebar > footer > a:hover {

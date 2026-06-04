@@ -45,34 +45,22 @@
       }
     }
 
-    &.primary {
-      background: var(--accent-soft);
-      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
-      color: var(--_accent);
-
-      > button:hover {
-        color: var(--_accent);
-      }
-    }
-
-    &.success {
-      --_accent: var(--status-ok);
-      background: color-mix(in srgb, var(--_accent) 12%, transparent);
-      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
-      color: var(--_accent);
-    }
-
-    &.warning {
-      --_accent: var(--status-warn);
-      background: color-mix(in srgb, var(--_accent) 12%, transparent);
-      border-color: color-mix(in oklch, var(--_accent), transparent 70%);
-      color: var(--_accent);
-    }
-
+    /* 色バリアント: 消費ルールは共通、--_accent のみ差し替え */
+    &.primary,
+    &.success,
+    &.warning,
     &.danger {
-      --_accent: var(--status-fail);
       background: color-mix(in srgb, var(--_accent) 12%, transparent);
       border-color: color-mix(in oklch, var(--_accent), transparent 70%);
+      color: var(--_accent);
+    }
+
+    /* primary は base の --_accent: var(--accent) をそのまま使用 */
+    &.success { --_accent: var(--status-ok); }
+    &.warning { --_accent: var(--status-warn); }
+    &.danger  { --_accent: var(--status-fail); }
+
+    &.primary > button:hover {
       color: var(--_accent);
     }
   }

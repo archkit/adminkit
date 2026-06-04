@@ -98,9 +98,9 @@
                   <td class="num">1,284</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="art-menu-1" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="art-menu-1" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="art-menu-1" role="menu">
-                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=1" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=1" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><a href="/pages/demo/articles/detail.php?id=1" role="menuitem"><i data-lucide="eye"></i>プレビュー</a></li>
                         <li role="presentation"><button role="menuitem"><i data-lucide="copy"></i>複製</button></li>
                         <li role="separator"><hr></li>
@@ -119,9 +119,9 @@
                   <td class="num">856</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="art-menu-2" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="art-menu-2" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="art-menu-2" role="menu">
-                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=2" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=2" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><a href="/pages/demo/articles/detail.php?id=2" role="menuitem"><i data-lucide="eye"></i>プレビュー</a></li>
                         <li role="presentation"><button role="menuitem"><i data-lucide="copy"></i>複製</button></li>
                         <li role="separator"><hr></li>
@@ -140,9 +140,9 @@
                   <td class="num">2,341</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="art-menu-3" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="art-menu-3" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="art-menu-3" role="menu">
-                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=3" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=3" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><a href="/pages/demo/articles/detail.php?id=3" role="menuitem"><i data-lucide="eye"></i>プレビュー</a></li>
                         <li role="presentation"><button role="menuitem"><i data-lucide="copy"></i>複製</button></li>
                         <li role="separator"><hr></li>
@@ -161,9 +161,9 @@
                   <td class="num">—</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="art-menu-4" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="art-menu-4" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="art-menu-4" role="menu">
-                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=4" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=4" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><a href="/pages/demo/articles/detail.php?id=4" role="menuitem"><i data-lucide="eye"></i>プレビュー</a></li>
                         <li role="separator"><hr></li>
                         <li role="presentation"><button role="menuitem" class="danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i>削除</button></li>
@@ -181,9 +181,9 @@
                   <td class="num">4,120</td>
                   <td class="action">
                     <div class="c-dropdown">
-                      <button class="c-button ghost small" popovertarget="art-menu-5" aria-haspopup="menu"><i data-lucide="more-horizontal"></i></button>
+                      <button class="c-button ghost small" popovertarget="art-menu-5" aria-haspopup="menu"><i data-lucide="ellipsis"></i></button>
                       <ul popover id="art-menu-5" role="menu">
-                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=5" role="menuitem"><i data-lucide="edit"></i>編集</a></li>
+                        <li role="presentation"><a href="/pages/demo/articles/edit.php?id=5" role="menuitem"><i data-lucide="square-pen"></i>編集</a></li>
                         <li role="presentation"><button role="menuitem"><i data-lucide="undo-2"></i>復元</button></li>
                         <li role="separator"><hr></li>
                         <li role="presentation"><button role="menuitem" class="danger" data-js-open="delete-dialog"><i data-lucide="trash-2"></i>削除</button></li>
@@ -224,7 +224,7 @@
   <dialog class="c-modal" data-js-dialog="delete-dialog" aria-label="記事の削除">
     <section>
       <header>
-        <h3>記事の削除</h3>
+        <h2>記事の削除</h2>
         <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
       </header>
       <div class="body">
