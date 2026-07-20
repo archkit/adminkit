@@ -8,6 +8,12 @@
       inset: unset;
       margin: 0;
 
+      /* 防御: 閉時の非表示は UA スタイル任せのため、置かれた文脈側の display 指定
+         （例: サイドバーナビの ul 規則）に上書きされうる。閉時非表示を明示して固定する */
+      &:not(:popover-open) {
+        display: none;
+      }
+
       /* 暗黙のアンカー（popovertargetで紐付けた要素）を使用 */
       position-area: bottom span-left;
       margin-top: 0.25rem;

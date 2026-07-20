@@ -73,8 +73,11 @@
         margin-bottom: var(--space-1);
       }
 
-      /* Nav links */
-      ul {
+      /* Nav links
+         [popover] を除外: ナビ内に Dropdown（.c-dropdown > ul[popover]）を置いたとき、
+         この display 指定が popover の閉時 display: none（UA スタイル）を上書きして
+         メニューが常時表示になるのを防ぐ */
+      ul:not([popover]) {
         display: flex;
         flex-direction: column;
         gap: 0.125rem;
