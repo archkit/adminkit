@@ -267,9 +267,20 @@ toast.dismiss();
 
 - backdrop クリックでも閉じる（`dialog.c-modal` 自体のクリックを検知）
 
+### バリアント
+
+| クラス | 幅 | 用途 |
+|---|---|---|
+| （なし） | `max-width: 32rem` | 確認ダイアログ・簡易フォーム（既定） |
+| `.wide` | `max-width: 48rem` | 表・コード・長文など既定幅に収まらないコンテンツ |
+
+```html
+<dialog class="c-modal wide" aria-label="詳細">…</dialog>
+```
+
 ### スタイル詳細
 
-- 幅: `max-width: 32rem; width: calc(100% - 2rem)`
+- 幅: `max-width: 32rem; width: calc(100% - 2rem)`（`.wide` は `max-width: 48rem`）
 - backdrop: `color-mix(in srgb, #000 50%, transparent)` の半透明黒
 - 開閉アニメーション: `opacity` トランジション + `@starting-style` で初期値を設定
 - `allow-discrete` で `display` と `overlay` のトランジションを有効化

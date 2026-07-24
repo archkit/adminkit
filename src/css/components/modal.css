@@ -20,6 +20,11 @@
       opacity: 1;
     }
 
+    /* 幅バリアント: 表・コード・長文など 32rem に収まらないコンテンツ用 */
+    &.wide {
+      max-width: 48rem;
+    }
+
     &::backdrop {
       background: var(--overlay);
       opacity: 0;

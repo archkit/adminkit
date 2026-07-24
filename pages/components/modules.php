@@ -323,6 +323,7 @@
             <h2>Modal</h2>
             <div class="l-cluster">
               <button class="c-button primary" data-js-open="demo-modal">モーダルを開く</button>
+              <button class="c-button" data-js-open="demo-modal-wide">ワイドモーダルを開く</button>
             </div>
             <dialog class="c-modal" data-js-dialog="demo-modal" aria-label="確認">
               <section>
@@ -336,6 +337,20 @@
                 <footer>
                   <button class="c-button" data-js-close>キャンセル</button>
                   <button class="c-button primary" data-js-close>確認</button>
+                </footer>
+              </section>
+            </dialog>
+            <dialog class="c-modal wide" data-js-dialog="demo-modal-wide" aria-label="詳細">
+              <section>
+                <header>
+                  <h3>詳細（wide バリアント）</h3>
+                  <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
+                </header>
+                <div class="body">
+                  <p><code>.wide</code> で <code>max-width: 48rem</code> になります。表・コード・長文など既定幅（32rem）に収まらないコンテンツ用です。</p>
+                </div>
+                <footer>
+                  <button class="c-button" data-js-close>閉じる</button>
                 </footer>
               </section>
             </dialog>
