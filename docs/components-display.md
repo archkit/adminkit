@@ -580,27 +580,11 @@
 <span class="c-skeleton" style="--w: 12rem; --h: 2rem"></span>
 ```
 
-### 一覧・テーブルの行プレースホルダ（c-skeleton-rows）
-
-行 × 列のまとまりを作る。列数は `--cols` で指定する。
-
-```html
-<div class="c-skeleton-rows" style="--cols: 4" aria-busy="true">
-  <div>
-    <span class="c-skeleton text" aria-label="読み込み中"></span>
-    <span class="c-skeleton text" aria-label="読み込み中"></span>
-    <span class="c-skeleton text" aria-label="読み込み中"></span>
-    <span class="c-skeleton text" aria-label="読み込み中"></span>
-  </div>
-  <!-- 行を必要数くり返す -->
-</div>
-```
-
 ### ユースケース
 
 - データ読み込み中のプレースホルダー
 - カード内のコンテンツローディング（circle + text の組み合わせ）
-- テーブル行のローディング（`c-skeleton-rows`）
+- テーブル行のローディング（adminkit-svelte の `SkeletonRow` は実テーブルの `<tbody>` にこの `.c-skeleton` を並べる）
 
 ### アンチパターン
 

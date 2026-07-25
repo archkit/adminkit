@@ -229,21 +229,6 @@
               </div>
             </section>
 
-            <section>
-              <h3>一覧・テーブルの行（c-skeleton-rows）</h3>
-              <div class="c-card">
-                <div class="c-skeleton-rows" style="--cols: 4" aria-busy="true">
-                  <?php for ($i = 0; $i < 4; $i++): ?>
-                    <div>
-                      <span class="c-skeleton text" aria-label="読み込み中"></span>
-                      <span class="c-skeleton text" aria-label="読み込み中"></span>
-                      <span class="c-skeleton text" aria-label="読み込み中"></span>
-                      <span class="c-skeleton text" aria-label="読み込み中"></span>
-                    </div>
-                  <?php endfor; ?>
-                </div>
-              </div>
-            </section>
           </section>
 
           <!-- ================================================
