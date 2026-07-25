@@ -28,6 +28,22 @@
     }
   }
 
+  /* 一覧・テーブルの読み込み中プレースホルダ（行 × 列）。
+     列数は --cols で指定する。データ表示後との高さのずれを小さくするのが目的 */
+  .c-skeleton-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+
+    > div {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr));
+      gap: 0.75rem;
+      align-items: center;
+    }
+  }
+
   @keyframes skeleton-shimmer {
     from { transform: translateX(-100%); }
     to { transform: translateX(100%); }

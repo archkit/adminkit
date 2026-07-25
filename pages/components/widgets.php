@@ -228,6 +228,69 @@
                 </div>
               </div>
             </section>
+
+            <section>
+              <h3>一覧・テーブルの行（c-skeleton-rows）</h3>
+              <div class="c-card">
+                <div class="c-skeleton-rows" style="--cols: 4" aria-busy="true">
+                  <?php for ($i = 0; $i < 4; $i++): ?>
+                    <div>
+                      <span class="c-skeleton text" aria-label="読み込み中"></span>
+                      <span class="c-skeleton text" aria-label="読み込み中"></span>
+                      <span class="c-skeleton text" aria-label="読み込み中"></span>
+                      <span class="c-skeleton text" aria-label="読み込み中"></span>
+                    </div>
+                  <?php endfor; ?>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <!-- ================================================
+               19b. Spinner
+               ================================================ -->
+          <section>
+            <h2>Spinner</h2>
+
+            <section>
+              <h3>サイズ</h3>
+              <div class="l-cluster">
+                <span class="c-spinner small" role="status" aria-label="読み込み中"></span>
+                <span class="c-spinner" role="status" aria-label="読み込み中"></span>
+                <span class="c-spinner large" role="status" aria-label="読み込み中"></span>
+              </div>
+            </section>
+
+            <section>
+              <h3>領域の読み込み中（c-loading-state）</h3>
+              <div class="c-card">
+                <div class="c-loading-state">
+                  <span class="c-spinner large" role="status" aria-label="読み込み中"></span>
+                  <p>読み込み中...</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h3>狭い領域（compact）</h3>
+              <div class="c-card">
+                <div class="c-loading-state compact">
+                  <span class="c-spinner" role="status" aria-label="読み込み中"></span>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h3>ボタン内（current）</h3>
+              <div class="l-cluster">
+                <button class="c-button primary" disabled>
+                  <span class="c-spinner small current" role="status" aria-label="送信中"></span>送信中...
+                </button>
+                <button class="c-button" disabled>
+                  <span class="c-spinner small current" role="status" aria-label="保存中"></span>保存中...
+                </button>
+              </div>
+            </section>
           </section>
 
           <!-- ================================================

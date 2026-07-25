@@ -1,0 +1,72 @@
+@layer adminkit.components {
+  /* 読み込み中インジケータ。形の分からない領域（ページ全体・モーダル内・ボタン内）に使う。
+     一覧やテーブルのように行の形が決まっている領域は .c-skeleton の方がずれが少ない */
+  .c-spinner {
+    --_spinner-size: 1.5rem;
+    --_spinner-width: 2px;
+    --_spinner-track: var(--border-muted);
+    --_spinner-color: var(--accent);
+
+    display: inline-block;
+    box-sizing: border-box;
+    width: var(--_spinner-size);
+    height: var(--_spinner-size);
+    border: var(--_spinner-width) solid var(--_spinner-track);
+    border-top-color: var(--_spinner-color);
+    border-radius: 50%;
+    animation: spinner-rotate 0.8s linear infinite;
+    flex-shrink: 0;
+
+    &.small {
+      --_spinner-size: 1rem;
+    }
+
+    &.large {
+      --_spinner-size: 2.5rem;
+      --_spinner-width: 3px;
+    }
+
+    /* ボタン内など、周囲の文字色に合わせたいとき。トラックは透明にして
+       背景色を問わず成立させる（不透明色の混色をボタンごとに用意しないため） */
+    &.current {
+      --_spinner-track: transparent;
+      --_spinner-color: currentColor;
+    }
+  }
+
+  @keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  /* 領域の中央にスピナー（+ 補足テキスト）を置くラッパー。
+     .c-empty-state と余白を揃え、読み込み → 空 / データ表示の切替で高さが飛ばないようにする */
+  .c-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+
+    > p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* モーダル内など、面積の小さい領域では余白を詰める */
+    &.compact {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  /* 機能的アニメーション: reduced-motion でも回転は維持する（止まると読み込み中に見えない）。
+     base/motion.css の一律短縮を打ち消し、速度だけ落とす */
+  @media (prefers-reduced-motion: reduce) {
+    .c-spinner {
+      animation-duration: 1.6s !important;
+      animation-iteration-count: infinite !important;
+    }
+  }
+}

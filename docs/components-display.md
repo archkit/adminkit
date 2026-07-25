@@ -580,16 +580,89 @@
 <span class="c-skeleton" style="--w: 12rem; --h: 2rem"></span>
 ```
 
+### 一覧・テーブルの行プレースホルダ（c-skeleton-rows）
+
+行 × 列のまとまりを作る。列数は `--cols` で指定する。
+
+```html
+<div class="c-skeleton-rows" style="--cols: 4" aria-busy="true">
+  <div>
+    <span class="c-skeleton text" aria-label="読み込み中"></span>
+    <span class="c-skeleton text" aria-label="読み込み中"></span>
+    <span class="c-skeleton text" aria-label="読み込み中"></span>
+    <span class="c-skeleton text" aria-label="読み込み中"></span>
+  </div>
+  <!-- 行を必要数くり返す -->
+</div>
+```
+
 ### ユースケース
 
 - データ読み込み中のプレースホルダー
 - カード内のコンテンツローディング（circle + text の組み合わせ）
-- テーブル行のローディング
+- テーブル行のローディング（`c-skeleton-rows`）
 
 ### アンチパターン
 
 - **`aria-busy="true"` の欠落** — スケルトンを含むコンテナに `aria-busy="true"` を設定しないと、スクリーンリーダーがローディング中であることを認識できない。ローディング完了時に `aria-busy="false"` に切り替えること
 - **`aria-label` の欠落** — 個々のスケルトン要素にも `aria-label="読み込み中"` を付与すること
+
+---
+
+## c-spinner / c-loading-state
+
+→ CSS: `src/css/components/spinner.css`
+→ デモ: `/pages/components/widgets.php`
+
+### 基本構造
+
+```html
+<!-- 単体 -->
+<span class="c-spinner" role="status" aria-label="読み込み中"></span>
+
+<!-- 領域の中央に置く（補足テキストは任意） -->
+<div class="c-loading-state">
+  <span class="c-spinner large" role="status" aria-label="読み込み中"></span>
+  <p>読み込み中...</p>
+</div>
+```
+
+- `.c-spinner` は border の上辺だけを着色した円を回す（`spinner-rotate` 0.8s linear infinite）
+- `.c-loading-state` は `.c-empty-state` と同じ余白（`padding: 3rem 1.5rem`）・中央寄せ。読み込み → 空 / データ表示の切替で高さが飛ばないように揃えてある
+- `prefers-reduced-motion: reduce` でも回転は維持し、速度だけ落とす（止まると読み込み中に見えないため）
+
+### バリアント
+
+| クラス | 効果 |
+|---|---|
+| `.small` | `1rem` 角。ボタン内・テーブルセル内向け |
+| `.large` | `2.5rem` 角・線幅 3px。ページ全体の読み込み向け |
+| `.current` | 色を `currentColor` に、トラックを透明に。ボタン内など背景色が一定でない場所で使う |
+| `.c-loading-state.compact` | 余白を `1.5rem 1rem` に詰める。モーダル内など面積の小さい領域向け |
+
+### カスタムサイズ
+
+`--_spinner-size` / `--_spinner-width` / `--_spinner-color` で個別に上書きできる。
+
+### Skeleton との使い分け
+
+| 状況 | 使うもの |
+|---|---|
+| 一覧・テーブルなど**出来上がりの形が分かっている**領域 | `.c-skeleton`（レイアウトのずれが減る） |
+| ページ全体・モーダル内など**形が分からない / 面積が小さい**領域 | `.c-spinner` |
+| ボタンの処理中 | `.c-spinner.small.current` |
+
+### ユースケース
+
+- ページ全体の初期読み込み
+- モーダルを開いた直後の本文取得
+- フォーム送信中のボタン表示
+
+### アンチパターン
+
+- **一覧・テーブルにスピナーを使う** — 行の形が分かっているならスケルトンの方が体感が速く、描画後のレイアウトのずれも起きない
+- **`role="status"` / `aria-label` の欠落** — スクリーンリーダーに読み込み中であることが伝わらない
+- **ボタン内で `.current` を付けない** — `--accent` 固定のままだと primary ボタン等の背景色に埋もれる
 
 ---
 
