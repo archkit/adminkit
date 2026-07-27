@@ -519,6 +519,64 @@ JS の動作:
 
 ---
 
+## c-accordion
+
+→ CSS: `src/css/components/accordion.css`
+→ デモ: `/pages/components/modules.php`
+
+`<details>` / `<summary>` の折りたたみ。JS を使わず開閉する。
+
+### 基本構造
+
+```html
+<details class="c-accordion">
+  <summary>接続情報 <span class="muted">stage-mariadb</span></summary>
+  <div class="content">
+    <!-- 中身 -->
+  </div>
+</details>
+```
+
+**構造の要点:**
+
+- 開閉の記号は `summary::before` が描く（`summary` を flex にするとブラウザ既定のマーカーが消えるため）
+- `summary` 内の補足テキストは `.muted` で薄くする
+- 中身は `.content` で包む（左右と下に余白が付く）
+
+### 表をそのまま入れる（.flush）
+
+表や一覧を余白なしで入れる場合は `.flush` を付ける。上に境界線が引かれる。
+
+```html
+<details class="c-accordion">
+  <summary>認証ログ <span class="muted">12 件</span></summary>
+  <div class="content flush">
+    <div class="c-table-scroll">
+      <table class="c-table">...</table>
+    </div>
+  </div>
+</details>
+```
+
+### 開閉のアニメーション
+
+`::details-content` の `height` / `opacity` を遷移させる（サイドバーのネストナビと同じ手法）。`interpolate-size: allow-keywords` により `height: auto` へ遷移できる。
+
+未対応のブラウザでは瞬時に開閉するだけで、開閉そのものは動く。`prefers-reduced-motion: reduce` のときは `base/motion.css` が遷移時間を潰す。
+
+### ユースケース
+
+- 既定では畳んでおきたい補足情報（接続情報・詳細設定）
+- 棚卸しのときだけ見る一覧（操作ログ・履歴）
+
+### アンチパターン
+
+- **主要な操作を畳む**: 開かないと気づけない場所に、日常的に使う操作を入れない
+- **`summary` に `<button>` や `<a>` を入れる**: `summary` 自体がクリック対象のため、入れ子の操作は押し分けられない
+- **中身に `.content` を使わず直接要素を置く**: 余白が付かず `summary` と詰まって見える
+
+---
+
 ## c-pagination
 
 → CSS: `src/css/components/pagination.css`

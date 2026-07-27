@@ -380,7 +380,40 @@
           </section>
 
           <!-- ================================================
-               10. Segment
+               10. Accordion
+               ================================================ -->
+          <section>
+            <h2>Accordion</h2>
+            <div class="l-stack">
+              <details class="c-accordion">
+                <summary>接続情報 <span class="muted">stage-mariadb / stage_demo</span></summary>
+                <div class="content">
+                  <p>既定では畳んでおきたい補足情報を入れる。開閉するとスライドする。</p>
+                </div>
+              </details>
+
+              <details class="c-accordion">
+                <summary>認証ログ <span class="muted">3 件</span></summary>
+                <div class="content flush">
+                  <div class="c-table-scroll">
+                    <table class="c-table">
+                      <thead>
+                        <tr><th>ラベル</th><th>IP アドレス</th><th>日時</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>社内</td><td><code>198.51.100.10</code></td><td>2026-01-15 10:24</td></tr>
+                        <tr><td>社内</td><td><code>198.51.100.10</code></td><td>2026-01-14 18:02</td></tr>
+                        <tr><td>制作会社</td><td><code>203.0.113.7</code></td><td>2026-01-12 09:41</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- ================================================
+               11. Segment
                ================================================ -->
           <section>
             <h2>Segment</h2>

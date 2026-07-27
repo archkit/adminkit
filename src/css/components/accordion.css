@@ -1,0 +1,82 @@
+@layer adminkit.components {
+  /*
+   * 折りたたみ（<details> / <summary>）。JS 無しで開閉する。
+   *
+   * 開閉できることが見て分かるよう、summary に向きの変わる記号を出す。
+   * summary を flex にすると既定のマーカーが消えるため、自前で描く必要がある
+   * （list-style: none と ::-webkit-details-marker は Safari 等の保険）。
+   *
+   * 中身は ::details-content でスライドさせる。未対応のブラウザでは瞬時に開閉するだけで、
+   * 開閉そのものは動く（prefers-reduced-motion のときは base/motion.css が時間を潰す）。
+   */
+  .c-accordion {
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius);
+    background: var(--surface-0);
+
+    > summary {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 0.75rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      /* 開閉の記号（閉じているとき右向き・開くと下向き） */
+      &::before {
+        content: "";
+        flex-shrink: 0;
+        width: 0.4375rem;
+        height: 0.4375rem;
+        margin-inline: 0.125rem;
+        border-right: 1.5px solid var(--text-muted);
+        border-bottom: 1.5px solid var(--text-muted);
+        transform: rotate(-45deg);
+        transition: transform var(--duration-fast) var(--easing);
+      }
+
+      /* 見出し。右側に添える補足は .muted で薄くする */
+      > .muted {
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+    }
+
+    &[open] > summary::before {
+      transform: rotate(45deg);
+    }
+
+    /* 中身のスライド（サイドバーのネストナビと同じ手法）。
+       interpolate-size が無いと height: auto へ遷移できない */
+    &::details-content {
+      interpolate-size: allow-keywords;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        height var(--duration-normal) var(--easing),
+        opacity var(--duration-normal) var(--easing),
+        content-visibility var(--duration-normal) allow-discrete;
+    }
+
+    &[open]::details-content {
+      height: auto;
+      opacity: 1;
+    }
+
+    /* 中身。表をそのまま入れるときは .flush で余白を外し、境界線で仕切る */
+    > .content {
+      padding: 0 0.75rem 0.75rem;
+
+      &.flush {
+        padding: 0;
+        border-top: 1px solid var(--border-muted);
+      }
+    }
+  }
+}
