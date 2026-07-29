@@ -5,7 +5,9 @@
     flex-direction: column;
     gap: 1.25rem;
 
-    input,
+    /* checkbox / radio は固定サイズのネイティブ部品なので box 系スタイルの対象外
+       （width:100% が当たるとチェックボックスが横幅いっぱいに伸びる） */
+    input:not([type="checkbox"], [type="radio"]),
     select,
     textarea {
       width: 100%;
@@ -36,6 +38,15 @@
       &.error,
       &:user-invalid {
         border-color: var(--status-fail);
+      }
+    }
+
+    /* 上の除外で消える disabled の減光だけは checkbox / radio にも維持する */
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
     }
 
