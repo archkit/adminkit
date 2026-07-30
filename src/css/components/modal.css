@@ -76,6 +76,12 @@
       overflow-y: auto;
       flex: 1;
       min-height: 0;
+
+      /* 本文ブロック間のデフォルト間隔（main section > * + * のモーダル版。
+         モーダルは main の外に置かれることが多く、あの規則が届かない）。
+         本文全体を単一の form で包む構成が大半のため、form 直下にも同じ間隔を効かせる */
+      > * + *,
+      > form > * + * { margin-top: 1rem; }
     }
 
     > section > footer {
