@@ -356,6 +356,61 @@
             </dialog>
           </section>
 
+          <!-- Drawer -->
+          <section>
+            <h2>Drawer</h2>
+            <p>右端に固定して出す縦長のパネル。一覧を見たまま 1 件を長く読む・編集するときに使う。</p>
+            <button class="c-button primary" data-js-open="demo-drawer">ドロワーを開く</button>
+            <dialog class="c-drawer" data-js-dialog="demo-drawer" aria-label="接続の詳細">
+              <section>
+                <header>
+                  <h3>接続の詳細</h3>
+                  <button class="c-button ghost small" data-js-close aria-label="閉じる"><i data-lucide="x"></i></button>
+                </header>
+                <div class="body">
+                  <dl class="c-dl">
+                    <div><dt>名前</dt><dd>本番 API</dd></div>
+                    <div><dt>ホスト</dt><dd>api.example.com</dd></div>
+                    <div><dt>状態</dt><dd><span class="c-badge success">稼働中</span></dd></div>
+                  </dl>
+                  <p>背景（パネルの外）を押すか <kbd class="c-kbd">esc</kbd> で閉じます。</p>
+                </div>
+                <footer>
+                  <button class="c-button" data-js-close>閉じる</button>
+                  <button class="c-button primary" data-js-close>保存</button>
+                </footer>
+              </section>
+            </dialog>
+          </section>
+
+          <!-- Palette -->
+          <section>
+            <h2>Palette</h2>
+            <p>画面の上寄りに出す、検索欄付きの一覧。候補の絞り込みと上下移動はアプリ側で実装する。</p>
+            <button class="c-button primary" data-js-open="demo-palette">パレットを開く</button>
+            <dialog class="c-palette" data-js-dialog="demo-palette" aria-label="コマンド検索">
+              <section>
+                <header>
+                  <i data-lucide="search"></i>
+                  <input type="search" placeholder="コマンド・ページを検索" aria-label="検索">
+                </header>
+                <ul>
+                  <li><span class="label">最近見た項目</span></li>
+                  <li><button aria-selected="true"><i data-lucide="settings"></i>プロジェクト設定<span class="sub">/settings</span></button></li>
+                  <li><button><i data-lucide="users"></i>メンバー<span class="sub">/members</span></button></li>
+                  <li><span class="label">操作</span></li>
+                  <li><button><i data-lucide="plus"></i>新しいプロジェクトを作成</button></li>
+                  <li><button class="danger"><i data-lucide="trash-2"></i>このプロジェクトを削除</button></li>
+                </ul>
+                <footer>
+                  <span><kbd class="c-kbd">↑</kbd><kbd class="c-kbd">↓</kbd> 移動</span>
+                  <span><kbd class="c-kbd">↵</kbd> 決定</span>
+                  <span><kbd class="c-kbd">esc</kbd> 閉じる</span>
+                </footer>
+              </section>
+            </dialog>
+          </section>
+
           <!-- ================================================
                9. Tabs
                ================================================ -->
@@ -523,6 +578,53 @@
                 <div><dt>ロール</dt><dd>管理者</dd></div>
                 <div><dt>登録日</dt><dd>2025-01-15</dd></div>
               </dl>
+            </section>
+
+            <section>
+              <h3>情報行 (.rows)</h3>
+              <p>先頭マーク / 主・副テキスト / 数値 / 末尾の 4 スロット。スロットは全て任意。</p>
+              <ul class="c-list rows bordered interactive">
+                <li>
+                  <span class="lead"><span class="c-dot success"></span></span>
+                  <span class="body"><span class="title">本番 API</span><span class="sub">api.example.com</span></span>
+                  <span class="value">22.4k</span>
+                  <span class="trail"><span class="c-badge success">稼働中</span></span>
+                </li>
+                <li class="selected">
+                  <span class="lead"><span class="c-dot warning"></span></span>
+                  <span class="body"><span class="title">ステージング API</span><span class="sub">stg.example.com</span></span>
+                  <span class="value">1.8k</span>
+                  <span class="trail"><span class="c-badge warning">遅延</span></span>
+                </li>
+                <li class="danger">
+                  <span class="lead"><span class="c-dot"></span></span>
+                  <span class="body"><span class="title">バッチワーカー</span><span class="sub">worker-01</span></span>
+                  <span class="value">0</span>
+                  <span class="trail"><span class="c-badge danger">停止</span></span>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h3>情報行・密度 (.rows.compact)</h3>
+              <p>行の高さを詰める。副テキストは書く側が省く。</p>
+              <ul class="c-list rows compact bordered">
+                <li>
+                  <span class="lead"><span class="c-dot success"></span></span>
+                  <span class="body"><span class="title">deploy #1284</span></span>
+                  <span class="value">2m 14s</span>
+                </li>
+                <li>
+                  <span class="lead"><span class="c-dot success"></span></span>
+                  <span class="body"><span class="title">deploy #1283</span></span>
+                  <span class="value">1m 58s</span>
+                </li>
+                <li>
+                  <span class="lead"><span class="c-dot danger"></span></span>
+                  <span class="body"><span class="title">deploy #1282</span></span>
+                  <span class="value">0m 41s</span>
+                </li>
+              </ul>
             </section>
           </section>
 

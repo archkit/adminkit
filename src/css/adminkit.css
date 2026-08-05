@@ -32,6 +32,8 @@
 @import "./components/table.css";
 @import "./components/fields.css";
 @import "./components/modal.css";
+@import "./components/drawer.css";
+@import "./components/palette.css";
 @import "./components/tabs.css";
 @import "./components/segment.css";
 @import "./components/dropdown.css";
@@ -45,9 +47,12 @@
 @import "./components/skeleton.css";
 @import "./components/spinner.css";
 @import "./components/progress.css";
+@import "./components/meter.css";
+@import "./components/strip.css";
 @import "./components/search.css";
 @import "./components/tag.css";
 @import "./components/dot.css";
+@import "./components/kbd.css";
 @import "./components/toggle-group.css";
 @import "./components/stats.css";
 @import "./components/empty-state.css";

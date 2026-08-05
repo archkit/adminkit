@@ -64,19 +64,21 @@ document.addEventListener("click", (e) => {
     return;
   }
 
-  // Modal: open
+  // Modal / Drawer / Palette: open
   const openTrigger = e.target.closest("[data-js-open]");
   if (openTrigger) {
     document.querySelector(`[data-js-dialog="${openTrigger.dataset.jsOpen}"]`)?.showModal();
     return;
   }
 
-  // Modal: close
+  // Modal / Drawer / Palette: close
   if (e.target.closest("[data-js-close]")) {
     e.target.closest("dialog")?.close();
     return;
   }
-  if (e.target.matches("dialog.c-modal")) {
+  // 背景（dialog 要素そのもの＝内側の section の外）を押したら閉じる。
+  // dialog を使う 3 部品で同じ挙動にする（中身は section で包む前提）
+  if (e.target.matches("dialog.c-modal, dialog.c-drawer, dialog.c-palette")) {
     e.target.close();
     return;
   }

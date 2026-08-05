@@ -195,6 +195,38 @@
 - `c-dl` は `div` で `dt` + `dd` をグループ化。各 div 内は `flex-direction: column; gap: 0.25rem`
 - dt: `font-weight: 600; font-size: 0.75rem`
 
+**情報行（.rows）:**
+
+1 項目を「先頭マーク / 主・副テキスト / 数値 / 末尾」の 4 スロットで組む形。メンバー一覧・接続の状態・
+ランキング・履歴のように、見た目が違って見える一覧の多くはこの骨格 1 つで書ける。
+
+```html
+<ul class="c-list rows bordered">
+  <li>
+    <span class="lead"><span class="c-dot success"></span></span>
+    <span class="body">
+      <span class="title">本番 API</span>
+      <span class="sub">api.example.com</span>
+    </span>
+    <span class="value">22.4k</span>
+    <span class="trail"><span class="c-badge success">稼働中</span></span>
+  </li>
+  <li class="selected">…</li>
+  <li class="danger">…</li>
+</ul>
+```
+
+| スロット | 役割 | 縮み方 |
+|---|---|---|
+| `.lead` | 状態の粒・アイコン・アバター | 縮まない |
+| `.body` | `.title`（主）と `.sub`（副・等幅） | 残り幅を取り、長い値は省略できる |
+| `.value` | 数値（等幅・`tabular-nums` で桁が揃う） | 内容なり |
+| `.trail` | 状態の札・操作ボタン | 縮まない |
+
+- スロットは全て任意。`.body` だけの行も成立する
+- 行の状態（`.selected` / `.danger`）は `li` に付ける。左端の内側の線で示し、面は塗り替えない
+- 押せる行にするには `.interactive` を併用する
+
 ### バリアント
 
 | クラス | 対象 | 効果 |
@@ -204,6 +236,10 @@
 | `.bordered` | c-list / c-dl | 外枠ボーダー + 角丸 + `background: var(--input-bg)` + li の左右 padding 追加 |
 | `.striped` | c-list / c-dl | 偶数行に `background: var(--surface-50)` |
 | `.interactive` | c-list | `cursor: pointer` + ホバー時にアクセントカラー 5% の背景 |
+| `.rows` | c-list | li を 4 スロットの情報行にする（`min-height: 2.75rem`） |
+| `.rows.compact` | c-list | 行の高さを `1.75rem` に詰める。副テキストは書く側が省く |
+| `.selected` | c-list.rows > li | アクセント 8% の背景 + 左端に内側の線 |
+| `.danger` | c-list.rows > li | 危険色 8% の背景 + 左端に内側の線 |
 | `.horizontal` | c-dl | dt/dd を横並び。dt は `width: 10rem` 固定 |
 
 ### ユースケース
@@ -211,10 +247,13 @@
 - 詳細ページのメタ情報一覧
 - 設定ページの項目リスト
 - 定義リストでのキー・バリュー表示
+- `.rows` — メンバー一覧、接続・ジョブの状態、ランキング、最近見た項目
 
 ### アンチパターン
 
 - **`c-dl` で `div` を省略する** — `dt` と `dd` を `div` でグループ化しないと、CSS の flex レイアウトが崩れる
+- **`.rows` を素の箇条書きに付ける** — 4 スロットの骨格なので、文章を並べるだけの一覧では行が間延びする。素の `c-list` を使う
+- **`.rows` で表の代わりをする** — 列の見出しが要る／列単位で並べ替える一覧は `c-table`。`.rows` は 1 行 1 項目を読ませる形
 
 ---
 
@@ -504,6 +543,104 @@
 
 ---
 
+## c-meter
+
+→ CSS: `src/css/components/meter.css`
+
+内訳の帯。1 本の帯を複数の区分で埋めて構成比を見せる。
+
+### 基本構造
+
+```html
+<div class="c-meter-label"><span>ストレージ</span><span>68%</span></div>
+<div class="c-meter"><span style="width: 68%"></span></div>
+```
+
+区分を複数並べる場合:
+
+```html
+<div class="c-meter stacked">
+  <span style="width: 62%"></span>
+  <span class="warning" style="width: 24%"></span>
+  <span class="danger" style="width: 14%"></span>
+</div>
+```
+
+- 区分の幅は書く側が `style="width: …%"` で与える
+- 帯の地は `var(--surface-100)`。埋まっていない残量がそのまま見える
+- `c-meter-label` は帯の上に置くラベル（左＝名前 / 右＝値）
+
+### c-progress との使い分け
+
+| | 使うもの |
+|---|---|
+| 単一の進捗（0〜100% の 1 値） | `c-progress`（native `<progress>`。値と最大値を要素が持つ） |
+| 区分が複数ある（内訳・状態別の件数） | `c-meter` |
+
+`<progress>` は値を 1 つしか持てないため、内訳はバリアントでは表せない。別部品にしてある。
+
+### バリアント
+
+| クラス | 効果 |
+|---|---|
+| `.stacked` | 高さ `0.4375rem`。区分を複数並べるとき、境目を読み取りやすくする |
+| `.inline` | 高さ `0.25rem` / 幅 `4.75rem` 固定。行の中に添える |
+| `.success` / `.warning` / `.danger` | 区分（`> span`）に付けて色を意味に対応させる |
+
+### ユースケース
+
+- 使用量ウィジェット（容量・実行回数の消化率）
+- 状態別の件数の構成比（成功 / 警告 / 失敗）
+- ランキング行に添える `.inline`
+
+### アンチパターン
+
+- **色を装飾に使う** — 区分の色は意味（正常 / 注意 / 危険）に対応させる。系列の識別に色を使いたいなら凡例が要る
+- **単一の値に使う** — 進捗 1 値は `c-progress`。native 要素のほうが読み上げに乗る
+
+---
+
+## c-strip
+
+→ CSS: `src/css/components/strip.css`
+
+時間の帯。等間隔のセル列＝時間、色＝状態、高さ＝量を一度に見せる。
+
+### 基本構造
+
+```html
+<div class="c-strip">
+  <span style="height: 60%"></span>
+  <span class="warning" style="height: 80%"></span>
+  <span class="danger" style="height: 40%"></span>
+</div>
+<div class="c-strip-axis"><span>90 日前</span><span>今日</span></div>
+```
+
+- セルの高さは書く側が `style="height: …%"` で与える
+- 量が 0 でも列があること自体は見せるため、最低 `1px` は残る
+- 粒度（20 分 / 1 日 / 1 週）が変わっても読み方は変わらない
+
+### バリアント
+
+| クラス | 効果 |
+|---|---|
+| `.compact` | 高さ `1.25rem`。行の中や小さいカードに添える |
+| `.success` / `.warning` / `.danger` | セル（`> span`）に付けて色を意味に対応させる |
+
+### ユースケース
+
+- 稼働状況（直近 90 日のアップタイム）
+- 実行の内訳（ジョブの成否を時系列で）
+- 週間予定・アクセスの推移
+
+### アンチパターン
+
+- **系列を複数重ねる** — 1 本の帯は 1 つの系列。複数系列を比べるならグラフを使う
+- **セル数を可変にしたまま並べる** — 粒度が違う帯を並べると、同じ幅が違う期間を指して読み違える
+
+---
+
 ## c-stepper
 
 → CSS: `src/css/components/stepper.css`
@@ -758,3 +895,37 @@
 
 - **ラベル付きで `<hr>` を使う** — ラベル付きの場合は `<div class="c-divider">` を使う。`<hr>` にクラスを付けても `::before` / `::after` の flex レイアウトが正しく機能しない
 - **`role="separator"` の欠落** — ラベル付き divider は `<div>` なのでセマンティクスがない。`role="separator"` を付与してアクセシビリティを確保すること
+
+---
+
+## c-kbd
+
+→ CSS: `src/css/components/kbd.css`
+
+キーヒント。ショートカットのキーを 1 つ表す。
+
+### 基本構造
+
+```html
+<kbd class="c-kbd">⌘</kbd>
+<kbd class="c-kbd">K</kbd>
+```
+
+- `<kbd>` に当てる。複数キーの組み合わせは要素を並べて書く
+- 下辺だけ枠を太くしてキートップの厚みを出す
+- 影は使わない（影は手前に出るもの＝オーバーレイ族だけに割り当てている）
+
+### バリアント
+
+なし。サイズは 1 種類。
+
+### ユースケース
+
+- `c-palette` の下端に置くキーヒント
+- 検索欄の右端に置く起動キー（`⌘K`）
+- ショートカット一覧
+
+### アンチパターン
+
+- **文中の強調に使う** — 押すキーを表す要素。強調は `<strong>` を使う
+- **押せるものとして扱う** — `c-kbd` は表示だけ。押せる操作にするならボタンにする

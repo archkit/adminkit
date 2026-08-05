@@ -1,4 +1,8 @@
 @layer adminkit.components {
+  /* 中身が無いときの表示。空 / 読み込み中 / 取得失敗を同じ寸法で置き換えられるようにする
+     ——状態が変わるたびに枠の高さが変わると、その周りのレイアウトが揺れる。
+     読み込み中は .c-loading-state（spinner.css）が同じ余白を持つ。
+     なお .c-error-page は画面全体を占める 404 / 500 用で、こちらとは別物 */
   .c-empty-state {
     display: flex;
     flex-direction: column;
@@ -30,6 +34,19 @@
 
     > .c-button {
       margin-top: 0.5rem;
+    }
+
+    /* 取得に失敗したとき。寸法は空のときと同じままで、印だけを差し替える
+       （原因と再試行を 1 つずつ書く前提。行動を促す文面は書く側の責任） */
+    &.error > svg, &.error > i {
+      color: var(--status-fail);
+      opacity: 0.6;
+    }
+
+    /* モーダル・ドロワー内など、面積の小さい領域では余白を詰める
+       （.c-loading-state.compact と同じ値。ここでも高さを揃える） */
+    &.compact {
+      padding: 1.5rem 1rem;
     }
   }
 }

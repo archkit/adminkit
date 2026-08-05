@@ -45,6 +45,84 @@
         background: color-mix(in srgb, var(--accent) 5%, transparent);
       }
     }
+
+    /* 情報行。1 項目を「先頭マーク / 主・副テキスト / 数値 / 末尾」の 4 スロットで組む。
+       定義リスト・メンバー一覧・接続の状態・ランキング・履歴のように、
+       見た目が違って見える一覧の多くはこの骨格 1 つで書ける。
+       素の li（文章や箇条書き）は従来どおりなので、使うときだけ .rows を付ける */
+    &.rows {
+      --_row-height: 2.75rem;
+
+      > li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        min-height: var(--_row-height);
+        padding: var(--space-2) var(--space-3);
+      }
+
+      /* 先頭マーク（状態の粒・アイコン・アバター）。中身の幅のまま縮まない */
+      > li > .lead {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      /* 主・副テキスト。長い値を省略するため min-width: 0 で縮小を許す */
+      > li > .body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        flex: 1;
+        min-width: 0;
+
+        > .title {
+          color: var(--text-strong);
+        }
+
+        > .sub {
+          font-family: var(--font-mono);
+          font-size: 0.6875rem;
+          color: var(--text-muted);
+        }
+      }
+
+      /* 数値。桁を揃えて縦に読めるようにする */
+      > li > .value {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--text-strong);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* 末尾（状態の札・操作ボタン）。中身の幅のまま縮まない */
+      > li > .trail {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        flex-shrink: 0;
+      }
+
+      /* 密度。行の高さと上下の余白だけを詰める（副テキストは書く側が省く） */
+      &.compact {
+        --_row-height: 1.75rem;
+
+        > li {
+          padding: 0.25rem var(--space-3);
+        }
+      }
+
+      /* 行の状態。左端の内側の線で、面を塗り替えずに所在を示す */
+      > li.selected {
+        background: color-mix(in srgb, var(--accent) 8%, transparent);
+        box-shadow: inset 2px 0 0 var(--accent);
+      }
+
+      > li.danger {
+        background: color-mix(in srgb, var(--status-fail) 8%, transparent);
+        box-shadow: inset 2px 0 0 var(--status-fail);
+      }
+    }
   }
 
   /* 定義リスト（dl） */

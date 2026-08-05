@@ -119,6 +119,7 @@ alert, banner, toast, modal, dropdown, tooltip, tabs, pagination, action-bar, em
 | ファイル | 内容 |
 |---|---|
 | [docs/guide.md](docs/guide.md) | 設計思想・セクショニング・余白・アクセシビリティ |
+| [docs/primitives.md](docs/primitives.md) | 8 つの骨格と部品の対応（部品を増やす前に読む） |
 | [docs/tokens.md](docs/tokens.md) | デザイントークン |
 | [docs/layout.md](docs/layout.md) | プリミティブ + シェルパターン |
 | [docs/components-form.md](docs/components-form.md) | フォームコンポーネント |

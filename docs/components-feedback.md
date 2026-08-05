@@ -301,6 +301,72 @@ toast.dismiss();
 
 ---
 
+## c-drawer
+
+→ CSS: `src/css/components/drawer.css`
+
+画面の右端に固定して出す縦長のパネル（`dialog` 要素）。一覧を表示したまま 1 件の詳細や編集を出す。
+
+### 基本構造
+
+```html
+<button class="c-button" data-js-open="detail">詳細</button>
+
+<dialog class="c-drawer" data-js-dialog="detail">
+  <section>
+    <header>
+      <h2>接続の詳細</h2>
+      <button class="c-button ghost" data-js-close aria-label="閉じる">×</button>
+    </header>
+    <div class="body">
+      <p>本文</p>
+    </div>
+    <footer>
+      <button class="c-button" data-js-close>閉じる</button>
+      <button class="c-button primary">保存</button>
+    </footer>
+  </section>
+</dialog>
+```
+
+- 内部構造（`header` / `.body` / `footer`）は `c-modal` と同じ。中身は必ず `<section>` で包む
+- 幅 `25rem`、高さは画面いっぱい。角丸は持たない（画面の端に接するため）
+- 右端から滑り込む（`translate` + `@starting-style`）
+- `.body` 直下のブロックには `margin-top: 1rem` が入る（`c-modal` と同じ理由——drawer は `main` の外に置かれる）
+
+### data 属性 API
+
+`c-modal` と共通。
+
+| 属性 | 対象 | 効果 |
+|---|---|---|
+| `data-js-open="key"` | 起動ボタン | `[data-js-dialog="key"]` を `showModal()` で開く |
+| `data-js-dialog="key"` | dialog | 開く対象 |
+| `data-js-close` | 任意のボタン | 最も近い dialog を閉じる |
+
+背景（`section` の外）を押しても閉じる。`esc` は `dialog` の既定挙動。
+
+### c-modal との使い分け
+
+| | 使うもの |
+|---|---|
+| 判断を 1 つ求めて閉じる（確認・短いフォーム） | `c-modal` |
+| 元の一覧を見たまま、1 件を長く読む・編集する | `c-drawer` |
+
+### ユースケース
+
+- 一覧の 1 行を選んで詳細を見る（一覧の文脈を保ったまま）
+- 絞り込み条件の編集
+- 監査ログの 1 件の全文表示
+
+### アンチパターン
+
+- **`section` を省略する** — 背景クリックで閉じる判定が「dialog 要素そのものを押したか」なので、中身を `section` で包まないと本文を押しただけで閉じる
+- **drawer の中から drawer を開く** — 戻り先が分からなくなる。深い階層は別ページにする
+- **確認ダイアログに使う** — 判断 1 つなら `c-modal`。画面いっぱいの高さは重すぎる
+
+---
+
 ## c-dropdown
 
 → CSS: `src/css/components/dropdown.css`
@@ -385,6 +451,73 @@ toast.dismiss();
 - **`role="menu"` の欠落**: `<ul popover>` に `role="menu"` を付けないとスクリーンリーダーがメニューとして認識しない
 - **`popovertarget` の id 不一致**: トリガーの `popovertarget` 値と `<ul>` の `id` が一致しないとメニューが開かない。ページ内で id が重複しないよう注意
 - **`<a>` と `<button>` の使い分け**: ページ遷移するメニュー項目は `<a>`、アクションを実行するものは `<button>` を使う
+
+---
+
+## c-palette
+
+→ CSS: `src/css/components/palette.css`
+
+コマンドパレット（`dialog` 要素）。画面の上寄りに出す、検索欄付きの一覧。
+
+### 基本構造
+
+```html
+<dialog class="c-palette" data-js-dialog="palette">
+  <section>
+    <header>
+      <i data-lucide="search"></i>
+      <input type="search" placeholder="コマンド・ページを検索" aria-label="検索">
+    </header>
+    <ul>
+      <li><span class="label">最近見た項目</span></li>
+      <li>
+        <button aria-selected="true">
+          <i data-lucide="file-text"></i>
+          プロジェクト設定
+          <span class="sub">/settings</span>
+        </button>
+      </li>
+      <li><button><i data-lucide="users"></i>メンバー<span class="sub">/members</span></button></li>
+    </ul>
+    <footer>
+      <span><kbd class="c-kbd">↑</kbd><kbd class="c-kbd">↓</kbd> 移動</span>
+      <span><kbd class="c-kbd">↵</kbd> 決定</span>
+      <span><kbd class="c-kbd">esc</kbd> 閉じる</span>
+    </footer>
+  </section>
+</dialog>
+```
+
+- 画面上から `15vh` の位置に出る。幅 `35rem`、高さは最大 `70dvh`
+- 候補一覧（`> ul`）だけが巻き取られる。検索欄とキーヒントは常に見える
+- キーボードで送っている候補は `aria-selected="true"`。hover と同じ見せ方になる
+- `.sub`（所属・パス）は右端に寄る
+
+### data 属性 API
+
+`c-modal` と共通（`data-js-open` / `data-js-dialog` / `data-js-close`）。背景を押すと閉じる。
+
+**候補の絞り込みと上下移動は adminkit の JS には含まれない**（何を候補にするかがアプリ固有のため）。
+書く側が `input` の `input` イベントで候補を差し替え、`aria-selected` を付け替える。
+
+### c-dropdown との使い分け
+
+| | 使うもの |
+|---|---|
+| ある要素に紐づく操作の一覧（行の「…」メニュー等） | `c-dropdown` |
+| 画面全体から探して飛ぶ（検索が主） | `c-palette` |
+
+### ユースケース
+
+- コマンド・ページの横断検索（`⌘K`）
+- 大量の選択肢から 1 つ選ぶ（プロジェクト切替）
+
+### アンチパターン
+
+- **`section` を省略する** — 背景クリックで閉じる判定が働かず、本文を押しただけで閉じる
+- **候補を階層にする** — 1 階層で絞り込むための部品。階層が要るならページを作る
+- **キーヒントを省く** — キーボードで操作させる部品なので、下端のヒントは常に出す
 
 ---
 
@@ -734,6 +867,38 @@ JS の動作:
 | 見出し（`h2` / `h3`） | `font-size: 1rem; font-weight: 600; color: var(--text-strong); border: none; padding: 0` |
 | 説明文（`p`） | `font-size: 0.875rem; max-width: 24rem; color: var(--text-muted)` |
 | CTA ボタン（`.c-button`） | `margin-top: 0.5rem`（追加の間隔） |
+
+### バリアント
+
+| クラス | 効果 |
+|---|---|
+| `.error` | アイコンを危険色にする。寸法は空のときと同じまま |
+| `.compact` | `padding: 1.5rem 1rem`。モーダル・ドロワー内など面積の小さい領域向け |
+
+### 中身が無いときの 3 状態
+
+空 / 読み込み中 / 取得失敗は、**同じ寸法で置き換えられる**ようにしてある。状態が変わるたびに
+枠の高さが変わると、その周りのレイアウトが揺れるため。
+
+| 状態 | 使うもの |
+|---|---|
+| 空 | `.c-empty-state` |
+| 読み込み中 | `.c-loading-state`（→ components-display.md）。`.c-empty-state` と同じ余白を持つ |
+| 取得失敗 | `.c-empty-state.error` |
+
+`.compact` は 3 つとも同じ値（`1.5rem 1rem`）なので、詰めた領域でも高さが揃う。
+
+```html
+<div class="c-empty-state error">
+  <i data-lucide="triangle-alert"></i>
+  <h3>取得に失敗しました</h3>
+  <p>ネットワークに接続できませんでした。</p>
+  <button class="c-button danger small">再試行</button>
+</div>
+```
+
+- 原因と、次にできること（再試行）を 1 つずつ書く
+- 画面全体を占める 404 / 500 は `c-error-page`。こちらは領域の中に出す
 
 ### カード内配置
 

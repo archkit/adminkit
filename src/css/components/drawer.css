@@ -1,0 +1,95 @@
+@layer adminkit.components {
+  /* ドロワー（dialog 要素）。画面の右端に固定して出す縦長のパネル。
+     .c-modal と開閉機構・内部構造（header / .body / footer）は同じで、
+     置き場所と出方だけが違う。一覧を表示したまま 1 件の詳細や編集を出すときに使う。
+     角丸を持たないのは、画面の端に接して面が続くため */
+  .c-drawer {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    /* dialog 既定の margin: auto を上書きして右端へ寄せる */
+    margin: 0 0 0 auto;
+    width: 25rem;
+    max-width: calc(100% - 3rem);
+    height: 100dvh;
+    max-height: 100dvh;
+    background: var(--input-bg);
+    color: var(--text-strong);
+    box-shadow: var(--shadow-modal);
+    translate: 100% 0;
+    transition: translate var(--duration-normal) var(--easing),
+      overlay var(--duration-normal) var(--easing) allow-discrete,
+      display var(--duration-normal) var(--easing) allow-discrete;
+
+    &[open] {
+      translate: 0 0;
+    }
+
+    &::backdrop {
+      background: var(--overlay);
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--easing),
+        overlay var(--duration-normal) var(--easing) allow-discrete,
+        display var(--duration-normal) var(--easing) allow-discrete;
+    }
+
+    &[open]::backdrop {
+      opacity: 1;
+    }
+
+    @starting-style {
+      &[open] {
+        translate: 100% 0;
+      }
+
+      &[open]::backdrop {
+        opacity: 0;
+      }
+    }
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* 見出し余白のリセット（.c-modal と同じ扱い） */
+    h2, h3, h4 { margin: 0; }
+
+    > section > header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border-muted);
+      flex-shrink: 0;
+
+      > :first-child {
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+    }
+
+    > section > .body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+
+      /* 本文ブロック間のデフォルト間隔（.c-modal と同じ理由——
+         ドロワーは main の外に置かれるため main section > * + * が届かない） */
+      > * + *,
+      > form > * + * { margin-top: 1rem; }
+    }
+
+    > section > footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-muted);
+      flex-shrink: 0;
+    }
+  }
+}

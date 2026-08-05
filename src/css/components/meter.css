@@ -1,0 +1,48 @@
+@layer adminkit.components {
+  /* 内訳の帯。1 本の帯を複数の区分で埋めて構成比を見せる。
+     単一の進捗（0〜100% の 1 値）は native な <progress> を使う .c-progress の担当で、
+     こちらは区分が複数あるとき（使用量の内訳・状態別の件数）に使う。
+     <progress> は値を 1 つしか持てないため、同じ部品のバリアントにはできない */
+  .c-meter {
+    --_accent: var(--accent);
+
+    display: flex;
+    height: 0.375rem;
+    border-radius: 3px;
+    background: var(--surface-100);
+    overflow: hidden;
+
+    /* 区分 1 つ。幅が構成比を表すので、書く側が style="width: 62%" で与える */
+    > span {
+      height: 100%;
+      background: var(--_accent);
+      transition: width var(--duration-slow) var(--easing);
+
+      &.success { background: var(--status-ok); }
+      &.warning { background: var(--status-warn); }
+      &.danger  { background: var(--status-fail); }
+    }
+
+    /* 区分を複数並べるとき。境目を読み取りやすくするぶんだけ厚くする */
+    &.stacked {
+      height: 0.4375rem;
+    }
+
+    /* 行の中に添えるとき。幅を固定して、行の他の要素に押し出されないようにする */
+    &.inline {
+      height: 0.25rem;
+      width: 4.75rem;
+      flex: none;
+    }
+  }
+
+  /* 帯の上に置くラベル（左＝名前 / 右＝値）。帯とセットで 1 つの量を説明する */
+  .c-meter-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3125rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+}

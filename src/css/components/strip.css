@@ -1,0 +1,41 @@
+@layer adminkit.components {
+  /* 時間の帯。等間隔のセル列＝時間、色＝状態、高さ＝量を一度に見せる。
+     粒度（20 分 / 1 日 / 1 週）が変わっても読み方は変わらないので、
+     稼働状況・実行の内訳・週間予定などを同じ形で置ける */
+  .c-strip {
+    --_accent: var(--accent);
+
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 2.125rem;
+
+    /* セル1つ。高さは量を表すので、書く側が style="height: 60%" で与える。
+       量が 0 でも列があること自体は見せたいので、最低 1px は残す */
+    > span {
+      flex: 1;
+      min-height: 1px;
+      border-radius: 1px;
+      background: var(--_accent);
+
+      &.success { background: var(--status-ok); }
+      &.warning { background: var(--status-warn); }
+      &.danger  { background: var(--status-fail); }
+    }
+
+    /* 行の中や小さいカードに添えるとき */
+    &.compact {
+      height: 1.25rem;
+    }
+  }
+
+  /* 帯の下に置く目盛。両端に期間のラベルを1つずつ置く使い方を想定している */
+  .c-strip-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+}

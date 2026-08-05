@@ -48,8 +48,9 @@
 | ファイル | 内容 |
 |---|---|
 | [guide.md](docs/guide.md) | 設計思想・セクショニング・余白・アクセシビリティ・命名規則・JS API |
+| [primitives.md](docs/primitives.md) | 8 つの骨格と部品の対応。**部品を増やす前に読む** |
 | [tokens.md](docs/tokens.md) | デザイントークン（色・余白・タイポ・z-index・モーション・ブレイクポイント） |
 | [layout.md](docs/layout.md) | プリミティブ(7) + シェルパターン(6) + ユーティリティ |
 | [components-form.md](docs/components-form.md) | fields, button, search, upload, segment, toggle-group |
-| [components-display.md](docs/components-display.md) | card, table, list, badge, tag, avatar, stats, progress, stepper, skeleton, spinner, dot, divider |
-| [components-feedback.md](docs/components-feedback.md) | alert, banner, toast, modal, dropdown, tooltip, tabs, pagination, action-bar, empty-state, error-page |
+| [components-display.md](docs/components-display.md) | card, table, list, badge, tag, avatar, stats, progress, meter, strip, stepper, skeleton, spinner, dot, divider, kbd |
+| [components-feedback.md](docs/components-feedback.md) | alert, banner, toast, modal, drawer, palette, dropdown, tooltip, tabs, accordion, pagination, action-bar, empty-state, error-page |

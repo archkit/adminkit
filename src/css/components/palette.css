@@ -1,0 +1,151 @@
+@layer adminkit.components {
+  /* コマンドパレット（dialog 要素）。画面上寄りに出す、検索欄付きの一覧。
+     .c-modal と同じ dialog の開閉機構を使うが、置き場所（上から 1/4）と
+     「検索 → 候補 → キーヒント」の内部構造が固定なので別部品にしている */
+  .c-palette {
+    border: none;
+    border-radius: var(--radius);
+    padding: 0;
+    /* 上寄せ。dialog 既定の margin: auto を上書きして中央から持ち上げる */
+    margin: 15vh auto auto;
+    max-width: 35rem;
+    width: calc(100% - 2rem);
+    max-height: calc(70dvh);
+    background: var(--input-bg);
+    color: var(--text-strong);
+    box-shadow: var(--shadow-modal);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--easing),
+      overlay var(--duration-fast) var(--easing) allow-discrete,
+      display var(--duration-fast) var(--easing) allow-discrete;
+
+    &[open] {
+      opacity: 1;
+    }
+
+    &::backdrop {
+      background: var(--overlay);
+      opacity: 0;
+      transition: opacity var(--duration-fast) var(--easing),
+        overlay var(--duration-fast) var(--easing) allow-discrete,
+        display var(--duration-fast) var(--easing) allow-discrete;
+    }
+
+    &[open]::backdrop {
+      opacity: 1;
+    }
+
+    @starting-style {
+      &[open] {
+        opacity: 0;
+      }
+
+      &[open]::backdrop {
+        opacity: 0;
+      }
+    }
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      max-height: inherit;
+    }
+
+    /* 検索欄。枠は持たせず、下の候補一覧との境界線だけで区切る */
+    > section > header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid var(--border-muted);
+      flex-shrink: 0;
+
+      > svg, > i {
+        width: var(--icon-md);
+        height: var(--icon-md);
+        flex-shrink: 0;
+        color: var(--text-muted);
+      }
+
+      > input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        background: none;
+        font-size: 0.9375rem;
+        color: var(--text-strong);
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    /* 候補一覧。件数が読めない領域なので、ここだけがはみ出したときに巻き取る */
+    > section > ul {
+      padding: 0.25rem;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+
+      > li > button, > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius);
+        text-align: left;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        transition: background var(--duration-fast) var(--easing),
+                    color var(--duration-fast) var(--easing);
+
+        /* キーボードで送る選択（aria-selected）と、マウスの hover を同じ見せ方にする */
+        &:hover, &[aria-selected="true"] {
+          background: var(--surface-100);
+          color: var(--text-strong);
+        }
+
+        &.danger { color: var(--status-fail); }
+        &.danger:hover { background: color-mix(in srgb, var(--status-fail) 8%, transparent); }
+
+        > svg, > i { width: var(--icon-sm); height: var(--icon-sm); flex-shrink: 0; color: var(--text-muted); }
+
+        /* 補足（所属・パス等）は右端に寄せて、主ラベルと読み分ける */
+        > .sub {
+          margin-left: auto;
+          font-family: var(--font-mono);
+          font-size: 0.6875rem;
+          color: var(--text-muted);
+        }
+      }
+
+      /* 候補の見出し（種別のまとまり） */
+      > li > .label {
+        display: block;
+        padding: 0.5rem 0.75rem 0.25rem;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+    }
+
+    /* キーヒント。パレットは操作をキーボードに寄せる部品なので、下端に常時出す */
+    > section > footer {
+      display: flex;
+      gap: 0.875rem;
+      padding: 0.625rem 1rem;
+      border-top: 1px solid var(--border-muted);
+      flex-shrink: 0;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+
+      > span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+      }
+    }
+  }
+}

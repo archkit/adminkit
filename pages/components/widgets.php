@@ -331,6 +331,22 @@
             </section>
           </section>
 
+          <!-- Kbd -->
+          <section>
+            <h2>Kbd</h2>
+            <p>ショートカットのキーを 1 つ表す。複数キーの組み合わせは要素を並べて書く。</p>
+
+            <section>
+              <h3>基本</h3>
+              <div class="l-cluster">
+                <span><kbd class="c-kbd">⌘</kbd><kbd class="c-kbd">K</kbd> 検索</span>
+                <span><kbd class="c-kbd">↑</kbd><kbd class="c-kbd">↓</kbd> 移動</span>
+                <span><kbd class="c-kbd">↵</kbd> 決定</span>
+                <span><kbd class="c-kbd">esc</kbd> 閉じる</span>
+              </div>
+            </section>
+          </section>
+
           <!-- ================================================
                22. Notification Dot
                ================================================ -->
@@ -492,6 +508,79 @@
             </section>
           </section>
 
+          <!-- Meter -->
+          <section>
+            <h2>Meter</h2>
+            <p>内訳の帯。単一の進捗は Progress、区分が複数あるときはこちら。</p>
+
+            <section>
+              <h3>基本</h3>
+              <div class="c-meter-label"><span>ストレージ</span><span>68%</span></div>
+              <div class="c-meter"><span style="width: 68%"></span></div>
+            </section>
+
+            <section>
+              <h3>内訳（stacked）</h3>
+              <div class="c-meter stacked">
+                <span style="width: 62%"></span>
+                <span class="warning" style="width: 24%"></span>
+                <span class="danger" style="width: 14%"></span>
+              </div>
+            </section>
+
+            <section>
+              <h3>行に添える（inline）</h3>
+              <ul class="c-list rows bordered">
+                <li>
+                  <span class="body"><span class="title">api-gateway</span></span>
+                  <span class="c-meter inline"><span style="width: 82%"></span></span>
+                  <span class="value">82%</span>
+                </li>
+                <li>
+                  <span class="body"><span class="title">worker-queue</span></span>
+                  <span class="c-meter inline"><span class="warning" style="width: 94%"></span></span>
+                  <span class="value">94%</span>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+          <!-- Strip -->
+          <section>
+            <h2>Strip</h2>
+            <p>時間の帯。等間隔のセル列＝時間、色＝状態、高さ＝量。</p>
+
+            <section>
+              <h3>基本</h3>
+              <div class="c-strip">
+                <?php
+                $strip = [70, 82, 65, 90, 45, 88, 74, 96, 60, 83, 52, 91, 68, 79, 86];
+                foreach ($strip as $i => $h) {
+                    $cls = $h < 50 ? ' class="danger"' : ($h < 70 ? ' class="warning"' : '');
+                    echo "<span{$cls} style=\"height: {$h}%\"></span>";
+                }
+                ?>
+              </div>
+              <div class="c-strip-axis"><span>15 日前</span><span>今日</span></div>
+            </section>
+
+            <section>
+              <h3>行に添える（compact）</h3>
+              <ul class="c-list rows bordered">
+                <li>
+                  <span class="lead"><span class="c-dot success"></span></span>
+                  <span class="body"><span class="title">本番 API</span><span class="sub">api.example.com</span></span>
+                  <span class="c-strip compact" style="width: 6rem; flex: none">
+                    <span style="height: 80%"></span><span style="height: 100%"></span>
+                    <span class="warning" style="height: 55%"></span><span style="height: 92%"></span>
+                    <span style="height: 88%"></span><span style="height: 100%"></span>
+                  </span>
+                  <span class="value">99.4%</span>
+                </li>
+              </ul>
+            </section>
+          </section>
+
           <!-- Empty State -->
           <section>
             <h2>Empty State</h2>
@@ -512,6 +601,43 @@
                 <i data-lucide="search-x"></i>
                 <h3>検索結果が見つかりません</h3>
                 <p>別のキーワードで再度お試しください。</p>
+              </div>
+            </section>
+
+            <section>
+              <h3>取得失敗（error）</h3>
+              <div class="c-empty-state error">
+                <i data-lucide="triangle-alert"></i>
+                <h3>取得に失敗しました</h3>
+                <p>ネットワークに接続できませんでした。</p>
+                <button class="c-button danger small" data-js-reload>再試行</button>
+              </div>
+            </section>
+
+            <section>
+              <h3>3 状態が同じ寸法になること</h3>
+              <p>空 / 読み込み中 / 取得失敗を切り替えても枠の高さが変わらない。並べて比べる。</p>
+              <div class="l-grid">
+                <section class="c-card">
+                  <div class="c-empty-state">
+                    <i data-lucide="inbox"></i>
+                    <h3>データがありません</h3>
+                    <p>最初の 1 件を作成してください。</p>
+                  </div>
+                </section>
+                <section class="c-card">
+                  <div class="c-loading-state">
+                    <span class="c-spinner large"></span>
+                    <p>読み込んでいます…</p>
+                  </div>
+                </section>
+                <section class="c-card">
+                  <div class="c-empty-state error">
+                    <i data-lucide="triangle-alert"></i>
+                    <h3>取得に失敗しました</h3>
+                    <p>時間をおいて再試行してください。</p>
+                  </div>
+                </section>
               </div>
             </section>
 
