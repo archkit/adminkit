@@ -620,7 +620,8 @@
                   <span class="value">1m 58s</span>
                 </li>
                 <li>
-                  <span class="lead"><span class="c-dot danger"></span></span>
+                  <!-- c-dot の既定色は --status-fail。失敗はバリアント無しで表す -->
+                  <span class="lead"><span class="c-dot"></span></span>
                   <span class="body"><span class="title">deploy #1282</span></span>
                   <span class="value">0m 41s</span>
                 </li>
