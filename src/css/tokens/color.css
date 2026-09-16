@@ -12,6 +12,10 @@
     --accent:         oklch(0.50 0.19 260);
     --accent-soft:    color-mix(in srgb, var(--accent) 12%, transparent);
     --accent-hover:   color-mix(in oklch, var(--accent), black 15%);
+    /* 選択範囲。accent の単色で、light / dark とも背景と 3:1 以上の差を保つ
+       （--accent-soft は 12% の淡色で、dark では背景とほぼ同色になる） */
+    --selection-bg:   var(--accent);
+    --selection-fg:   var(--text-on-accent);
     --input-bg:       oklch(1 0 0);
     --radius:         6px;
 

@@ -82,8 +82,8 @@
   }
 
   ::selection {
-    background: var(--accent-soft);
-    color: var(--text-strong);
+    background: var(--selection-bg);
+    color: var(--selection-fg);
   }
 
   /* リンク色: accent を使用 */
