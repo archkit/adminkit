@@ -176,10 +176,13 @@ body:has(.shell) → overflow: hidden（body スクロール無効化）
 
 | クラス | 幅 | 配置 | 用途 |
 |---|---|---|---|
-| （なし） | 60rem | 左寄せ | 詳細、編集、設定 |
-| `.center` | 60rem | 中央寄せ | トップナビ等 |
+| （なし） | `--content-max`（既定 60rem） | 左寄せ | 詳細、編集、設定 |
+| `.normal` | 60rem | 左寄せ | 既定幅を変えたアプリで、標準幅に戻したいページ |
+| `.center` | 既定と同じ | 中央寄せ | トップナビ等 |
 | `.wide` | 80rem | 左寄せ | 幅広コンテンツ |
 | `.full` | 制限なし | — | ダッシュボード、一覧 |
+
+既定幅はトークン `--content-max` で変えられる（`adminkit-config.css` の雛形参照）。例: 一覧主体のアプリで `--content-max: 80rem` にし、文章主体のページだけ `.normal` で 60rem に戻す。`.wide` は 80rem 固定なので、既定を 80rem 以上にすると `.wide` は既定以下の幅になる。
 
 **action-bar の配置:**
 - `main-content` の**外**、`main` 直下に配置

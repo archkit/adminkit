@@ -12,6 +12,8 @@
   /* === シェル === */
   /* --shell-sidebar-w: 240px; */
   /* --shell-sidebar-w-mini: 64px; */
+  /* main-content の既定幅（ページ側は .normal / .wide / .full で個別に変えられる） */
+  /* --content-max: 60rem; */
 
   /* === カラー === */
   /* --accent: oklch(0.50 0.19 260); */

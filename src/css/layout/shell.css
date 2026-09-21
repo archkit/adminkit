@@ -141,10 +141,11 @@
     /* l-sidebar のサイドバー側はカード間隔を狭く */
     .l-sidebar > :last-child > * + section { margin-top: 1rem; }
 
-    /* コンテンツ最大幅（デフォルト 60rem、wide 80rem、full 制限なし） */
-    --_content-max: 60rem;
+    /* コンテンツ最大幅（既定 60rem・--content-max で変更可、normal 60rem 固定、wide 80rem、full 制限なし） */
+    --_content-max: var(--content-max, 60rem);
     padding-right: max(var(--content-padding-x), calc(100% - var(--_content-max) - var(--content-padding-x)));
 
+    &.normal { --_content-max: 60rem; }
     &.wide { --_content-max: 80rem; }
     &.full { padding-right: var(--content-padding-x); }
 
