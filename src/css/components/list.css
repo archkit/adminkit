@@ -159,7 +159,7 @@
 
       > dt {
         flex-shrink: 0;
-        width: 10rem;
+        width: var(--label-width);
         padding-top: 0.125rem;
         font-size: 0.875rem;
       }

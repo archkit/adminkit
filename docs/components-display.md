@@ -240,7 +240,7 @@
 | `.rows.compact` | c-list | 行の高さを `1.75rem` に詰める。副テキストは書く側が省く |
 | `.selected` | c-list.rows > li | アクセント 8% の背景 + 左端に内側の線 |
 | `.danger` | c-list.rows > li | 危険色 8% の背景 + 左端に内側の線 |
-| `.horizontal` | c-dl | dt/dd を横並び。dt は `width: 10rem` 固定 |
+| `.horizontal` | c-dl | dt/dd を横並び。dt は `width: var(--label-width)`（既定 12rem。フォームの横並びの label と共有） |
 
 ### ユースケース
 

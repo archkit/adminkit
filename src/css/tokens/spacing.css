@@ -8,5 +8,9 @@
     --space-8:  2rem;
     --space-12: 3rem;
     --space-16: 4rem;
+
+    /* 横並びの項目名の列の幅。記述リスト（.c-dl.horizontal の dt）とフォーム（.c-fields.horizontal の
+       label）で共有し、同じ画面に並べたときに値・入力欄の開始位置を揃える */
+    --label-width: 12rem;
   }
 }

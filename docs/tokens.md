@@ -127,6 +127,10 @@
 | `--space-12` | 3rem | 48px |
 | `--space-16` | 4rem | 64px |
 
+| トークン | 値 | 用途 |
+|---|---|---|
+| `--label-width` | 12rem | 横並びの項目名の列の幅。`.c-dl.horizontal` の dt と `.c-fields.horizontal` の label が共有し、同じ画面に並べたときに値と入力欄の開始位置が揃う |
+
 ---
 
 ## z-index

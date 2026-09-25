@@ -49,7 +49,7 @@
 | クラス | 説明 | 用途 |
 |---|---|---|
 | （なし） | 縦積みレイアウト（`flex-direction: column; gap: 1.25rem`） | 一般的なフォーム |
-| `.horizontal` | ラベル左・入力右の横並び（`grid: 12rem 1fr`）。40rem 以下で縦積みにフォールバック | 設定画面 |
+| `.horizontal` | ラベル左・入力右の横並び（`grid: var(--label-width) 1fr`・既定 12rem）。40rem 以下で縦積みにフォールバック | 設定画面 |
 | `.inline` | 横一列（`flex-direction: row; flex-wrap: wrap`）。ボタンも含められる | フィルタバー、検索フォーム |
 
 #### horizontal
@@ -67,7 +67,7 @@
 </div>
 ```
 
-ラベル列幅は `12rem` 固定。`small` は `grid-column: 2` で入力側に配置される。`@media (max-width: 40rem)` で自動的に縦積みにフォールバック。
+ラベル列幅はトークン `--label-width`（既定 12rem。記述リストの横並びの dt と共有）。`small` は `grid-column: 2` で入力側に配置される。`@media (max-width: 40rem)` で自動的に縦積みにフォールバック。
 
 #### inline
 
