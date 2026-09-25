@@ -20,7 +20,8 @@
       text-align: left;
       font-weight: 600;
       font-size: 0.6875rem;
-      text-transform: uppercase;
+      /* 見出しの文言は書いたとおりに出す（大文字化すると日本語と混ざる見出しで英字だけが
+         大文字になり、「Organization」のように決めた表記と画面の表記がずれる） */
       letter-spacing: 0.04em;
       color: var(--text-muted);
       background: transparent;

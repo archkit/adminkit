@@ -81,7 +81,7 @@
 ```
 
 - `width: 100%; border-collapse: collapse; font-size: 0.875rem`
-- thead: `font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 3px double var(--border)`
+- thead: `font-size: 0.6875rem; letter-spacing: 0.04em; border-bottom: 3px double var(--border)`（大文字化はしない。見出しの文言は書いたとおりに出す）
 - tbody: `border-bottom: 1px solid var(--border-muted)` + ホバー時 `background: var(--surface-50)`
 - `c-table-scroll` ラッパーで `overflow-x: auto`、テーブルに `min-width: 40rem` を設定
 - `c-table-scroll` は `background-attachment: local/scroll` によるグラデーションシャドウで、スクロール可否を視覚的に示唆する。4層の背景（白マスク × 2 + 影 × 2）を組み合わせ、スクロール端では影が自動で消える
