@@ -38,6 +38,10 @@
   main section > h3 + *,
   main section > h4 + * { margin-top: 0.75rem; }
 
+  /* 視覚的に隠した見出し（.visually-hidden）は要素として残るため、上の規則が次の要素に
+     見出し直下の間隔を付けてしまう。見出しが見えない節では最初の要素を上に詰める */
+  main section > :is(h2, h3, h4).visually-hidden + * { margin-top: 0; }
+
   /* 見出しの装飾 */
   main h2 {
     padding-bottom: 0.75rem;

@@ -1,6 +1,10 @@
 @layer adminkit.tokens {
   /* デフォルト（Ink light） */
   :root {
+    /* ネイティブ部品（.c-fields の外の select / input・checkbox / radio・日付欄のアイコン・
+       ファイル選択のボタン・スクロールバー）の配色をテーマ mode に合わせる。
+       指定が無いとブラウザは light の既定で描き、dark の画面に白い部品が残る */
+    color-scheme: light;
     --surface-0:      oklch(0.993 0.002 250);
     --surface-50:     oklch(0.965 0.003 250);
     --surface-100:    oklch(0.935 0.005 250);
@@ -81,6 +85,7 @@
 
   /* === ダークモード === */
   [data-theme-mode="dark"] {
+    color-scheme: dark;
     --input-bg:     oklch(0.20 0.01 250);
 
     /* ステータス（dark: 明度UP） */
