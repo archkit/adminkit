@@ -57,7 +57,7 @@
         height: 2.5rem;
         border-radius: var(--radius);
         background: var(--accent-soft);
-        color: var(--accent);
+        color: var(--accent-text);
         flex-shrink: 0;
 
         > svg {

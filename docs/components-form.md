@@ -681,7 +681,7 @@ upload.addEventListener('drop', e => { e.preventDefault(); upload.classList.remo
 
 - `display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden`
 - 各ボタンは `border-right: 1px solid var(--border)` で区切り（`:last-child` で右端は除去）
-- 選択状態は `aria-pressed="true"` で CSS を切り替え: `background: var(--accent-soft); color: var(--accent)`
+- 選択状態は `aria-pressed="true"` で CSS を切り替え: `background: var(--accent-soft); color: var(--accent-text)`
 - `.active` クラスでも同じ見た目になるが、**`aria-pressed` を使うべき**（アクセシビリティ）
 - `button` と `a` の両方に対応
 - JS による `aria-pressed` の切り替えは利用者側で実装する

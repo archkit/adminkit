@@ -21,7 +21,7 @@
       }
 
       &[aria-selected="true"] {
-        color: var(--accent);
+        color: var(--accent-text);
         border-bottom-color: var(--accent);
       }
     }

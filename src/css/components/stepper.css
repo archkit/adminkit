@@ -61,7 +61,7 @@
       /* 現在 */
       &.active::before {
         border-color: var(--accent);
-        color: var(--accent);
+        color: var(--accent-text);
       }
 
       &.active {

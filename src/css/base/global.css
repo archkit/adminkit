@@ -50,7 +50,7 @@
   }
 
   a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   code, kbd {
@@ -90,10 +90,11 @@
     color: var(--selection-fg);
   }
 
-  /* リンク色: accent を使用 */
+  /* リンク色: 文字用の accent を使用。hover は本文の文字色へ寄せる（light / dark のどちらでも
+     背景との差が広がる向き。--accent-hover は dark で暗くなり差が縮む） */
   p a, li a, td a {
-    color: var(--accent);
-    &:hover { color: var(--accent-hover); }
+    color: var(--accent-text);
+    &:hover { color: color-mix(in oklch, var(--accent-text), var(--text-strong) 25%); }
   }
 
   /* small: 補足テキスト */

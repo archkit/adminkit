@@ -20,6 +20,10 @@
        （--accent-soft は 12% の淡色で、dark では背景とほぼ同色になる） */
     --selection-bg:   var(--accent);
     --selection-fg:   var(--text-on-accent);
+    /* 文字・アイコンに使う accent（リンク・選択中のタブ等）。--accent は主ボタンの地にも使うため
+       明度を動かせない。相対色構文に対応したブラウザでは下の @supports で背景との差を確保した値に
+       置き換える（非対応では --accent のまま） */
+    --accent-text:    var(--accent);
     --input-bg:       oklch(1 0 0);
     --radius:         6px;
 
@@ -173,5 +177,17 @@
   }
   [data-theme-mode="dark"] {
     --shadow-popup: 0 4px 12px oklch(0 0 0 / 0.4);
+  }
+
+  /* 文字用の accent: 各テーマの --accent から明度だけを制限して導く（テーマごとに値を持たない）。
+     light は明度 0.48 以下、dark は 0.68 以上にし、全テーマの surface-0 / 50（dark は 100 も）に
+     対して 4.5:1 以上を保つ（2026-09-25 に oklch → sRGB で計算。light 4.91〜・dark 5.38〜） */
+  @supports (color: oklch(from red max(l, 0.5) c h)) {
+    :root {
+      --accent-text: oklch(from var(--accent) min(l, 0.48) c h);
+    }
+    [data-theme-mode="dark"] {
+      --accent-text: oklch(from var(--accent) max(l, 0.68) c h);
+    }
   }
 }

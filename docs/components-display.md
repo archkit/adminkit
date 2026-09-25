@@ -463,7 +463,7 @@
 ```
 
 - `flex-direction: row; align-items: flex-start; gap: 1rem`
-- `.c-stats-icon`: `2.5rem x 2.5rem` の角丸ボックス。`background: var(--accent-soft); color: var(--accent)`。アイコンは `var(--icon-lg)`
+- `.c-stats-icon`: `2.5rem x 2.5rem` の角丸ボックス。`background: var(--accent-soft); color: var(--accent-text)`。アイコンは `var(--icon-lg)`
 - `.c-stats-body`: `flex-direction: column; gap: 0.5rem; min-width: 0`
 
 ### ユースケース
