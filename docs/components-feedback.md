@@ -334,6 +334,24 @@ toast.dismiss();
 - 右端から滑り込む（`translate` + `@starting-style`）
 - `.body` 直下のブロックには `margin-top: 1rem` が入る（`c-modal` と同じ理由——drawer は `main` の外に置かれる）
 
+### バリアント
+
+| クラス | 効果 | 使う場面 |
+|---|---|---|
+| `.wide` | 幅を `47rem` にする | 1 件を長く読む（メールの本文・プレビューなど） |
+| `.inset` | 画面の端から `0.5rem` 離して出す。端に接しないので角を丸め、線で縁取る | 一覧の手前に浮かせて見せたいとき |
+| `.flush` | `.body` の余白を 0 にし、縦に並べる（子が残りの高さを取れる）。`.body` 自体はスクロールしない | 中身が自分で余白・並べ方・スクロールを持つとき（`header` / `footer` を使わず全体を描く画面） |
+
+```html
+<dialog class="c-drawer wide inset flush" aria-label="メールの本文">
+  <section>
+    <div class="body">
+      <!-- 見出し・操作・本文をこの中で組む（閉じるボタンも中身の側で置く） -->
+    </div>
+  </section>
+</dialog>
+```
+
 ### data 属性 API
 
 `c-modal` と共通。
@@ -806,6 +824,23 @@ JS の動作:
 ```
 
 `.sticky` クラスで画面下部に固定表示。
+
+### floating（画面下部の中央に小さく重ねる）
+
+```html
+<div class="c-action-bar floating" role="toolbar" aria-label="選択したメールの操作">
+  <span><strong>2</strong>件選択中</span>
+  <div class="l-cluster">
+    <button class="c-button ghost small">選択を解除</button>
+    <button class="c-button ghost small danger">削除</button>
+  </div>
+</div>
+```
+
+- 置き場所は `.sticky` と同じ（`main` 直下・`main-content` の外）。`.sticky` と一緒には付けない
+- 高さ `2.75rem` の欄を中央に寄せ、その高さと下の余白（`1.5rem`）の分だけ上へずらして、`main-content` の下端に重ねる。`main` は縦並びで `main-content` だけがスクロールするので、サイドバーの幅を知らなくても中央に置ける
+- 中身の手前に出るので、オーバーレイ族（`primitives.md` の P6）と同じく影（`--shadow-popup`）を使う
+- 重なる分だけ `main-content` の下端が隠れる。選んでいる間だけ出す一括操作のように、出ている時間が短い用途に使う
 
 ### テーブルチェックボックス連動
 

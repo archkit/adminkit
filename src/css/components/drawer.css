@@ -91,5 +91,46 @@
       border-top: 1px solid var(--border-muted);
       flex-shrink: 0;
     }
+
+    /* 幅の広い形。1 件を長く読む（メールの本文・プレビューなど）とき */
+    &.wide {
+      width: 47rem;
+    }
+
+    /* 画面の端から少し離して出す形。端に接しないので、角を丸めて線で縁取る。
+       閉じた位置は離した分だけ外へ出す（[open] と @starting-style は、この変種の中で上書きする。
+       同じ詳細度の .c-drawer.inset が .c-drawer[open] より後ろにあるため） */
+    &.inset {
+      margin: 0.5rem 0.5rem 0.5rem auto;
+      height: calc(100dvh - 1rem);
+      max-height: calc(100dvh - 1rem);
+      max-width: calc(100% - 3.5rem);
+      border: 1px solid var(--border-muted);
+      border-radius: calc(var(--radius) + 6px);
+      overflow: hidden;
+      translate: calc(100% + 0.5rem) 0;
+
+      &[open] {
+        translate: 0 0;
+      }
+
+      @starting-style {
+        &[open] {
+          translate: calc(100% + 0.5rem) 0;
+        }
+      }
+    }
+
+    /* 本文の余白なし。中身が自分で余白・並べ方・スクロールを持つとき（header / footer を使わずに
+       全体を描く画面など）。本文は縦に並べ、子が残りの高さを取れるようにする */
+    &.flush > section > .body {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+
+      > * + *,
+      > form > * + * { margin-top: 0; }
+    }
   }
 }

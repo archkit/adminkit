@@ -8,6 +8,8 @@
 
     > label {
       position: relative;
+      /* 選択肢は押せる物なので指の形にする（label の既定は矢印） */
+      cursor: pointer;
 
       > input {
         /* visually-hidden パターン */

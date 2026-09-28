@@ -15,5 +15,27 @@
       bottom: 0;
       z-index: var(--z-sticky);
     }
+
+    /* 画面下部の中央に、小さく重ねて出す形（選んでいる間だけ出す一括操作など）。
+       main は縦並びで中身の欄（main-content）だけがスクロールするため、高さを決めておき、
+       その分だけ上へずらして中身の下端に重ねる（サイドバーの幅を知らなくても中央に置ける）。
+       中身の手前に出るのでオーバーレイ族と同じく影を使う */
+    &.floating {
+      --_h: 2.75rem;
+      --_offset: 1.5rem;
+      position: relative;
+      z-index: var(--z-sticky);
+      align-self: center;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      height: var(--_h);
+      margin: calc(-1 * (var(--_h) + var(--_offset))) 0 var(--_offset);
+      padding: 0 0.375rem 0 1rem;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      background: var(--input-bg);
+      box-shadow: var(--shadow-popup);
+      font-size: 0.8125rem;
+    }
   }
 }

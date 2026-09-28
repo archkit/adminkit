@@ -78,7 +78,7 @@ adminkit は 36 個の部品を持つが、その多くは **8 つの骨格の�
 | `c-dropdown` | 起動要素の直下 | `10rem` 〜 |
 | `c-modal` | 画面中央 | `32rem`（`.wide` で `48rem`） |
 | `c-palette` | 上から `15vh` | `35rem` |
-| `c-drawer` | 右端に固定 | `25rem` |
+| `c-drawer` | 右端に固定（`.inset` で端から離す） | `25rem`（`.wide` で `47rem`） |
 | `c-toast` | 右下に積む | — |
 | `c-tooltip` | 対象の近傍 | — |
 
@@ -108,4 +108,4 @@ adminkit は 36 個の部品を持つが、その多くは **8 つの骨格の�
 | アクティビティ / 履歴 | Row（`.lead` ＝主体のアイコン）＋ 時刻を `.trail` に |
 | 検索・タグ入力 | FieldShell ＋ 中身の差し替えのみ |
 | メニュー・ダイアログ・パレット | Overlay の派生（起点と幅だけが違う） |
-| 選択 ＋ 一括操作 | Row（`.selected`）＋ 画面下端に固定した `c-action-bar` |
+| 選択 ＋ 一括操作 | Row（`.selected`）＋ 画面下端に固定した `c-action-bar`（小さく重ねるなら `.floating`） |
