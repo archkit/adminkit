@@ -78,7 +78,7 @@ adminkit は 36 個の部品を持つが、その多くは **8 つの骨格の�
 | `c-dropdown` | 起動要素の直下 | `10rem` 〜 |
 | `c-modal` | 画面中央 | `32rem`（`.wide` で `48rem`） |
 | `c-palette` | 上から `15vh` | `35rem` |
-| `c-drawer` | 右端に固定（`.inset` で端から離す） | `25rem`（`.wide` で `64rem`） |
+| `c-drawer` | 右端に固定（`.inset` で端から離す） | `25rem`（`.wide` で本文の領域いっぱい・上限 `80rem`） |
 | `c-toast` | 右下に積む | — |
 | `c-tooltip` | 対象の近傍 | — |
 
