@@ -47,6 +47,8 @@
     > p {
       font-size: 0.8125rem;
       color: var(--text-muted);
+      /* 本文の改行（入力の誤りの欄ごとの行など）をそのまま改行として出す */
+      white-space: pre-line;
     }
   }
 
