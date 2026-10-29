@@ -19,7 +19,9 @@
     /* 画面下部の中央に、小さく重ねて出す形（選んでいる間だけ出す一括操作など）。
        main は縦並びで中身の欄（main-content）だけがスクロールするため、高さを決めておき、
        その分だけ上へずらして中身の下端に重ねる（サイドバーの幅を知らなくても中央に置ける）。
-       中身の手前に出るのでオーバーレイ族と同じく影を使う */
+       中身の手前に出るのでオーバーレイ族と同じく影を使う。
+       地と文字の色を入れ替える（地は本文の文字の色）。白い地ではページの地と見分けがつかず、
+       欄が出たことに気づきにくかったため */
     &.floating {
       --_h: 2.75rem;
       --_offset: 1.5rem;
@@ -31,11 +33,46 @@
       height: var(--_h);
       margin: calc(-1 * (var(--_h) + var(--_offset))) 0 var(--_offset);
       padding: 0 0.375rem 0 1rem;
-      border: 1px solid var(--border);
+      border: 1px solid var(--text-strong);
       border-radius: calc(var(--radius) + 4px);
-      background: var(--input-bg);
+      background: var(--text-strong);
       box-shadow: var(--shadow-popup);
+      /* 件数の文字は操作より控えめにする */
+      color: color-mix(in oklab, var(--input-bg) 65%, var(--text-strong));
       font-size: 0.8125rem;
+
+      /* 件数（最初の子・既定は <strong>N</strong>件選択中）。数字を丸い地に入れ、操作のボタンと見分ける */
+      > :first-child {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        white-space: nowrap;
+
+        > strong {
+          display: inline-grid;
+          place-items: center;
+          min-width: 1.25rem;
+          height: 1.25rem;
+          padding: 0 0.375rem;
+          border-radius: 999px;
+          background: var(--input-bg);
+          color: var(--text-strong);
+          font-size: 0.75rem;
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+        }
+      }
+
+      /* 欄の中の地の無いボタン。乗せたときの地は既定（surface-100）だと文字と同じ明るさになって
+         文字が消えるため、文字の色を薄く混ぜた地にする */
+      .c-button.ghost {
+        color: var(--input-bg);
+
+        &:hover {
+          background: color-mix(in oklab, var(--input-bg) 14%, transparent);
+          color: var(--input-bg);
+        }
+      }
     }
   }
 }
