@@ -46,7 +46,7 @@
           <section>
             <h2>特徴</h2>
             <ul class="c-list">
-              <li>shell-main の Grid 2行目（main の外）に配置</li>
+              <li>shell-main の中、main の後ろ（main の外）に配置</li>
               <li>action-bar と独立して動作</li>
               <li>コピーライト、リンク、バージョン情報などに利用</li>
             </ul>

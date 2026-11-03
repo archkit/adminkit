@@ -164,8 +164,9 @@ gap のカスタマイズ: `style="--l-stack-gap: 2rem"`
 body:has(.shell) → overflow: hidden（body スクロール無効化）
 .shell → CSS Grid, height: 100dvh
 ├── .shell-sidebar → flex column, ダーク調
-└── .shell-main → Grid
-    ├── main → flex column
+└── .shell-main → flex column
+    ├── .c-banner → 中身の高さ（オプション・main の前）
+    ├── main → flex: 1（残りの高さ）, flex column
     │   ├── nav.main-nav → sticky パンくず帯
     │   ├── .main-content → flex: 1, overflow-y: auto
     │   └── .c-action-bar → sticky bottom（オプション）
@@ -191,6 +192,10 @@ body:has(.shell) → overflow: hidden（body スクロール無効化）
 **shell-footer の配置:**
 - `shell-main` 内、`main` の**外**に配置
 - action-bar と独立して動作する
+
+**c-banner の配置（ページ全体に関わる告知）:**
+- `shell-main` 内、`main` の**前**に配置。中身の高さだけを取り、`main` が残りの高さを取る（パンくず帯は帯の下に続く）
+- 複数並べてもよい（上から順に積む）
 
 ### sidebar パターン
 

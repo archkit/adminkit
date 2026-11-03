@@ -107,14 +107,17 @@
     }
   }
 
-  /* --- Main Area --- */
+  /* --- Main Area ---
+     縦に並べ、main が残りの高さを取る。main の前に置く c-banner と後ろの shell-footer は中身の高さだけを取る
+     （以前の 2 段の格子では、main の前に置いた要素が 1 段目を取り、main が 2 段目へ押し出されていた） */
   .shell-main {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
+    display: flex;
+    flex-direction: column;
     min-height: 0;
     overflow: hidden;
 
     > main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 0;

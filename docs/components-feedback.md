@@ -57,6 +57,7 @@
 
 → CSS: `src/css/components/banner.css`
 → デモ: `/pages/components/widgets.php`
+→ シェルの中での置き場所: [layout.md](layout.md)「c-banner の配置」
 
 ### 基本構造
 
